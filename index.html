@@ -997,12 +997,28 @@
 
 <!-- SCALED CSM VIEW -->
 <div id="scsm-view" style="display:none;max-width:1600px;margin:0 auto;padding:28px 32px;">
-  <div class="scsm-pending-banner">
-    <div class="bp-icon">📅</div>
-    <div>
-      <div class="bp-title">Calendar Data Pending</div>
-      <div class="bp-desc">Scaled CSM calendar data will be fetched at the next daily refresh (9:00 AM IST, Mon–Fri). The daily cron will classify customer calls by detecting meetings where a Scaled CSM member is organiser and at least one attendee is from an external (non-saaslabs.co) domain.</div>
+  <!-- SCSM Summary Cards -->
+  <div id="scsm-summary-cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;">
+    <div class="summary-card" style="padding:20px;">
+      <div class="label">Total Bandwidth</div>
+      <div id="scsm-card-bw" class="value" style="font-size:28px;font-weight:700;">—</div>
+      <div class="sub" id="scsm-card-bw-sub">4 members</div>
     </div>
+    <div class="summary-card" style="padding:20px;">
+      <div class="label">Total Customer Calls</div>
+      <div id="scsm-card-calls" class="value" style="font-size:28px;font-weight:700;">—</div>
+      <div class="sub" id="scsm-card-calls-sub">across team</div>
+    </div>
+    <div class="summary-card" style="padding:20px;">
+      <div class="label">Avg Utilization</div>
+      <div id="scsm-card-util" class="value" style="font-size:28px;font-weight:700;">—</div>
+      <div class="sub">Target: &gt;70%</div>
+    </div>
+  </div>
+  <!-- Date Range Buttons for SCSM -->
+  <div style="display:flex;gap:8px;margin-bottom:20px;" id="scsm-range-btns">
+    <button class="range-btn active" id="scsm-btn-week" onclick="scsmSetRange('week',this)">Last 7 Days</button>
+    <button class="range-btn" id="scsm-btn-today" onclick="scsmSetRange('today',this)">Today</button>
   </div>
   <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;" id="scsm-cards-container"></div>
 </div>
@@ -5610,6 +5626,2189 @@ const SCSM_MEMBERS = [
 const SCSM_COLORS = ['#3b82f6','#8b5cf6','#10b981','#f59e0b'];
 
 let currentTeam = 'ps';
+let currentRange = 'week';
+
+const SCSM_RAW_DATA = {
+  "hunar.dugar": {
+    "name": "Hunar Dugar",
+    "email": "hunar.dugar@saaslabs.co",
+    "region": "EMEA",
+    "shift_hrs": 9,
+    "days": {
+      "2026-03-27": {
+        "status": "OOF",
+        "bandwidth_hrs": 0,
+        "internal_blocker_mins": 0,
+        "customer_call_mins": 0,
+        "effective_bandwidth_hrs": 0,
+        "calls_count": 0,
+        "idle_mins": 0,
+        "utilization_pct": 0,
+        "customer_calls": [],
+        "internal_blockers": [],
+        "others": []
+      },
+      "2026-03-30": {
+        "status": "OOF",
+        "bandwidth_hrs": 0,
+        "internal_blocker_mins": 0,
+        "customer_call_mins": 0,
+        "effective_bandwidth_hrs": 0,
+        "calls_count": 0,
+        "idle_mins": 0,
+        "utilization_pct": 0,
+        "customer_calls": [],
+        "internal_blockers": [],
+        "others": []
+      },
+      "2026-03-31": {
+        "status": "OOF",
+        "bandwidth_hrs": 0,
+        "internal_blocker_mins": 0,
+        "customer_call_mins": 0,
+        "effective_bandwidth_hrs": 0,
+        "calls_count": 0,
+        "idle_mins": 0,
+        "utilization_pct": 0,
+        "customer_calls": [],
+        "internal_blockers": [],
+        "others": []
+      },
+      "2026-04-01": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 45.0,
+        "customer_call_mins": 150.0,
+        "effective_bandwidth_hrs": 8.25,
+        "calls_count": 5,
+        "idle_mins": 345.0,
+        "utilization_pct": 30.3,
+        "customer_calls": [
+          {
+            "title": "Rahul Chebrolu and Hunar Dugar",
+            "start": "2026-04-01T16:30:00+05:30",
+            "end": "2026-04-01T17:00:00+05:30",
+            "clipped_start": "2026-04-01T16:30:00+05:30",
+            "clipped_end": "2026-04-01T17:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Tom Volk and Hunar Dugar",
+            "start": "2026-04-01T21:45:00+05:30",
+            "end": "2026-04-01T22:15:00+05:30",
+            "clipped_start": "2026-04-01T21:45:00+05:30",
+            "clipped_end": "2026-04-01T22:15:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Veronika Oquendo and Hunar Dugar",
+            "start": "2026-04-01T22:30:00+05:30",
+            "end": "2026-04-01T23:00:00+05:30",
+            "clipped_start": "2026-04-01T22:30:00+05:30",
+            "clipped_end": "2026-04-01T23:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Alejandro Sanchez and Hunar Dugar",
+            "start": "2026-04-01T23:15:00+05:30",
+            "end": "2026-04-01T23:45:00+05:30",
+            "clipped_start": "2026-04-01T23:15:00+05:30",
+            "clipped_end": "2026-04-01T23:45:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Lhoyd Nemhar Caoctoy and Hunar Dugar",
+            "start": "2026-04-02T00:00:00+05:30",
+            "end": "2026-04-02T00:30:00+05:30",
+            "clipped_start": "2026-04-02T00:00:00+05:30",
+            "clipped_end": "2026-04-02T00:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Intercom/ Emails",
+            "start": "2026-04-01T17:00:00+05:30",
+            "end": "2026-04-01T17:45:00+05:30",
+            "clipped_start": "2026-04-01T17:00:00+05:30",
+            "clipped_end": "2026-04-01T17:45:00+05:30",
+            "duration_mins": 45.0
+          }
+        ],
+        "others": [
+          {
+            "title": "PM-CS Weekly Sync",
+            "start": "2026-04-01T17:50:00+05:30",
+            "end": "2026-04-01T18:40:00+05:30",
+            "clipped_start": "2026-04-01T17:50:00+05:30",
+            "clipped_end": "2026-04-01T18:40:00+05:30",
+            "duration_mins": 50.0
+          },
+          {
+            "title": "JustCall / Loriwallbeds: Bi-weekly connect",
+            "start": "2026-04-01T21:00:00+05:30",
+            "end": "2026-04-01T21:30:00+05:30",
+            "clipped_start": "2026-04-01T21:00:00+05:30",
+            "clipped_end": "2026-04-01T21:30:00+05:30",
+            "duration_mins": 30.0
+          }
+        ]
+      },
+      "2026-04-02": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 60.0,
+        "customer_call_mins": 90.0,
+        "effective_bandwidth_hrs": 8.0,
+        "calls_count": 3,
+        "idle_mins": 390.0,
+        "utilization_pct": 18.8,
+        "customer_calls": [
+          {
+            "title": "Joe Spencer and Hunar Dugar",
+            "start": "2026-04-02T16:45:00+05:30",
+            "end": "2026-04-02T17:15:00+05:30",
+            "clipped_start": "2026-04-02T16:45:00+05:30",
+            "clipped_end": "2026-04-02T17:15:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Shiv Pratap Singh and Hunar Dugar",
+            "start": "2026-04-02T22:00:00+05:30",
+            "end": "2026-04-02T22:30:00+05:30",
+            "clipped_start": "2026-04-02T22:00:00+05:30",
+            "clipped_end": "2026-04-02T22:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Ell Lindsey and Hunar Dugar",
+            "start": "2026-04-02T23:00:00+05:30",
+            "end": "2026-04-02T23:30:00+05:30",
+            "clipped_start": "2026-04-02T23:00:00+05:30",
+            "clipped_end": "2026-04-02T23:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Dinner",
+            "start": "2026-04-02T21:00:00+05:30",
+            "end": "2026-04-02T22:00:00+05:30",
+            "clipped_start": "2026-04-02T21:00:00+05:30",
+            "clipped_end": "2026-04-02T22:00:00+05:30",
+            "duration_mins": 60.0
+          }
+        ],
+        "others": [
+          {
+            "title": " Monthly Check-In : Rimsys<>JustCall Cadence",
+            "start": "2026-04-03T00:00:00+05:30",
+            "end": "2026-04-03T00:30:00+05:30",
+            "clipped_start": "2026-04-03T00:00:00+05:30",
+            "clipped_end": "2026-04-03T00:30:00+05:30",
+            "duration_mins": 30.0
+          }
+        ]
+      },
+      "2026-04-03": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 120.0,
+        "customer_call_mins": 60.0,
+        "effective_bandwidth_hrs": 7.0,
+        "calls_count": 2,
+        "idle_mins": 360.0,
+        "utilization_pct": 14.3,
+        "customer_calls": [
+          {
+            "title": "Sanjeet Parvani and Hunar Dugar",
+            "start": "2026-04-03T19:45:00+05:30",
+            "end": "2026-04-03T20:15:00+05:30",
+            "clipped_start": "2026-04-03T19:45:00+05:30",
+            "clipped_end": "2026-04-03T20:15:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Shiv Pratap Singh and Hunar Dugar",
+            "start": "2026-04-03T21:30:00+05:30",
+            "end": "2026-04-03T22:00:00+05:30",
+            "clipped_start": "2026-04-03T21:30:00+05:30",
+            "clipped_end": "2026-04-03T22:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Emails/Intercom",
+            "start": "2026-04-03T16:00:00+05:30",
+            "end": "2026-04-03T17:00:00+05:30",
+            "clipped_start": "2026-04-03T16:00:00+05:30",
+            "clipped_end": "2026-04-03T17:00:00+05:30",
+            "duration_mins": 60.0
+          },
+          {
+            "title": "The Next Best Action Framework",
+            "start": "2026-04-03T17:00:00+05:30",
+            "end": "2026-04-03T17:30:00+05:30",
+            "clipped_start": "2026-04-03T17:00:00+05:30",
+            "clipped_end": "2026-04-03T17:30:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Hunar/Anurag Weekly Sync",
+            "start": "2026-04-03T18:15:00+05:30",
+            "end": "2026-04-03T18:45:00+05:30",
+            "clipped_start": "2026-04-03T18:15:00+05:30",
+            "clipped_end": "2026-04-03T18:45:00+05:30",
+            "duration_mins": 30.0
+          }
+        ],
+        "others": [
+          {
+            "title": "[SaaS Labs] Monthly Town Hall ",
+            "start": "2026-04-03T18:30:00+05:30",
+            "end": "2026-04-03T19:30:00+05:30",
+            "clipped_start": "2026-04-03T18:30:00+05:30",
+            "clipped_end": "2026-04-03T19:30:00+05:30",
+            "duration_mins": 60.0
+          }
+        ]
+      }
+    },
+    "totals": {
+      "bandwidth_hrs": 27,
+      "effective_bandwidth_hrs": 23.25,
+      "customer_call_mins": 300.0,
+      "calls_count": 10,
+      "idle_mins": 1095.0,
+      "utilization_pct": 21.5,
+      "avg_call_mins": 30
+    }
+  },
+  "narayan": {
+    "name": "Narayan",
+    "email": "narayan@saaslabs.co",
+    "region": "NAMER",
+    "shift_hrs": 9,
+    "days": {
+      "2026-03-27": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 60.0,
+        "customer_call_mins": 90.0,
+        "effective_bandwidth_hrs": 8.0,
+        "calls_count": 2,
+        "idle_mins": 390.0,
+        "utilization_pct": 18.8,
+        "customer_calls": [
+          {
+            "title": "Michael & Narayan | JustCall  Meeting",
+            "start": "2026-03-27T22:45:00+05:30",
+            "end": "2026-03-27T23:15:00+05:30",
+            "clipped_start": "2026-03-27T22:45:00+05:30",
+            "clipped_end": "2026-03-27T23:15:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          },
+          {
+            "title": "William & Narayan | JustCall  Meeting",
+            "start": "2026-03-28T00:00:00+05:30",
+            "end": "2026-03-28T00:30:00+05:30",
+            "clipped_start": "2026-03-28T00:00:00+05:30",
+            "clipped_end": "2026-03-28T00:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Lunch",
+            "start": "2026-03-27T21:30:00+05:30",
+            "end": "2026-03-27T22:30:00+05:30",
+            "clipped_start": "2026-03-27T21:30:00+05:30",
+            "clipped_end": "2026-03-27T22:30:00+05:30",
+            "duration_mins": 60.0
+          }
+        ],
+        "others": [
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-03-27T23:15:00+05:30",
+            "end": "2026-03-27T23:30:00+05:30",
+            "clipped_start": "2026-03-27T23:15:00+05:30",
+            "clipped_end": "2026-03-27T23:30:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-03-28T00:30:00+05:30",
+            "end": "2026-03-28T00:45:00+05:30",
+            "clipped_start": "2026-03-28T00:30:00+05:30",
+            "clipped_end": "2026-03-28T00:45:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
+      },
+      "2026-03-30": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 90.0,
+        "customer_call_mins": 225.0,
+        "effective_bandwidth_hrs": 7.5,
+        "calls_count": 5,
+        "idle_mins": 225.0,
+        "utilization_pct": 50.0,
+        "customer_calls": [
+          {
+            "title": "Tony & Narayan | JustCall  Meeting",
+            "start": "2026-03-30T18:45:00+05:30",
+            "end": "2026-03-30T19:15:00+05:30",
+            "clipped_start": "2026-03-30T18:45:00+05:30",
+            "clipped_end": "2026-03-30T19:15:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          },
+          {
+            "title": "Youssef & Narayan | JustCall  Meeting",
+            "start": "2026-03-30T20:00:00+05:30",
+            "end": "2026-03-30T20:30:00+05:30",
+            "clipped_start": "2026-03-30T20:00:00+05:30",
+            "clipped_end": "2026-03-30T20:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          },
+          {
+            "title": "David & Narayan | JustCall  Meeting",
+            "start": "2026-03-30T23:00:00+05:30",
+            "end": "2026-03-30T23:30:00+05:30",
+            "clipped_start": "2026-03-30T23:00:00+05:30",
+            "clipped_end": "2026-03-30T23:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          },
+          {
+            "title": "James & Narayan | JustCall  Meeting",
+            "start": "2026-03-31T00:30:00+05:30",
+            "end": "2026-03-31T01:00:00+05:30",
+            "clipped_start": "2026-03-31T00:30:00+05:30",
+            "clipped_end": "2026-03-31T01:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          },
+          {
+            "title": "Tony & Narayan | JustCall  Meeting",
+            "start": "2026-03-31T01:30:00+05:30",
+            "end": "2026-03-31T02:00:00+05:30",
+            "clipped_start": "2026-03-31T01:30:00+05:30",
+            "clipped_end": "2026-03-31T02:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Weekly Sync with Narayan",
+            "start": "2026-03-30T18:00:00+05:30",
+            "end": "2026-03-30T18:30:00+05:30",
+            "clipped_start": "2026-03-30T18:00:00+05:30",
+            "clipped_end": "2026-03-30T18:30:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Lunch",
+            "start": "2026-03-30T21:30:00+05:30",
+            "end": "2026-03-30T22:30:00+05:30",
+            "clipped_start": "2026-03-30T21:30:00+05:30",
+            "clipped_end": "2026-03-30T22:30:00+05:30",
+            "duration_mins": 60.0
+          }
+        ],
+        "others": [
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-03-30T19:15:00+05:30",
+            "end": "2026-03-30T19:30:00+05:30",
+            "clipped_start": "2026-03-30T19:15:00+05:30",
+            "clipped_end": "2026-03-30T19:30:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-03-30T20:30:00+05:30",
+            "end": "2026-03-30T20:45:00+05:30",
+            "clipped_start": "2026-03-30T20:30:00+05:30",
+            "clipped_end": "2026-03-30T20:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-03-30T23:30:00+05:30",
+            "end": "2026-03-30T23:45:00+05:30",
+            "clipped_start": "2026-03-30T23:30:00+05:30",
+            "clipped_end": "2026-03-30T23:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-03-31T01:00:00+05:30",
+            "end": "2026-03-31T01:15:00+05:30",
+            "clipped_start": "2026-03-31T01:00:00+05:30",
+            "clipped_end": "2026-03-31T01:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-03-31T02:00:00+05:30",
+            "end": "2026-03-31T02:15:00+05:30",
+            "clipped_start": "2026-03-31T02:00:00+05:30",
+            "clipped_end": "2026-03-31T02:15:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
+      },
+      "2026-03-31": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 60.0,
+        "customer_call_mins": 135.0,
+        "effective_bandwidth_hrs": 8.0,
+        "calls_count": 3,
+        "idle_mins": 345.0,
+        "utilization_pct": 28.1,
+        "customer_calls": [
+          {
+            "title": "Brian & Narayan | JustCall  Meeting",
+            "start": "2026-03-31T19:30:00+05:30",
+            "end": "2026-03-31T20:00:00+05:30",
+            "clipped_start": "2026-03-31T19:30:00+05:30",
+            "clipped_end": "2026-03-31T20:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          },
+          {
+            "title": "Harshal & Narayan | JustCall  Meeting",
+            "start": "2026-04-01T00:30:00+05:30",
+            "end": "2026-04-01T01:00:00+05:30",
+            "clipped_start": "2026-04-01T00:30:00+05:30",
+            "clipped_end": "2026-04-01T01:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          },
+          {
+            "title": "Muninder & Narayan | JustCall  Meeting",
+            "start": "2026-04-01T02:15:00+05:30",
+            "end": "2026-04-01T02:45:00+05:30",
+            "clipped_start": "2026-04-01T02:15:00+05:30",
+            "clipped_end": "2026-04-01T02:45:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Lunch",
+            "start": "2026-03-31T21:30:00+05:30",
+            "end": "2026-03-31T22:30:00+05:30",
+            "clipped_start": "2026-03-31T21:30:00+05:30",
+            "clipped_end": "2026-03-31T22:30:00+05:30",
+            "duration_mins": 60.0
+          }
+        ],
+        "others": [
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-03-31T18:00:00+05:30",
+            "end": "2026-03-31T18:15:00+05:30",
+            "clipped_start": "2026-03-31T18:00:00+05:30",
+            "clipped_end": "2026-03-31T18:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "Weekly team sync - GSA!",
+            "start": "2026-03-31T18:30:00+05:30",
+            "end": "2026-03-31T19:00:00+05:30",
+            "clipped_start": "2026-03-31T18:30:00+05:30",
+            "clipped_end": "2026-03-31T19:00:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-03-31T20:00:00+05:30",
+            "end": "2026-03-31T20:15:00+05:30",
+            "clipped_start": "2026-03-31T20:00:00+05:30",
+            "clipped_end": "2026-03-31T20:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-01T01:00:00+05:30",
+            "end": "2026-04-01T01:15:00+05:30",
+            "clipped_start": "2026-04-01T01:00:00+05:30",
+            "clipped_end": "2026-04-01T01:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-01T02:45:00+05:30",
+            "end": "2026-04-01T03:00:00+05:30",
+            "clipped_start": "2026-04-01T02:45:00+05:30",
+            "clipped_end": "2026-04-01T03:00:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
+      },
+      "2026-04-01": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 60.0,
+        "customer_call_mins": 225.0,
+        "effective_bandwidth_hrs": 8.0,
+        "calls_count": 5,
+        "idle_mins": 255.0,
+        "utilization_pct": 46.9,
+        "customer_calls": [
+          {
+            "title": "Sam & Narayan | JustCall  Meeting",
+            "start": "2026-04-01T19:30:00+05:30",
+            "end": "2026-04-01T20:00:00+05:30",
+            "clipped_start": "2026-04-01T19:30:00+05:30",
+            "clipped_end": "2026-04-01T20:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          },
+          {
+            "title": "Muninder & Narayan | JustCall  Meeting",
+            "start": "2026-04-01T20:30:00+05:30",
+            "end": "2026-04-01T21:00:00+05:30",
+            "clipped_start": "2026-04-01T20:30:00+05:30",
+            "clipped_end": "2026-04-01T21:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          },
+          {
+            "title": "Joseph & Narayan | JustCall  Meeting",
+            "start": "2026-04-01T22:45:00+05:30",
+            "end": "2026-04-01T23:15:00+05:30",
+            "clipped_start": "2026-04-01T22:45:00+05:30",
+            "clipped_end": "2026-04-01T23:15:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          },
+          {
+            "title": "Harshal & Narayan | JustCall  Meeting",
+            "start": "2026-04-02T00:00:00+05:30",
+            "end": "2026-04-02T00:30:00+05:30",
+            "clipped_start": "2026-04-02T00:00:00+05:30",
+            "clipped_end": "2026-04-02T00:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          },
+          {
+            "title": "Amanda & Narayan | JustCall  Meeting",
+            "start": "2026-04-02T01:30:00+05:30",
+            "end": "2026-04-02T02:00:00+05:30",
+            "clipped_start": "2026-04-02T01:30:00+05:30",
+            "clipped_end": "2026-04-02T02:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Lunch",
+            "start": "2026-04-01T21:30:00+05:30",
+            "end": "2026-04-01T22:30:00+05:30",
+            "clipped_start": "2026-04-01T21:30:00+05:30",
+            "clipped_end": "2026-04-01T22:30:00+05:30",
+            "duration_mins": 60.0
+          }
+        ],
+        "others": [
+          {
+            "title": "PM-CS Weekly Sync",
+            "start": "2026-04-01T17:50:00+05:30",
+            "end": "2026-04-01T18:40:00+05:30",
+            "clipped_start": "2026-04-01T18:00:00+05:30",
+            "clipped_end": "2026-04-01T18:40:00+05:30",
+            "duration_mins": 40.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-01T20:00:00+05:30",
+            "end": "2026-04-01T20:15:00+05:30",
+            "clipped_start": "2026-04-01T20:00:00+05:30",
+            "clipped_end": "2026-04-01T20:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "Narayan / Tanish Dinesh",
+            "start": "2026-04-01T20:30:00+05:30",
+            "end": "2026-04-01T20:45:00+05:30",
+            "clipped_start": "2026-04-01T20:30:00+05:30",
+            "clipped_end": "2026-04-01T20:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-01T21:00:00+05:30",
+            "end": "2026-04-01T21:15:00+05:30",
+            "clipped_start": "2026-04-01T21:00:00+05:30",
+            "clipped_end": "2026-04-01T21:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-01T23:15:00+05:30",
+            "end": "2026-04-01T23:30:00+05:30",
+            "clipped_start": "2026-04-01T23:15:00+05:30",
+            "clipped_end": "2026-04-01T23:30:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-02T00:30:00+05:30",
+            "end": "2026-04-02T00:45:00+05:30",
+            "clipped_start": "2026-04-02T00:30:00+05:30",
+            "clipped_end": "2026-04-02T00:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-02T02:00:00+05:30",
+            "end": "2026-04-02T02:15:00+05:30",
+            "clipped_start": "2026-04-02T02:00:00+05:30",
+            "clipped_end": "2026-04-02T02:15:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
+      },
+      "2026-04-02": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 60.0,
+        "customer_call_mins": 255.0,
+        "effective_bandwidth_hrs": 8.0,
+        "calls_count": 6,
+        "idle_mins": 225.0,
+        "utilization_pct": 53.1,
+        "customer_calls": [
+          {
+            "title": "Michael & Narayan | JustCall  Meeting",
+            "start": "2026-04-02T18:45:00+05:30",
+            "end": "2026-04-02T19:15:00+05:30",
+            "clipped_start": "2026-04-02T18:45:00+05:30",
+            "clipped_end": "2026-04-02T19:15:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          },
+          {
+            "title": "Shikhar & Narayan | JustCall  Meeting",
+            "start": "2026-04-02T20:00:00+05:30",
+            "end": "2026-04-02T20:30:00+05:30",
+            "clipped_start": "2026-04-02T20:00:00+05:30",
+            "clipped_end": "2026-04-02T20:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          },
+          {
+            "title": "Joseph & Narayan | JustCall  Meeting",
+            "start": "2026-04-02T20:45:00+05:30",
+            "end": "2026-04-02T21:15:00+05:30",
+            "clipped_start": "2026-04-02T20:45:00+05:30",
+            "clipped_end": "2026-04-02T21:15:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          },
+          {
+            "title": "Ell Lindsey and Hunar Dugar",
+            "start": "2026-04-02T23:00:00+05:30",
+            "end": "2026-04-02T23:30:00+05:30",
+            "clipped_start": "2026-04-02T23:00:00+05:30",
+            "clipped_end": "2026-04-02T23:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Shannon & Narayan | JustCall  Meeting",
+            "start": "2026-04-02T23:30:00+05:30",
+            "end": "2026-04-03T00:00:00+05:30",
+            "clipped_start": "2026-04-02T23:30:00+05:30",
+            "clipped_end": "2026-04-03T00:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          },
+          {
+            "title": "Juliet & Narayan | JustCall  Meeting",
+            "start": "2026-04-03T02:00:00+05:30",
+            "end": "2026-04-03T02:30:00+05:30",
+            "clipped_start": "2026-04-03T02:00:00+05:30",
+            "clipped_end": "2026-04-03T02:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Lunch",
+            "start": "2026-04-02T21:30:00+05:30",
+            "end": "2026-04-02T22:30:00+05:30",
+            "clipped_start": "2026-04-02T21:30:00+05:30",
+            "clipped_end": "2026-04-02T22:30:00+05:30",
+            "duration_mins": 60.0
+          }
+        ],
+        "others": [
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-02T19:15:00+05:30",
+            "end": "2026-04-02T19:30:00+05:30",
+            "clipped_start": "2026-04-02T19:15:00+05:30",
+            "clipped_end": "2026-04-02T19:30:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-02T20:30:00+05:30",
+            "end": "2026-04-02T20:45:00+05:30",
+            "clipped_start": "2026-04-02T20:30:00+05:30",
+            "clipped_end": "2026-04-02T20:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-02T21:15:00+05:30",
+            "end": "2026-04-02T21:30:00+05:30",
+            "clipped_start": "2026-04-02T21:15:00+05:30",
+            "clipped_end": "2026-04-02T21:30:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-03T00:00:00+05:30",
+            "end": "2026-04-03T00:15:00+05:30",
+            "clipped_start": "2026-04-03T00:00:00+05:30",
+            "clipped_end": "2026-04-03T00:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-03T02:30:00+05:30",
+            "end": "2026-04-03T02:45:00+05:30",
+            "clipped_start": "2026-04-03T02:30:00+05:30",
+            "clipped_end": "2026-04-03T02:45:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
+      },
+      "2026-04-03": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 60.0,
+        "customer_call_mins": 75.0,
+        "effective_bandwidth_hrs": 8.0,
+        "calls_count": 2,
+        "idle_mins": 405.0,
+        "utilization_pct": 15.6,
+        "customer_calls": [
+          {
+            "title": "Mike & Narayan | JustCall  Meeting",
+            "start": "2026-04-03T22:45:00+05:30",
+            "end": "2026-04-03T23:15:00+05:30",
+            "clipped_start": "2026-04-03T22:45:00+05:30",
+            "clipped_end": "2026-04-03T23:15:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": true,
+            "effective_mins": 45.0
+          },
+          {
+            "title": "Louis-Junior & Narayan | JustCall  Meeting",
+            "start": "2026-04-03T23:30:00+05:30",
+            "end": "2026-04-04T00:00:00+05:30",
+            "clipped_start": "2026-04-03T23:30:00+05:30",
+            "clipped_end": "2026-04-04T00:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Lunch",
+            "start": "2026-04-03T21:30:00+05:30",
+            "end": "2026-04-03T22:30:00+05:30",
+            "clipped_start": "2026-04-03T21:30:00+05:30",
+            "clipped_end": "2026-04-03T22:30:00+05:30",
+            "duration_mins": 60.0
+          }
+        ],
+        "others": [
+          {
+            "title": "[SaaS Labs] Monthly Town Hall ",
+            "start": "2026-04-03T18:30:00+05:30",
+            "end": "2026-04-03T19:30:00+05:30",
+            "clipped_start": "2026-04-03T18:30:00+05:30",
+            "clipped_end": "2026-04-03T19:30:00+05:30",
+            "duration_mins": 60.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-03T23:15:00+05:30",
+            "end": "2026-04-03T23:30:00+05:30",
+            "clipped_start": "2026-04-03T23:15:00+05:30",
+            "clipped_end": "2026-04-03T23:30:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
+      }
+    },
+    "totals": {
+      "bandwidth_hrs": 54,
+      "effective_bandwidth_hrs": 47.5,
+      "customer_call_mins": 1005.0,
+      "calls_count": 23,
+      "idle_mins": 1845.0,
+      "utilization_pct": 35.3,
+      "avg_call_mins": 44
+    }
+  },
+  "srihari.srinivasan": {
+    "name": "Srihari Srinivasan",
+    "email": "srihari.srinivasan@saaslabs.co",
+    "region": "APAC + EMEA",
+    "shift_hrs": 9,
+    "days": {
+      "2026-03-27": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 30.0,
+        "customer_call_mins": 120.0,
+        "effective_bandwidth_hrs": 8.5,
+        "calls_count": 4,
+        "idle_mins": 390.0,
+        "utilization_pct": 23.5,
+        "customer_calls": [
+          {
+            "title": "eric and Srihari Srinivasan - JustCall",
+            "start": "2026-03-27T08:00:00+05:30",
+            "end": "2026-03-27T08:30:00+05:30",
+            "clipped_start": "2026-03-27T08:00:00+05:30",
+            "clipped_end": "2026-03-27T08:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Tracy and Srihari Srinivasan - JustCall",
+            "start": "2026-03-27T11:15:00+05:30",
+            "end": "2026-03-27T11:45:00+05:30",
+            "clipped_start": "2026-03-27T11:15:00+05:30",
+            "clipped_end": "2026-03-27T11:45:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Dennis and Srihari Srinivasan - JustCall",
+            "start": "2026-03-27T12:30:00+05:30",
+            "end": "2026-03-27T13:00:00+05:30",
+            "clipped_start": "2026-03-27T12:30:00+05:30",
+            "clipped_end": "2026-03-27T13:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Andrew and Srihari Srinivasan - JustCall",
+            "start": "2026-03-27T16:00:00+05:30",
+            "end": "2026-03-27T16:30:00+05:30",
+            "clipped_start": "2026-03-27T16:00:00+05:30",
+            "clipped_end": "2026-03-27T16:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Lunch Break",
+            "start": "2026-03-27T14:00:00+05:30",
+            "end": "2026-03-27T14:30:00+05:30",
+            "clipped_start": "2026-03-27T14:00:00+05:30",
+            "clipped_end": "2026-03-27T14:30:00+05:30",
+            "duration_mins": 30.0
+          }
+        ],
+        "others": []
+      },
+      "2026-03-30": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 45.0,
+        "customer_call_mins": 60.0,
+        "effective_bandwidth_hrs": 8.25,
+        "calls_count": 2,
+        "idle_mins": 435.0,
+        "utilization_pct": 12.1,
+        "customer_calls": [
+          {
+            "title": "Rosal and Srihari Srinivasan - JustCall",
+            "start": "2026-03-30T08:00:00+05:30",
+            "end": "2026-03-30T08:30:00+05:30",
+            "clipped_start": "2026-03-30T08:00:00+05:30",
+            "clipped_end": "2026-03-30T08:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Kimberly and Srihari Srinivasan - JustCall",
+            "start": "2026-03-30T09:00:00+05:30",
+            "end": "2026-03-30T09:30:00+05:30",
+            "clipped_start": "2026-03-30T09:00:00+05:30",
+            "clipped_end": "2026-03-30T09:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Srihari / Aditya",
+            "start": "2026-03-30T11:00:00+05:30",
+            "end": "2026-03-30T11:15:00+05:30",
+            "clipped_start": "2026-03-30T11:00:00+05:30",
+            "clipped_end": "2026-03-30T11:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "Lunch Break",
+            "start": "2026-03-30T14:00:00+05:30",
+            "end": "2026-03-30T14:30:00+05:30",
+            "clipped_start": "2026-03-30T14:00:00+05:30",
+            "clipped_end": "2026-03-30T14:30:00+05:30",
+            "duration_mins": 30.0
+          }
+        ],
+        "others": []
+      },
+      "2026-03-31": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 60.0,
+        "customer_call_mins": 120.0,
+        "effective_bandwidth_hrs": 8.0,
+        "calls_count": 4,
+        "idle_mins": 360.0,
+        "utilization_pct": 25.0,
+        "customer_calls": [
+          {
+            "title": "Muninder and Srihari Srinivasan - JustCall",
+            "start": "2026-03-31T08:00:00+05:30",
+            "end": "2026-03-31T08:30:00+05:30",
+            "clipped_start": "2026-03-31T08:00:00+05:30",
+            "clipped_end": "2026-03-31T08:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Rob and Srihari Srinivasan - JustCall",
+            "start": "2026-03-31T09:00:00+05:30",
+            "end": "2026-03-31T09:30:00+05:30",
+            "clipped_start": "2026-03-31T09:00:00+05:30",
+            "clipped_end": "2026-03-31T09:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "JustCall <> Vision Compliance",
+            "start": "2026-03-31T14:30:00+05:30",
+            "end": "2026-03-31T15:00:00+05:30",
+            "clipped_start": "2026-03-31T14:30:00+05:30",
+            "clipped_end": "2026-03-31T15:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Florian and Srihari Srinivasan - JustCall",
+            "start": "2026-03-31T16:30:00+05:30",
+            "end": "2026-03-31T17:00:00+05:30",
+            "clipped_start": "2026-03-31T16:30:00+05:30",
+            "clipped_end": "2026-03-31T17:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Alish/Srihari Weekly (Lead tracker and updates) ",
+            "start": "2026-03-31T12:30:00+05:30",
+            "end": "2026-03-31T13:00:00+05:30",
+            "clipped_start": "2026-03-31T12:30:00+05:30",
+            "clipped_end": "2026-03-31T13:00:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Weekly Sync with Srihari",
+            "start": "2026-03-31T12:30:00+05:30",
+            "end": "2026-03-31T13:00:00+05:30",
+            "clipped_start": "2026-03-31T12:30:00+05:30",
+            "clipped_end": "2026-03-31T13:00:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Lunch Break",
+            "start": "2026-03-31T14:00:00+05:30",
+            "end": "2026-03-31T14:30:00+05:30",
+            "clipped_start": "2026-03-31T14:00:00+05:30",
+            "clipped_end": "2026-03-31T14:30:00+05:30",
+            "duration_mins": 30.0
+          }
+        ],
+        "others": []
+      },
+      "2026-04-01": {
+        "status": "OOF",
+        "bandwidth_hrs": 0,
+        "internal_blocker_mins": 0,
+        "customer_call_mins": 0,
+        "effective_bandwidth_hrs": 0,
+        "calls_count": 0,
+        "idle_mins": 0,
+        "utilization_pct": 0,
+        "customer_calls": [],
+        "internal_blockers": [],
+        "others": []
+      },
+      "2026-04-02": {
+        "status": "OOF",
+        "bandwidth_hrs": 0,
+        "internal_blocker_mins": 0,
+        "customer_call_mins": 0,
+        "effective_bandwidth_hrs": 0,
+        "calls_count": 0,
+        "idle_mins": 0,
+        "utilization_pct": 0,
+        "customer_calls": [],
+        "internal_blockers": [],
+        "others": []
+      },
+      "2026-04-03": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 30.0,
+        "customer_call_mins": 30.0,
+        "effective_bandwidth_hrs": 8.5,
+        "calls_count": 1,
+        "idle_mins": 480.0,
+        "utilization_pct": 5.9,
+        "customer_calls": [
+          {
+            "title": "tom and Srihari Srinivasan - JustCall",
+            "start": "2026-04-03T08:00:00+05:30",
+            "end": "2026-04-03T08:30:00+05:30",
+            "clipped_start": "2026-04-03T08:00:00+05:30",
+            "clipped_end": "2026-04-03T08:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Lunch Break",
+            "start": "2026-04-03T14:00:00+05:30",
+            "end": "2026-04-03T14:30:00+05:30",
+            "clipped_start": "2026-04-03T14:00:00+05:30",
+            "clipped_end": "2026-04-03T14:30:00+05:30",
+            "duration_mins": 30.0
+          }
+        ],
+        "others": [
+          {
+            "title": "Appointment Scheduled with ",
+            "start": "2026-04-03T12:30:00+05:30",
+            "end": "2026-04-03T12:45:00+05:30",
+            "clipped_start": "2026-04-03T12:30:00+05:30",
+            "clipped_end": "2026-04-03T12:45:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
+      }
+    },
+    "totals": {
+      "bandwidth_hrs": 36,
+      "effective_bandwidth_hrs": 33.25,
+      "customer_call_mins": 330.0,
+      "calls_count": 11,
+      "idle_mins": 1665.0,
+      "utilization_pct": 16.5,
+      "avg_call_mins": 30
+    }
+  },
+  "tanish.dumawat": {
+    "name": "Tanish Dumawat",
+    "email": "tanish.dumawat@saaslabs.co",
+    "region": "NAMER",
+    "shift_hrs": 9,
+    "days": {
+      "2026-03-27": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 210.0,
+        "customer_call_mins": 150.0,
+        "effective_bandwidth_hrs": 5.5,
+        "calls_count": 5,
+        "idle_mins": 180.0,
+        "utilization_pct": 45.5,
+        "customer_calls": [
+          {
+            "title": "Sean & Tanish | Justcall Meeting",
+            "start": "2026-03-27T19:00:00+05:30",
+            "end": "2026-03-27T19:30:00+05:30",
+            "clipped_start": "2026-03-27T19:00:00+05:30",
+            "clipped_end": "2026-03-27T19:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Mark\u00a0& Sumit | Product Demo Meeting",
+            "start": "2026-03-27T19:15:00+05:30",
+            "end": "2026-03-27T19:45:00+05:30",
+            "clipped_start": "2026-03-27T19:15:00+05:30",
+            "clipped_end": "2026-03-27T19:45:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Shawn & Tanish | Justcall Meeting",
+            "start": "2026-03-27T20:00:00+05:30",
+            "end": "2026-03-27T20:30:00+05:30",
+            "clipped_start": "2026-03-27T20:00:00+05:30",
+            "clipped_end": "2026-03-27T20:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Fernando & Tanish | Justcall Meeting",
+            "start": "2026-03-27T21:45:00+05:30",
+            "end": "2026-03-27T22:15:00+05:30",
+            "clipped_start": "2026-03-27T21:45:00+05:30",
+            "clipped_end": "2026-03-27T22:15:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "tom  & Megha | JustCall Product Demo Meeting",
+            "start": "2026-03-27T22:30:00+05:30",
+            "end": "2026-03-27T23:00:00+05:30",
+            "clipped_start": "2026-03-27T22:30:00+05:30",
+            "clipped_end": "2026-03-27T23:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Check IC chats",
+            "start": "2026-03-27T17:30:00+05:30",
+            "end": "2026-03-27T18:00:00+05:30",
+            "clipped_start": "2026-03-27T17:30:00+05:30",
+            "clipped_end": "2026-03-27T18:00:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Priyanka / Tanish Dinesh -  Weekly Connect",
+            "start": "2026-03-27T18:00:00+05:30",
+            "end": "2026-03-27T18:30:00+05:30",
+            "clipped_start": "2026-03-27T18:00:00+05:30",
+            "clipped_end": "2026-03-27T18:30:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "AIVA use cases",
+            "start": "2026-03-27T20:45:00+05:30",
+            "end": "2026-03-27T21:15:00+05:30",
+            "clipped_start": "2026-03-27T20:45:00+05:30",
+            "clipped_end": "2026-03-27T21:15:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Migration emails",
+            "start": "2026-03-27T23:30:00+05:30",
+            "end": "2026-03-28T00:10:00+05:30",
+            "clipped_start": "2026-03-27T23:30:00+05:30",
+            "clipped_end": "2026-03-28T00:10:00+05:30",
+            "duration_mins": 40.0
+          },
+          {
+            "title": "Commuting & Break",
+            "start": "2026-03-28T00:00:00+05:30",
+            "end": "2026-03-28T01:00:00+05:30",
+            "clipped_start": "2026-03-28T00:00:00+05:30",
+            "clipped_end": "2026-03-28T01:00:00+05:30",
+            "duration_mins": 60.0
+          },
+          {
+            "title": "Focus time",
+            "start": "2026-03-28T01:00:00+05:30",
+            "end": "2026-03-28T01:30:00+05:30",
+            "clipped_start": "2026-03-28T01:00:00+05:30",
+            "clipped_end": "2026-03-28T01:30:00+05:30",
+            "duration_mins": 30.0
+          }
+        ],
+        "others": []
+      },
+      "2026-03-30": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 120.0,
+        "customer_call_mins": 180.0,
+        "effective_bandwidth_hrs": 7.0,
+        "calls_count": 6,
+        "idle_mins": 240.0,
+        "utilization_pct": 42.9,
+        "customer_calls": [
+          {
+            "title": "Paola & Tanish | Justcall Meeting",
+            "start": "2026-03-30T19:15:00+05:30",
+            "end": "2026-03-30T19:45:00+05:30",
+            "clipped_start": "2026-03-30T19:15:00+05:30",
+            "clipped_end": "2026-03-30T19:45:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Bhakti & Tanish | Justcall Meeting",
+            "start": "2026-03-30T20:30:00+05:30",
+            "end": "2026-03-30T21:00:00+05:30",
+            "clipped_start": "2026-03-30T20:30:00+05:30",
+            "clipped_end": "2026-03-30T21:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Neil John & Tanish | Justcall Meeting",
+            "start": "2026-03-30T21:30:00+05:30",
+            "end": "2026-03-30T22:00:00+05:30",
+            "clipped_start": "2026-03-30T21:30:00+05:30",
+            "clipped_end": "2026-03-30T22:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Jeremy & Tanish | Justcall Meeting",
+            "start": "2026-03-30T22:15:00+05:30",
+            "end": "2026-03-30T22:45:00+05:30",
+            "clipped_start": "2026-03-30T22:15:00+05:30",
+            "clipped_end": "2026-03-30T22:45:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Will & Tanish | Justcall Meeting",
+            "start": "2026-03-30T23:00:00+05:30",
+            "end": "2026-03-30T23:30:00+05:30",
+            "clipped_start": "2026-03-30T23:00:00+05:30",
+            "clipped_end": "2026-03-30T23:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Richard & Tanish | Justcall Meeting",
+            "start": "2026-03-31T01:15:00+05:30",
+            "end": "2026-03-31T01:45:00+05:30",
+            "clipped_start": "2026-03-31T01:15:00+05:30",
+            "clipped_end": "2026-03-31T01:45:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Weekly team sync - GRS",
+            "start": "2026-03-30T17:00:00+05:30",
+            "end": "2026-03-30T17:30:00+05:30",
+            "clipped_start": "2026-03-30T17:00:00+05:30",
+            "clipped_end": "2026-03-30T17:30:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Check IC chats",
+            "start": "2026-03-30T17:30:00+05:30",
+            "end": "2026-03-30T18:00:00+05:30",
+            "clipped_start": "2026-03-30T17:30:00+05:30",
+            "clipped_end": "2026-03-30T18:00:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Commuting & Break",
+            "start": "2026-03-31T00:00:00+05:30",
+            "end": "2026-03-31T01:00:00+05:30",
+            "clipped_start": "2026-03-31T00:00:00+05:30",
+            "clipped_end": "2026-03-31T01:00:00+05:30",
+            "duration_mins": 60.0
+          }
+        ],
+        "others": [
+          {
+            "title": "Tanish Dinesh / Srishti",
+            "start": "2026-03-30T20:15:00+05:30",
+            "end": "2026-03-30T20:30:00+05:30",
+            "clipped_start": "2026-03-30T20:15:00+05:30",
+            "clipped_end": "2026-03-30T20:30:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
+      },
+      "2026-03-31": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 120.0,
+        "customer_call_mins": 210.0,
+        "effective_bandwidth_hrs": 7.0,
+        "calls_count": 7,
+        "idle_mins": 210.0,
+        "utilization_pct": 50.0,
+        "customer_calls": [
+          {
+            "title": "Sean & Tanish | Justcall Meeting",
+            "start": "2026-03-31T19:30:00+05:30",
+            "end": "2026-03-31T20:00:00+05:30",
+            "clipped_start": "2026-03-31T19:30:00+05:30",
+            "clipped_end": "2026-03-31T20:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Sean & Tanish | JustCall",
+            "start": "2026-03-31T20:00:00+05:30",
+            "end": "2026-03-31T20:30:00+05:30",
+            "clipped_start": "2026-03-31T20:00:00+05:30",
+            "clipped_end": "2026-03-31T20:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Will & Tanish | Justcall Meeting",
+            "start": "2026-03-31T20:45:00+05:30",
+            "end": "2026-03-31T21:15:00+05:30",
+            "clipped_start": "2026-03-31T20:45:00+05:30",
+            "clipped_end": "2026-03-31T21:15:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Harry & Tanish | Justcall Meeting",
+            "start": "2026-03-31T21:45:00+05:30",
+            "end": "2026-03-31T22:15:00+05:30",
+            "clipped_start": "2026-03-31T21:45:00+05:30",
+            "clipped_end": "2026-03-31T22:15:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Chris & Tanish | Justcall Meeting",
+            "start": "2026-03-31T22:30:00+05:30",
+            "end": "2026-03-31T23:00:00+05:30",
+            "clipped_start": "2026-03-31T22:30:00+05:30",
+            "clipped_end": "2026-03-31T23:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Ali & Tanish | Justcall Meeting",
+            "start": "2026-03-31T23:15:00+05:30",
+            "end": "2026-03-31T23:45:00+05:30",
+            "clipped_start": "2026-03-31T23:15:00+05:30",
+            "clipped_end": "2026-03-31T23:45:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Paola & Tanish | Justcall Meeting",
+            "start": "2026-04-01T01:15:00+05:30",
+            "end": "2026-04-01T01:45:00+05:30",
+            "clipped_start": "2026-04-01T01:15:00+05:30",
+            "clipped_end": "2026-04-01T01:45:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Check IC chats",
+            "start": "2026-03-31T17:30:00+05:30",
+            "end": "2026-03-31T18:00:00+05:30",
+            "clipped_start": "2026-03-31T17:30:00+05:30",
+            "clipped_end": "2026-03-31T18:00:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Migration emails",
+            "start": "2026-03-31T18:45:00+05:30",
+            "end": "2026-03-31T19:15:00+05:30",
+            "clipped_start": "2026-03-31T18:45:00+05:30",
+            "clipped_end": "2026-03-31T19:15:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Commuting & Break",
+            "start": "2026-04-01T00:00:00+05:30",
+            "end": "2026-04-01T01:00:00+05:30",
+            "clipped_start": "2026-04-01T00:00:00+05:30",
+            "clipped_end": "2026-04-01T01:00:00+05:30",
+            "duration_mins": 60.0
+          }
+        ],
+        "others": [
+          {
+            "title": "Weekly sync with Tanish",
+            "start": "2026-03-31T17:00:00+05:30",
+            "end": "2026-03-31T17:30:00+05:30",
+            "clipped_start": "2026-03-31T17:00:00+05:30",
+            "clipped_end": "2026-03-31T17:30:00+05:30",
+            "duration_mins": 30.0
+          }
+        ]
+      },
+      "2026-04-01": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 175.0,
+        "customer_call_mins": 150.0,
+        "effective_bandwidth_hrs": 6.08,
+        "calls_count": 5,
+        "idle_mins": 215.0,
+        "utilization_pct": 41.1,
+        "customer_calls": [
+          {
+            "title": "Seth & Tanish | Justcall Meeting",
+            "start": "2026-04-01T19:45:00+05:30",
+            "end": "2026-04-01T20:15:00+05:30",
+            "clipped_start": "2026-04-01T19:45:00+05:30",
+            "clipped_end": "2026-04-01T20:15:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Will & Tanish | Justcall Meeting",
+            "start": "2026-04-01T20:30:00+05:30",
+            "end": "2026-04-01T21:00:00+05:30",
+            "clipped_start": "2026-04-01T20:30:00+05:30",
+            "clipped_end": "2026-04-01T21:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Rex & Tanish | Justcall Meeting",
+            "start": "2026-04-01T21:30:00+05:30",
+            "end": "2026-04-01T22:00:00+05:30",
+            "clipped_start": "2026-04-01T21:30:00+05:30",
+            "clipped_end": "2026-04-01T22:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Prahlad & Sumit | Product Demo Meeting",
+            "start": "2026-04-01T22:00:00+05:30",
+            "end": "2026-04-01T22:30:00+05:30",
+            "clipped_start": "2026-04-01T22:00:00+05:30",
+            "clipped_end": "2026-04-01T22:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Ali & Tanish | Justcall Meeting",
+            "start": "2026-04-01T23:00:00+05:30",
+            "end": "2026-04-01T23:30:00+05:30",
+            "clipped_start": "2026-04-01T23:00:00+05:30",
+            "clipped_end": "2026-04-01T23:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Check IC chats",
+            "start": "2026-04-01T17:30:00+05:30",
+            "end": "2026-04-01T18:00:00+05:30",
+            "clipped_start": "2026-04-01T17:30:00+05:30",
+            "clipped_end": "2026-04-01T18:00:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Mails - follow up",
+            "start": "2026-04-01T18:45:00+05:30",
+            "end": "2026-04-01T19:25:00+05:30",
+            "clipped_start": "2026-04-01T18:45:00+05:30",
+            "clipped_end": "2026-04-01T19:25:00+05:30",
+            "duration_mins": 40.0
+          },
+          {
+            "title": "Narayan / Tanish Dinesh",
+            "start": "2026-04-01T20:30:00+05:30",
+            "end": "2026-04-01T20:45:00+05:30",
+            "clipped_start": "2026-04-01T20:30:00+05:30",
+            "clipped_end": "2026-04-01T20:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "Commuting & Break",
+            "start": "2026-04-02T00:00:00+05:30",
+            "end": "2026-04-02T01:00:00+05:30",
+            "clipped_start": "2026-04-02T00:00:00+05:30",
+            "clipped_end": "2026-04-02T01:00:00+05:30",
+            "duration_mins": 60.0
+          },
+          {
+            "title": "Pranav / Tanish Dinesh",
+            "start": "2026-04-02T00:45:00+05:30",
+            "end": "2026-04-02T01:00:00+05:30",
+            "clipped_start": "2026-04-02T00:45:00+05:30",
+            "clipped_end": "2026-04-02T01:00:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "10dlc guide - final checks",
+            "start": "2026-04-02T01:00:00+05:30",
+            "end": "2026-04-02T01:30:00+05:30",
+            "clipped_start": "2026-04-02T01:00:00+05:30",
+            "clipped_end": "2026-04-02T01:30:00+05:30",
+            "duration_mins": 30.0
+          }
+        ],
+        "others": [
+          {
+            "title": "PM-CS Weekly Sync",
+            "start": "2026-04-01T17:50:00+05:30",
+            "end": "2026-04-01T18:40:00+05:30",
+            "clipped_start": "2026-04-01T17:50:00+05:30",
+            "clipped_end": "2026-04-01T18:40:00+05:30",
+            "duration_mins": 50.0
+          }
+        ]
+      },
+      "2026-04-02": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 195.0,
+        "customer_call_mins": 150.0,
+        "effective_bandwidth_hrs": 5.75,
+        "calls_count": 5,
+        "idle_mins": 195.0,
+        "utilization_pct": 43.5,
+        "customer_calls": [
+          {
+            "title": "Will & Tanish | Justcall Meeting",
+            "start": "2026-04-02T19:00:00+05:30",
+            "end": "2026-04-02T19:30:00+05:30",
+            "clipped_start": "2026-04-02T19:00:00+05:30",
+            "clipped_end": "2026-04-02T19:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Seth & Tanish | Justcall Meeting",
+            "start": "2026-04-02T19:45:00+05:30",
+            "end": "2026-04-02T20:15:00+05:30",
+            "clipped_start": "2026-04-02T19:45:00+05:30",
+            "clipped_end": "2026-04-02T20:15:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Bernice & Tanish | Justcall Meeting",
+            "start": "2026-04-02T20:30:00+05:30",
+            "end": "2026-04-02T21:00:00+05:30",
+            "clipped_start": "2026-04-02T20:30:00+05:30",
+            "clipped_end": "2026-04-02T21:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Michelle & Tanish | Justcall Meeting",
+            "start": "2026-04-02T21:30:00+05:30",
+            "end": "2026-04-02T22:00:00+05:30",
+            "clipped_start": "2026-04-02T21:30:00+05:30",
+            "clipped_end": "2026-04-02T22:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "urooj & Tanish | Justcall Meeting",
+            "start": "2026-04-02T22:15:00+05:30",
+            "end": "2026-04-02T22:45:00+05:30",
+            "clipped_start": "2026-04-02T22:15:00+05:30",
+            "clipped_end": "2026-04-02T22:45:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "Srishti / Tanish Dinesh",
+            "start": "2026-04-02T17:15:00+05:30",
+            "end": "2026-04-02T17:30:00+05:30",
+            "clipped_start": "2026-04-02T17:15:00+05:30",
+            "clipped_end": "2026-04-02T17:30:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "Check IC chats",
+            "start": "2026-04-02T17:30:00+05:30",
+            "end": "2026-04-02T18:00:00+05:30",
+            "clipped_start": "2026-04-02T17:30:00+05:30",
+            "clipped_end": "2026-04-02T18:00:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "AIVA bot - testing",
+            "start": "2026-04-02T18:00:00+05:30",
+            "end": "2026-04-02T18:45:00+05:30",
+            "clipped_start": "2026-04-02T18:00:00+05:30",
+            "clipped_end": "2026-04-02T18:45:00+05:30",
+            "duration_mins": 45.0
+          },
+          {
+            "title": "Script & API doc",
+            "start": "2026-04-02T23:00:00+05:30",
+            "end": "2026-04-02T23:30:00+05:30",
+            "clipped_start": "2026-04-02T23:00:00+05:30",
+            "clipped_end": "2026-04-02T23:30:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Commuting & Break",
+            "start": "2026-04-03T00:00:00+05:30",
+            "end": "2026-04-03T01:00:00+05:30",
+            "clipped_start": "2026-04-03T00:00:00+05:30",
+            "clipped_end": "2026-04-03T01:00:00+05:30",
+            "duration_mins": 60.0
+          },
+          {
+            "title": "Ops creation",
+            "start": "2026-04-03T01:00:00+05:30",
+            "end": "2026-04-03T01:15:00+05:30",
+            "clipped_start": "2026-04-03T01:00:00+05:30",
+            "clipped_end": "2026-04-03T01:15:00+05:30",
+            "duration_mins": 15.0
+          }
+        ],
+        "others": []
+      },
+      "2026-04-03": {
+        "status": "WORKING",
+        "bandwidth_hrs": 9,
+        "internal_blocker_mins": 90.0,
+        "customer_call_mins": 150.0,
+        "effective_bandwidth_hrs": 7.5,
+        "calls_count": 5,
+        "idle_mins": 300.0,
+        "utilization_pct": 33.3,
+        "customer_calls": [
+          {
+            "title": "Jennifer & Tanish | Justcall Meeting",
+            "start": "2026-04-03T19:45:00+05:30",
+            "end": "2026-04-03T20:15:00+05:30",
+            "clipped_start": "2026-04-03T19:45:00+05:30",
+            "clipped_end": "2026-04-03T20:15:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Danial & Tanish | Justcall Meeting",
+            "start": "2026-04-03T20:30:00+05:30",
+            "end": "2026-04-03T21:00:00+05:30",
+            "clipped_start": "2026-04-03T20:30:00+05:30",
+            "clipped_end": "2026-04-03T21:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Christian & Tanish | Justcall Meeting",
+            "start": "2026-04-03T21:45:00+05:30",
+            "end": "2026-04-03T22:15:00+05:30",
+            "clipped_start": "2026-04-03T21:45:00+05:30",
+            "clipped_end": "2026-04-03T22:15:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Chris & Tanish | Justcall Meeting",
+            "start": "2026-04-03T22:30:00+05:30",
+            "end": "2026-04-03T23:00:00+05:30",
+            "clipped_start": "2026-04-03T22:30:00+05:30",
+            "clipped_end": "2026-04-03T23:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Alexander & Tanish | Justcall Meeting",
+            "start": "2026-04-03T23:15:00+05:30",
+            "end": "2026-04-03T23:45:00+05:30",
+            "clipped_start": "2026-04-03T23:15:00+05:30",
+            "clipped_end": "2026-04-03T23:45:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
+        "internal_blockers": [
+          {
+            "title": "The Next Best Action Framework",
+            "start": "2026-04-03T17:00:00+05:30",
+            "end": "2026-04-03T17:30:00+05:30",
+            "clipped_start": "2026-04-03T17:00:00+05:30",
+            "clipped_end": "2026-04-03T17:30:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Check IC chats",
+            "start": "2026-04-03T17:30:00+05:30",
+            "end": "2026-04-03T18:00:00+05:30",
+            "clipped_start": "2026-04-03T17:30:00+05:30",
+            "clipped_end": "2026-04-03T18:00:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Priyanka / Tanish Dinesh -  Weekly Connect",
+            "start": "2026-04-03T18:00:00+05:30",
+            "end": "2026-04-03T18:30:00+05:30",
+            "clipped_start": "2026-04-03T18:00:00+05:30",
+            "clipped_end": "2026-04-03T18:30:00+05:30",
+            "duration_mins": 30.0
+          }
+        ],
+        "others": [
+          {
+            "title": "[SaaS Labs] Monthly Town Hall ",
+            "start": "2026-04-03T18:30:00+05:30",
+            "end": "2026-04-03T19:30:00+05:30",
+            "clipped_start": "2026-04-03T18:30:00+05:30",
+            "clipped_end": "2026-04-03T19:30:00+05:30",
+            "duration_mins": 60.0
+          }
+        ]
+      }
+    },
+    "totals": {
+      "bandwidth_hrs": 54,
+      "effective_bandwidth_hrs": 38.83,
+      "customer_call_mins": 990.0,
+      "calls_count": 33,
+      "idle_mins": 1340.0,
+      "utilization_pct": 42.5,
+      "avg_call_mins": 30
+    }
+  }
+};
+
+const SCSM_TODAY_DATA = {
+  "date": "2026-04-03",
+  "members": {
+    "hunar.dugar": {
+      "name": "Hunar Dugar",
+      "email": "hunar.dugar@saaslabs.co",
+      "region": "EMEA",
+      "shift": "16:00\u201301:00 IST",
+      "bandwidth_hrs": 9,
+      "internal_blocker_mins": 120.0,
+      "effective_bandwidth_hrs": 7.0,
+      "total_call_mins": 60.0,
+      "calls_count": 2,
+      "avg_call_mins": 30,
+      "idle_mins": 360.0,
+      "utilization_pct": 14.3,
+      "customer_calls": [
+        {
+          "title": "Sanjeet Parvani and Hunar Dugar",
+          "start": "2026-04-03T19:45:00+05:30",
+          "end": "2026-04-03T20:15:00+05:30",
+          "clipped_start": "2026-04-03T19:45:00+05:30",
+          "clipped_end": "2026-04-03T20:15:00+05:30",
+          "duration_mins": 30.0,
+          "classification": "CUSTOMER_CALL",
+          "has_buffer": false,
+          "effective_mins": 30.0
+        },
+        {
+          "title": "Shiv Pratap Singh and Hunar Dugar",
+          "start": "2026-04-03T21:30:00+05:30",
+          "end": "2026-04-03T22:00:00+05:30",
+          "clipped_start": "2026-04-03T21:30:00+05:30",
+          "clipped_end": "2026-04-03T22:00:00+05:30",
+          "duration_mins": 30.0,
+          "classification": "CUSTOMER_CALL",
+          "has_buffer": false,
+          "effective_mins": 30.0
+        }
+      ],
+      "internal_blockers": [
+        {
+          "title": "Emails/Intercom",
+          "start": "2026-04-03T16:00:00+05:30",
+          "end": "2026-04-03T17:00:00+05:30",
+          "clipped_start": "2026-04-03T16:00:00+05:30",
+          "clipped_end": "2026-04-03T17:00:00+05:30",
+          "duration_mins": 60.0
+        },
+        {
+          "title": "The Next Best Action Framework",
+          "start": "2026-04-03T17:00:00+05:30",
+          "end": "2026-04-03T17:30:00+05:30",
+          "clipped_start": "2026-04-03T17:00:00+05:30",
+          "clipped_end": "2026-04-03T17:30:00+05:30",
+          "duration_mins": 30.0
+        },
+        {
+          "title": "Hunar/Anurag Weekly Sync",
+          "start": "2026-04-03T18:15:00+05:30",
+          "end": "2026-04-03T18:45:00+05:30",
+          "clipped_start": "2026-04-03T18:15:00+05:30",
+          "clipped_end": "2026-04-03T18:45:00+05:30",
+          "duration_mins": 30.0
+        }
+      ]
+    },
+    "narayan": {
+      "name": "Narayan",
+      "email": "narayan@saaslabs.co",
+      "region": "NAMER",
+      "shift": "18:00\u201303:00 IST",
+      "bandwidth_hrs": 9,
+      "internal_blocker_mins": 60.0,
+      "effective_bandwidth_hrs": 8.0,
+      "total_call_mins": 75.0,
+      "calls_count": 2,
+      "avg_call_mins": 38,
+      "idle_mins": 405.0,
+      "utilization_pct": 15.6,
+      "customer_calls": [
+        {
+          "title": "Mike & Narayan | JustCall  Meeting",
+          "start": "2026-04-03T22:45:00+05:30",
+          "end": "2026-04-03T23:15:00+05:30",
+          "clipped_start": "2026-04-03T22:45:00+05:30",
+          "clipped_end": "2026-04-03T23:15:00+05:30",
+          "duration_mins": 30.0,
+          "classification": "CUSTOMER_CALL",
+          "has_buffer": true,
+          "effective_mins": 45.0
+        },
+        {
+          "title": "Louis-Junior & Narayan | JustCall  Meeting",
+          "start": "2026-04-03T23:30:00+05:30",
+          "end": "2026-04-04T00:00:00+05:30",
+          "clipped_start": "2026-04-03T23:30:00+05:30",
+          "clipped_end": "2026-04-04T00:00:00+05:30",
+          "duration_mins": 30.0,
+          "classification": "CUSTOMER_CALL",
+          "has_buffer": false,
+          "effective_mins": 30.0
+        }
+      ],
+      "internal_blockers": [
+        {
+          "title": "Lunch",
+          "start": "2026-04-03T21:30:00+05:30",
+          "end": "2026-04-03T22:30:00+05:30",
+          "clipped_start": "2026-04-03T21:30:00+05:30",
+          "clipped_end": "2026-04-03T22:30:00+05:30",
+          "duration_mins": 60.0
+        }
+      ]
+    },
+    "srihari.srinivasan": {
+      "name": "Srihari Srinivasan",
+      "email": "srihari.srinivasan@saaslabs.co",
+      "region": "APAC + EMEA",
+      "shift": "08:00\u201317:00 IST",
+      "bandwidth_hrs": 9,
+      "internal_blocker_mins": 30.0,
+      "effective_bandwidth_hrs": 8.5,
+      "total_call_mins": 30.0,
+      "calls_count": 1,
+      "avg_call_mins": 30,
+      "idle_mins": 480.0,
+      "utilization_pct": 5.9,
+      "customer_calls": [
+        {
+          "title": "tom and Srihari Srinivasan - JustCall",
+          "start": "2026-04-03T08:00:00+05:30",
+          "end": "2026-04-03T08:30:00+05:30",
+          "clipped_start": "2026-04-03T08:00:00+05:30",
+          "clipped_end": "2026-04-03T08:30:00+05:30",
+          "duration_mins": 30.0,
+          "classification": "CUSTOMER_CALL",
+          "has_buffer": false,
+          "effective_mins": 30.0
+        }
+      ],
+      "internal_blockers": [
+        {
+          "title": "Lunch Break",
+          "start": "2026-04-03T14:00:00+05:30",
+          "end": "2026-04-03T14:30:00+05:30",
+          "clipped_start": "2026-04-03T14:00:00+05:30",
+          "clipped_end": "2026-04-03T14:30:00+05:30",
+          "duration_mins": 30.0
+        }
+      ]
+    },
+    "tanish.dumawat": {
+      "name": "Tanish Dumawat",
+      "email": "tanish.dumawat@saaslabs.co",
+      "region": "NAMER",
+      "shift": "17:00\u201302:00 IST",
+      "bandwidth_hrs": 9,
+      "internal_blocker_mins": 90.0,
+      "effective_bandwidth_hrs": 7.5,
+      "total_call_mins": 150.0,
+      "calls_count": 5,
+      "avg_call_mins": 30,
+      "idle_mins": 300.0,
+      "utilization_pct": 33.3,
+      "customer_calls": [
+        {
+          "title": "Jennifer & Tanish | Justcall Meeting",
+          "start": "2026-04-03T19:45:00+05:30",
+          "end": "2026-04-03T20:15:00+05:30",
+          "clipped_start": "2026-04-03T19:45:00+05:30",
+          "clipped_end": "2026-04-03T20:15:00+05:30",
+          "duration_mins": 30.0,
+          "classification": "CUSTOMER_CALL",
+          "has_buffer": false,
+          "effective_mins": 30.0
+        },
+        {
+          "title": "Danial & Tanish | Justcall Meeting",
+          "start": "2026-04-03T20:30:00+05:30",
+          "end": "2026-04-03T21:00:00+05:30",
+          "clipped_start": "2026-04-03T20:30:00+05:30",
+          "clipped_end": "2026-04-03T21:00:00+05:30",
+          "duration_mins": 30.0,
+          "classification": "CUSTOMER_CALL",
+          "has_buffer": false,
+          "effective_mins": 30.0
+        },
+        {
+          "title": "Christian & Tanish | Justcall Meeting",
+          "start": "2026-04-03T21:45:00+05:30",
+          "end": "2026-04-03T22:15:00+05:30",
+          "clipped_start": "2026-04-03T21:45:00+05:30",
+          "clipped_end": "2026-04-03T22:15:00+05:30",
+          "duration_mins": 30.0,
+          "classification": "CUSTOMER_CALL",
+          "has_buffer": false,
+          "effective_mins": 30.0
+        },
+        {
+          "title": "Chris & Tanish | Justcall Meeting",
+          "start": "2026-04-03T22:30:00+05:30",
+          "end": "2026-04-03T23:00:00+05:30",
+          "clipped_start": "2026-04-03T22:30:00+05:30",
+          "clipped_end": "2026-04-03T23:00:00+05:30",
+          "duration_mins": 30.0,
+          "classification": "CUSTOMER_CALL",
+          "has_buffer": false,
+          "effective_mins": 30.0
+        },
+        {
+          "title": "Alexander & Tanish | Justcall Meeting",
+          "start": "2026-04-03T23:15:00+05:30",
+          "end": "2026-04-03T23:45:00+05:30",
+          "clipped_start": "2026-04-03T23:15:00+05:30",
+          "clipped_end": "2026-04-03T23:45:00+05:30",
+          "duration_mins": 30.0,
+          "classification": "CUSTOMER_CALL",
+          "has_buffer": false,
+          "effective_mins": 30.0
+        }
+      ],
+      "internal_blockers": [
+        {
+          "title": "The Next Best Action Framework",
+          "start": "2026-04-03T17:00:00+05:30",
+          "end": "2026-04-03T17:30:00+05:30",
+          "clipped_start": "2026-04-03T17:00:00+05:30",
+          "clipped_end": "2026-04-03T17:30:00+05:30",
+          "duration_mins": 30.0
+        },
+        {
+          "title": "Check IC chats",
+          "start": "2026-04-03T17:30:00+05:30",
+          "end": "2026-04-03T18:00:00+05:30",
+          "clipped_start": "2026-04-03T17:30:00+05:30",
+          "clipped_end": "2026-04-03T18:00:00+05:30",
+          "duration_mins": 30.0
+        },
+        {
+          "title": "Priyanka / Tanish Dinesh -  Weekly Connect",
+          "start": "2026-04-03T18:00:00+05:30",
+          "end": "2026-04-03T18:30:00+05:30",
+          "clipped_start": "2026-04-03T18:00:00+05:30",
+          "clipped_end": "2026-04-03T18:30:00+05:30",
+          "duration_mins": 30.0
+        }
+      ]
+    }
+  }
+};
 
 function fmtMins(m) {
   const h = Math.floor(m/60);
@@ -5654,14 +7853,24 @@ function showRangeMsg(btn, range) {
   if (range === 'Today') {
     document.getElementById('range-notice').style.display = 'none';
     switchToToday();
+    if (currentTeam === 'scsm') { currentRange = 'today'; renderSCSMCards(); renderSCSMSummary(); }
   } else if (range === 'Last 7 Days') {
     document.getElementById('range-notice').style.display = 'none';
     switchToWeek();
+    if (currentTeam === 'scsm') { currentRange = 'week'; renderSCSMCards(); renderSCSMSummary(); }
   } else {
     document.getElementById('range-notice').style.display = 'block';
     document.getElementById('range-label').textContent = range;
     switchToWeek();
   }
+}
+
+function scsmSetRange(range, btn) {
+  currentRange = range;
+  document.querySelectorAll('#scsm-range-btns .range-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSCSMCards();
+  renderSCSMSummary();
 }
 
 // ============================================================
@@ -6809,24 +9018,105 @@ function switchTeamView(team) {
     document.getElementById('header-title').textContent = 'Scaled CSM — Bandwidth & Utilization';
     document.getElementById('header-subtitle').textContent = '4 members · NAMER · APAC + EMEA · EMEA';
     renderSCSMCards();
+    renderSCSMSummary();
+  }
+}
+
+function renderSCSMSummary() {
+  const isToday = (currentRange === 'today');
+  if (isToday) {
+    const tm = SCSM_TODAY_DATA.members;
+    const members = Object.values(tm);
+    const totalBw = members.reduce((s,m) => s + m.bandwidth_hrs, 0);
+    const totalCalls = members.reduce((s,m) => s + m.calls_count, 0);
+    const totalCallMins = members.reduce((s,m) => s + m.total_call_mins, 0);
+    const totalEffBw = members.reduce((s,m) => s + m.effective_bandwidth_hrs, 0);
+    const avgUtil = totalEffBw > 0 ? Math.round(totalCallMins / (totalEffBw * 60) * 1000) / 10 : 0;
+    document.getElementById('scsm-card-bw').textContent = totalBw + ' hrs';
+    document.getElementById('scsm-card-bw-sub').textContent = 'Today · 4 members';
+    document.getElementById('scsm-card-calls').textContent = totalCalls;
+    document.getElementById('scsm-card-calls-sub').textContent = 'Today's customer calls';
+    const utilEl = document.getElementById('scsm-card-util');
+    utilEl.textContent = avgUtil + '%';
+    utilEl.style.color = utilColor(avgUtil);
+  } else {
+    const totalBw = Object.values(SCSM_RAW_DATA).reduce((s,m) => s + m.totals.bandwidth_hrs, 0);
+    const totalCalls = Object.values(SCSM_RAW_DATA).reduce((s,m) => s + m.totals.calls_count, 0);
+    const totalCallMins = Object.values(SCSM_RAW_DATA).reduce((s,m) => s + m.totals.customer_call_mins, 0);
+    const totalEffBw = Object.values(SCSM_RAW_DATA).reduce((s,m) => s + m.totals.effective_bandwidth_hrs, 0);
+    const avgUtil = totalEffBw > 0 ? Math.round(totalCallMins / (totalEffBw * 60) * 1000) / 10 : 0;
+    document.getElementById('scsm-card-bw').textContent = totalBw + ' hrs';
+    document.getElementById('scsm-card-bw-sub').textContent = 'Last 7 Days · 4 members';
+    document.getElementById('scsm-card-calls').textContent = totalCalls;
+    document.getElementById('scsm-card-calls-sub').textContent = 'Total customer calls';
+    const utilEl = document.getElementById('scsm-card-util');
+    utilEl.textContent = avgUtil + '%';
+    utilEl.style.color = utilColor(avgUtil);
   }
 }
 
 function renderSCSMCards() {
   const container = document.getElementById('scsm-cards-container');
+  const isToday = (currentRange === 'today');
   container.innerHTML = '';
   SCSM_MEMBERS.forEach((m, idx) => {
     const color = SCSM_COLORS[idx];
+    const mk = m.key;
     const regionClass = m.region.includes('+') ? '' : m.region;
     const regionStyle = m.region.includes('+')
       ? 'background:rgba(6,182,212,0.12);color:#22d3ee;border:1px solid rgba(6,182,212,0.25);'
       : '';
+
+    let bw, effBw, calls, callMins, idleMins, utilPct, avgCallMin;
+    let customerCallsList = [];
+    let blockersList = [];
+
+    if (isToday) {
+      const td = SCSM_TODAY_DATA.members[mk];
+      bw = td.bandwidth_hrs;
+      effBw = td.effective_bandwidth_hrs;
+      calls = td.calls_count;
+      callMins = td.total_call_mins;
+      idleMins = td.idle_mins;
+      utilPct = td.utilization_pct;
+      avgCallMin = td.avg_call_mins;
+      customerCallsList = td.customer_calls || [];
+      blockersList = td.internal_blockers || [];
+    } else {
+      const rd = SCSM_RAW_DATA[mk];
+      bw = rd.totals.bandwidth_hrs;
+      effBw = rd.totals.effective_bandwidth_hrs;
+      calls = rd.totals.calls_count;
+      callMins = rd.totals.customer_call_mins;
+      idleMins = rd.totals.idle_mins;
+      utilPct = rd.totals.utilization_pct;
+      avgCallMin = rd.totals.avg_call_mins;
+      // Flatten customer calls from all days
+      Object.values(rd.days).forEach(d => {
+        customerCallsList = customerCallsList.concat(d.customer_calls || []);
+        blockersList = blockersList.concat(d.internal_blockers || []);
+      });
+    }
+
+    const uColor = utilColor(utilPct);
+    const callsHtml = customerCallsList.slice(0, 8).map(c => {
+      const t = c.title.length > 45 ? c.title.slice(0,45)+'…' : c.title;
+      const startT = c.clipped_start ? c.clipped_start.slice(11,16) : '';
+      const effMin = Math.round(c.effective_mins || c.duration_mins);
+      return `<div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:11px;">
+        <span style="color:var(--text-primary);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${c.title}">${t}</span>
+        <span style="color:var(--text-muted);margin-left:8px;white-space:nowrap;">${startT} · ${effMin}m${c.has_buffer ? ' +buf' : ''}</span>
+      </div>`;
+    }).join('');
+    const moreCallsNote = customerCallsList.length > 8
+      ? `<div style="font-size:10px;color:var(--text-muted);margin-top:4px;">+${customerCallsList.length - 8} more calls</div>` : '';
+
     const card = document.createElement('div');
     card.className = 'scsm-member-card';
     card.innerHTML = `
       <div class="top">
         <div class="avatar" style="width:44px;height:44px;background:${color}22;color:${color};font-size:15px;flex-shrink:0;">${initials(m.name)}</div>
-        <div>
+        <div style="flex:1;min-width:0;">
           <div style="font-weight:700;font-size:15px;margin-bottom:6px;">${m.name}</div>
           <div style="display:flex;gap:6px;flex-wrap:wrap;">
             <span class="region-badge ${regionClass}" style="${regionStyle}">${m.region}</span>
@@ -6835,11 +9125,38 @@ function renderSCSMCards() {
           <div style="font-size:11px;color:var(--text-muted);margin-top:5px;">${m.email}</div>
         </div>
       </div>
-      <div class="scsm-stat-row">
-        <div class="scsm-stat"><div class="sv">—</div><div class="sl">Bandwidth</div></div>
-        <div class="scsm-stat"><div class="sv">—</div><div class="sl">Customer Calls</div></div>
-        <div class="scsm-stat"><div class="sv">—</div><div class="sl">Utilization</div></div>
+      <div class="scsm-stat-row" style="margin-bottom:12px;">
+        <div class="scsm-stat">
+          <div class="sv" style="color:var(--text-primary);">${bw}<span style="font-size:12px;font-weight:500;margin-left:2px;">h</span></div>
+          <div class="sl">Bandwidth</div>
+        </div>
+        <div class="scsm-stat">
+          <div class="sv" style="color:var(--text-primary);">${effBw.toFixed(1)}<span style="font-size:12px;font-weight:500;margin-left:2px;">h</span></div>
+          <div class="sl">Eff. Bandwidth</div>
+        </div>
+        <div class="scsm-stat">
+          <div class="sv" style="color:var(--text-primary);">${calls}</div>
+          <div class="sl">Calls</div>
+        </div>
+        <div class="scsm-stat">
+          <div class="sv" style="color:var(--text-primary);">${Math.round(callMins)}<span style="font-size:12px;font-weight:500;margin-left:2px;">m</span></div>
+          <div class="sl">Call Time</div>
+        </div>
+        <div class="scsm-stat">
+          <div class="sv" style="color:${uColor};font-size:20px;">${utilPct}%</div>
+          <div class="sl">Utilization</div>
+        </div>
+        <div class="scsm-stat">
+          <div class="sv" style="color:var(--text-muted);">${Math.round(idleMins)}<span style="font-size:12px;font-weight:500;margin-left:2px;">m</span></div>
+          <div class="sl">Idle</div>
+        </div>
       </div>
+      ${customerCallsList.length > 0 ? `
+      <div style="border-top:1px solid var(--border);padding-top:10px;">
+        <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">Customer Calls${isToday ? ' · Today' : ''}</div>
+        ${callsHtml}
+        ${moreCallsNote}
+      </div>` : `<div style="border-top:1px solid var(--border);padding-top:10px;font-size:12px;color:var(--text-muted);font-style:italic;">No customer calls${isToday ? ' today' : ' this period'}</div>`}
     `;
     container.appendChild(card);
   });
