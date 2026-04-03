@@ -1067,19 +1067,15 @@
       <button class="range-btn active" id="scsm-btn-week" onclick="scsmSetRange('week',this)">Last 7 Days</button>
       <button class="range-btn" id="scsm-btn-today" onclick="scsmSetRange('today',this)">Today</button>
     </div>
-    <!-- SCSM Team Waterfall -->
+    <!-- SCSM Daily Activity Stacked Chart -->
     <div class="chart-card" style="margin-bottom:24px;">
-      <h3>Team Bandwidth Waterfall
-        <span class="badge" id="scsm-waterfall-badge">Last 7 Days</span>
-      </h3>
-      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;">
-        <div class="legend-item"><div class="legend-dot" style="background:#3b82f6;border-radius:2px;"></div>Total Bandwidth</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#f59e0b;border-radius:2px;"></div>Internal Blocks</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#ea580c;border-radius:2px;"></div>Internal Meetings</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#10b981;border-radius:2px;"></div>Customer Calls</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#ef4444;border-radius:2px;"></div>Idle Time</div>
+      <h3>Daily Team Activity Breakdown <span class="badge" id="scsm-stacked-badge">Stacked</span></h3>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#10b981"></div>Customer Calls</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>Internal Blockers</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#475569"></div>Idle Time</div>
       </div>
-      <div style="height:220px;"><canvas id="waterfall-scsm-team"></canvas></div>
+      <canvas id="chart-scsm-stacked" height="200"></canvas>
     </div>
     <!-- Team Performance Table -->
     <div class="table-card">
@@ -7977,7 +7973,7 @@ function scsmSetRange(range, btn) {
   renderSCSMCards();
   renderSCSMTeamTable();
   renderSCSMSummary();
-  setTimeout(renderSCSMTeamWaterfall, 80);
+  setTimeout(renderSCSMStackedChart, 80);
   if (document.getElementById('scsm-panel-region') && document.getElementById('scsm-panel-region').classList.contains('active')) {
     renderSCSMRegionCards();
   }
@@ -9141,7 +9137,7 @@ function switchTeamView(team) {
     renderSCSMCards();
     renderSCSMTeamTable();
     renderSCSMSummary();
-    setTimeout(renderSCSMTeamWaterfall, 80);
+    setTimeout(renderSCSMStackedChart, 80);
   }
 }
 
@@ -9202,34 +9198,65 @@ function renderSCSMSummary() {
   document.getElementById('scsm-card-idle-sub').textContent = 'Untapped capacity';
 }
 
-function renderSCSMTeamWaterfall() {
+let scsmStackedChart = null;
+function renderSCSMStackedChart() {
   const isToday = (currentRange === 'today');
-  document.getElementById('scsm-waterfall-badge').textContent = isToday ? 'Today' : 'Last 7 Days';
-  let totalBwMins = 0, totalBlockMins = 0, totalMeetingMins = 0, totalCallMins = 0, totalIdleMins = 0;
+  const ctx = document.getElementById('chart-scsm-stacked');
+  if (!ctx) return;
+
+  let labels, callsData, internalData, idleData;
+
   if (isToday) {
-    Object.values(SCSM_TODAY_DATA.members).forEach(m => {
-      totalBwMins     += m.bandwidth_hrs * 60;
-      totalCallMins   += m.total_call_mins || 0;
-      totalIdleMins   += m.idle_mins || 0;
-      const s = splitBlockers(m.internal_blockers);
-      totalBlockMins   += s.blockMins;
-      totalMeetingMins += s.meetingMins;
-    });
+    labels = ['Apr 3 (Today)'];
+    const totalCallMins = Object.values(SCSM_TODAY_DATA.members).reduce((s,m) => s + (m.total_call_mins||0), 0);
+    const totalInternalMins = Object.values(SCSM_TODAY_DATA.members).reduce((s,m) => s + (m.internal_blocker_mins||0), 0);
+    const totalIdleMins = Object.values(SCSM_TODAY_DATA.members).reduce((s,m) => s + (m.idle_mins||0), 0);
+    callsData = [Math.round(totalCallMins/60*10)/10];
+    internalData = [Math.round(totalInternalMins/60*10)/10];
+    idleData = [Math.round(totalIdleMins/60*10)/10];
   } else {
-    Object.values(SCSM_RAW_DATA).forEach(member => {
-      totalBwMins += member.totals.bandwidth_hrs * 60;
-      totalCallMins += member.totals.customer_call_mins || 0;
-      totalIdleMins += member.totals.idle_mins || 0;
-      Object.values(member.days).forEach(d => {
-        if (d.status === 'WORKING') {
-          const s = splitBlockers(d.internal_blockers);
-          totalBlockMins   += s.blockMins;
-          totalMeetingMins += s.meetingMins;
-        }
-      });
+    labels = DAY_LABELS;
+    const scsmKeys = SCSM_MEMBERS.map(m => m.key);
+    callsData = WORKING_DAYS.map(day => {
+      let t = 0;
+      scsmKeys.forEach(k => { const d = (SCSM_RAW_DATA[k]||{days:{}}).days[day]; if (d && d.status !== 'OOF') t += d.customer_call_mins||0; });
+      return Math.round(t/60*10)/10;
+    });
+    internalData = WORKING_DAYS.map(day => {
+      let t = 0;
+      scsmKeys.forEach(k => { const d = (SCSM_RAW_DATA[k]||{days:{}}).days[day]; if (d && d.status !== 'OOF') t += d.internal_blocker_mins||0; });
+      return Math.round(t/60*10)/10;
+    });
+    idleData = WORKING_DAYS.map(day => {
+      let t = 0;
+      scsmKeys.forEach(k => { const d = (SCSM_RAW_DATA[k]||{days:{}}).days[day]; if (d && d.status !== 'OOF') t += Math.max(0, (d.effective_bandwidth_hrs||0)*60 - (d.customer_call_mins||0)); });
+      return Math.round(t/60*10)/10;
     });
   }
-  drawWaterfallChart('waterfall-scsm-team', totalBwMins, totalBlockMins, totalMeetingMins, totalCallMins, totalIdleMins);
+
+  if (scsmStackedChart) scsmStackedChart.destroy();
+  scsmStackedChart = new Chart(ctx.getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Customer Calls (hrs)', data: callsData, backgroundColor: 'rgba(16,185,129,0.8)', borderColor: '#10b981', borderWidth: 1, borderRadius: {topLeft:0,topRight:0,bottomLeft:4,bottomRight:4}, stack: 'time' },
+        { label: 'Internal Blockers (hrs)', data: internalData, backgroundColor: 'rgba(245,158,11,0.7)', borderColor: '#f59e0b', borderWidth: 1, stack: 'time' },
+        { label: 'Idle Time (hrs)', data: idleData, backgroundColor: 'rgba(71,85,105,0.5)', borderColor: '#475569', borderWidth: 1, borderRadius: {topLeft:4,topRight:4,bottomLeft:0,bottomRight:0}, stack: 'time' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: { backgroundColor:'#1e293b', borderColor:'#334155', borderWidth:1, titleColor:'#e2e8f0', bodyColor:'#94a3b8', callbacks: { label: ctx2 => ` ${ctx2.dataset.label}: ${ctx2.parsed.y}h` } }
+      },
+      scales: {
+        x: { grid: { color:'rgba(255,255,255,0.05)' }, ticks: { color:'#64748b', font:{size:11} } },
+        y: { stacked:true, grid: { color:'rgba(255,255,255,0.05)' }, ticks: { color:'#64748b', font:{size:11}, callback: v => v+'h' } }
+      }
+    }
+  });
 }
 
 function switchSCSMTab(tab, btn) {
@@ -9283,7 +9310,7 @@ function renderSCSMTeamTable() {
       <td><span class="region-badge ${regionClass}" style="${regionStyle}">${m.region}</span></td>
       <td>${bw}h</td>
       <td>${effBw.toFixed(1)}h</td>
-      <td style="color:#a78bfa;">${calls}</td>
+      <td><a href="#" onclick="openSCSMCallsModal('${m.key}','calls');return false;" style="color:#a78bfa;text-decoration:underline;cursor:pointer;">${calls}</a></td>
       <td style="color:#34d399;">${fmtMins(callMins)}</td>
       <td>${avgCall}m</td>
       <td style="color:var(--red-light);">${fmtMins(idleMins)}</td>
@@ -9291,6 +9318,81 @@ function renderSCSMTeamTable() {
     </tr>`;
   });
   tbody.innerHTML = html;
+}
+
+function openSCSMCallsModal(mk, tab) {
+  const isToday = (currentRange === 'today');
+  const member = SCSM_MEMBERS.find(m => m.key === mk);
+  const memberName = member ? member.name : mk;
+  document.getElementById('modal-title').textContent = `${memberName} — Event Detail`;
+
+  let callsHtml = '', totalCalls = 0, blockersHtml = '', totalBlockers = 0;
+
+  if (isToday) {
+    const td = SCSM_TODAY_DATA.members[mk] || {};
+    const calls = td.customer_calls || [];
+    if (calls.length) {
+      totalCalls = calls.length;
+      callsHtml += '<div class="call-day-header">Apr 3, 2026 — ' + calls.length + ' call' + (calls.length>1?'s':'') + '</div>';
+      calls.forEach(c => {
+        const start = (c.clipped_start||c.start||'').substring(11,16);
+        const end = (c.clipped_end||c.end||'').substring(11,16);
+        callsHtml += '<div class="call-item"><div class="call-title">' + c.title + '</div><div class="call-meta"><span>\u{1F550} ' + start + ' – ' + end + ' IST</span><span>\u23F1 ' + c.duration_mins + 'm</span><span style="color:' + (c.has_buffer?'#34d399':'#64748b') + '">Buffer: ' + (c.has_buffer?'Yes (+15m)':'No') + '</span><span style="font-weight:600;color:#60a5fa;">Effective: ' + c.effective_mins + 'm</span></div></div>';
+      });
+    }
+    const blockers = td.internal_blockers || [];
+    if (blockers.length) {
+      totalBlockers = blockers.length;
+      blockersHtml += '<div class="call-day-header">Apr 3, 2026 — ' + blockers.length + ' event' + (blockers.length>1?'s':'') + ' excluded</div>';
+      blockers.forEach(b => {
+        const start = (b.clipped_start||b.start||'').substring(11,16);
+        const end = (b.clipped_end||b.end||'').substring(11,16);
+        blockersHtml += '<div class="blocker-item"><div class="bl-title">' + b.title + '</div><div class="bl-meta"><span>\u{1F550} ' + start + ' – ' + end + ' IST</span><span>\u23F1 ' + b.duration_mins + 'm</span></div></div>';
+      });
+    }
+  } else {
+    const rd = SCSM_RAW_DATA[mk];
+    if (rd) {
+      WORKING_DAYS.forEach((day, di) => {
+        const d = rd.days[day];
+        if (!d) return;
+        if (d.status === 'OOF') {
+          blockersHtml += '<div class="call-day-header">' + DAY_LABELS[di] + ' — OUT OF OFFICE (full day excluded)</div>';
+          return;
+        }
+        const dayCalls = d.customer_calls || [];
+        if (dayCalls.length) {
+          totalCalls += dayCalls.length;
+          callsHtml += '<div class="call-day-header">' + DAY_LABELS[di] + ' — ' + dayCalls.length + ' call' + (dayCalls.length>1?'s':'') + '</div>';
+          dayCalls.forEach(c => {
+            const start = (c.clipped_start||c.start||'').substring(11,16);
+            const end = (c.clipped_end||c.end||'').substring(11,16);
+            callsHtml += '<div class="call-item"><div class="call-title">' + c.title + '</div><div class="call-meta"><span>\u{1F550} ' + start + ' – ' + end + ' IST</span><span>\u23F1 ' + c.duration_mins + 'm</span><span style="color:' + (c.has_buffer?'#34d399':'#64748b') + '">Buffer: ' + (c.has_buffer?'Yes (+15m)':'No') + '</span><span style="font-weight:600;color:#60a5fa;">Effective: ' + c.effective_mins + 'm</span></div></div>';
+          });
+        }
+        const dayBlockers = d.internal_blockers || [];
+        if (dayBlockers.length) {
+          totalBlockers += dayBlockers.length;
+          blockersHtml += '<div class="call-day-header">' + DAY_LABELS[di] + ' — ' + dayBlockers.length + ' event' + (dayBlockers.length>1?'s':'') + ' excluded</div>';
+          dayBlockers.forEach(b => {
+            const start = (b.clipped_start||b.start||'').substring(11,16);
+            const end = (b.clipped_end||b.end||'').substring(11,16);
+            blockersHtml += '<div class="blocker-item"><div class="bl-title">' + b.title + '</div><div class="bl-meta"><span>\u{1F550} ' + start + ' – ' + end + ' IST</span><span>\u23F1 ' + b.duration_mins + 'm</span></div></div>';
+          });
+        }
+      });
+    }
+  }
+
+  if (!callsHtml) callsHtml = '<div style="color:var(--text-muted);padding:24px;text-align:center;">No customer calls found for this period.</div>';
+  if (!blockersHtml) blockersHtml = '<div style="color:var(--text-muted);padding:24px;text-align:center;">No internal blockers found for this period.</div>';
+
+  document.getElementById('modal-pane-calls').innerHTML = callsHtml;
+  document.getElementById('modal-pane-blockers').innerHTML = blockersHtml;
+  document.getElementById('modal-calls-badge').textContent = totalCalls;
+  document.getElementById('modal-blockers-badge').textContent = totalBlockers;
+  switchModalTab(tab || 'calls');
+  document.getElementById('modal-overlay').classList.add('visible');
 }
 
 let scsmRegionCardsMade = false;
