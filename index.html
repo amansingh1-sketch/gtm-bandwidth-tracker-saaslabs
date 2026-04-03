@@ -1021,6 +1021,20 @@
     <button class="range-btn active" id="scsm-btn-week" onclick="scsmSetRange('week',this)">Last 7 Days</button>
     <button class="range-btn" id="scsm-btn-today" onclick="scsmSetRange('today',this)">Today</button>
   </div>
+  <!-- SCSM Team Waterfall -->
+  <div class="chart-card" style="margin-bottom:24px;">
+    <h3>Team Bandwidth Waterfall
+      <span class="badge" id="scsm-waterfall-badge">Last 7 Days</span>
+    </h3>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;" id="scsm-wf-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#3b82f6;border-radius:2px;"></div>Total Bandwidth</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#f59e0b;border-radius:2px;"></div>Internal Blocks</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#ea580c;border-radius:2px;"></div>Internal Meetings</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#10b981;border-radius:2px;"></div>Customer Calls</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#ef4444;border-radius:2px;"></div>Idle Time</div>
+    </div>
+    <div style="height:220px;"><canvas id="waterfall-scsm-team"></canvas></div>
+  </div>
   <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;" id="scsm-cards-container"></div>
 </div>
 
@@ -7872,6 +7886,7 @@ function scsmSetRange(range, btn) {
   btn.classList.add('active');
   renderSCSMCards();
   renderSCSMSummary();
+  setTimeout(renderSCSMTeamWaterfall, 80);
 }
 
 // ============================================================
@@ -9031,6 +9046,7 @@ function switchTeamView(team) {
     document.getElementById('header-subtitle').textContent = '4 members · NAMER · APAC + EMEA · EMEA';
     renderSCSMCards();
     renderSCSMSummary();
+    setTimeout(renderSCSMTeamWaterfall, 80);
   }
 }
 
@@ -9065,6 +9081,36 @@ function renderSCSMSummary() {
     utilEl.textContent = avgUtil + '%';
     utilEl.style.color = utilColor(avgUtil);
   }
+}
+
+function renderSCSMTeamWaterfall() {
+  const isToday = (currentRange === 'today');
+  document.getElementById('scsm-waterfall-badge').textContent = isToday ? 'Today' : 'Last 7 Days';
+  let totalBwMins = 0, totalBlockMins = 0, totalMeetingMins = 0, totalCallMins = 0, totalIdleMins = 0;
+  if (isToday) {
+    Object.values(SCSM_TODAY_DATA.members).forEach(m => {
+      totalBwMins     += m.bandwidth_hrs * 60;
+      totalCallMins   += m.total_call_mins || 0;
+      totalIdleMins   += m.idle_mins || 0;
+      const s = splitBlockers(m.internal_blockers);
+      totalBlockMins   += s.blockMins;
+      totalMeetingMins += s.meetingMins;
+    });
+  } else {
+    Object.values(SCSM_RAW_DATA).forEach(member => {
+      totalBwMins += member.totals.bandwidth_hrs * 60;
+      totalCallMins += member.totals.customer_call_mins || 0;
+      totalIdleMins += member.totals.idle_mins || 0;
+      Object.values(member.days).forEach(d => {
+        if (d.status === 'WORKING') {
+          const s = splitBlockers(d.internal_blockers);
+          totalBlockMins   += s.blockMins;
+          totalMeetingMins += s.meetingMins;
+        }
+      });
+    });
+  }
+  drawWaterfallChart('waterfall-scsm-team', totalBwMins, totalBlockMins, totalMeetingMins, totalCallMins, totalIdleMins);
 }
 
 function renderSCSMCards() {
