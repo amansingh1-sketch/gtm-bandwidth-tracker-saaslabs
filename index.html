@@ -219,6 +219,8 @@
   /* Section panels */
   .panel { display: none; }
   .panel.active { display: block; }
+  .scsm-panel { display: none; }
+  .scsm-panel.active { display: block; }
 
   /* Charts grid */
   .charts-row {
@@ -998,44 +1000,131 @@
 
 <!-- SCALED CSM VIEW -->
 <div id="scsm-view" style="display:none;max-width:1600px;margin:0 auto;padding:28px 32px;">
-  <!-- SCSM Summary Cards -->
-  <div id="scsm-summary-cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;">
-    <div class="summary-card" style="padding:20px;">
-      <div class="label">Total Bandwidth</div>
-      <div id="scsm-card-bw" class="value" style="font-size:28px;font-weight:700;">—</div>
+  <!-- SCSM Summary Cards — 6-card row matching PS -->
+  <div class="summary-grid">
+    <div class="summary-card" style="--accent-gradient: linear-gradient(90deg, #3b82f6, #6366f1);">
+      <div class="label metric-tip">Team Total Bandwidth
+        <span class="tip-icon">?</span>
+        <span class="tip-box">Sum of each member's contracted shift hours across all working days in the period. <strong>Excludes weekends &amp; OOF days.</strong> 9h/day per member.</span>
+      </div>
+      <div class="value" id="scsm-card-bw" style="color:#60a5fa;">—<span style="font-size:16px;font-weight:500;margin-left:3px;">hrs</span></div>
       <div class="sub" id="scsm-card-bw-sub">4 members</div>
     </div>
-    <div class="summary-card" style="padding:20px;">
-      <div class="label">Total Customer Calls</div>
-      <div id="scsm-card-calls" class="value" style="font-size:28px;font-weight:700;">—</div>
-      <div class="sub" id="scsm-card-calls-sub">across team</div>
+    <div class="summary-card" style="--accent-gradient: linear-gradient(90deg, #06b6d4, #3b82f6);">
+      <div class="label metric-tip">Effective Bandwidth
+        <span class="tip-icon">?</span>
+        <span class="tip-box">Total Bandwidth minus time blocked by internal events. This is the real sellable time.</span>
+      </div>
+      <div class="value" id="scsm-card-eff" style="color:#22d3ee;">—<span style="font-size:16px;font-weight:500;margin-left:3px;">hrs</span></div>
+      <div class="sub" id="scsm-card-eff-sub">After internal blockers</div>
     </div>
-    <div class="summary-card" style="padding:20px;">
-      <div class="label">Avg Utilization</div>
-      <div id="scsm-card-util" class="value" style="font-size:28px;font-weight:700;">—</div>
-      <div class="sub">Target: &gt;70%</div>
+    <div class="summary-card" style="--accent-gradient: linear-gradient(90deg, #10b981, #06b6d4);">
+      <div class="label metric-tip">Customer Call Time
+        <span class="tip-icon">?</span>
+        <span class="tip-box">Total time spent on accepted external calls. Includes a +15 min post-call buffer where present.</span>
+      </div>
+      <div class="value" id="scsm-card-calltime" style="color:#34d399;">—<span style="font-size:16px;font-weight:500;margin-left:3px;">hrs</span></div>
+      <div class="sub" id="scsm-card-calltime-sub">Including 15-min buffers where present</div>
+    </div>
+    <div class="summary-card" style="--accent-gradient: linear-gradient(90deg, #f59e0b, #10b981);">
+      <div class="label metric-tip">Team Avg Utilization
+        <span class="tip-icon">?</span>
+        <span class="tip-box">Customer Call Time ÷ Effective Bandwidth × 100. Target: &gt;70%.</span>
+      </div>
+      <div class="value" id="scsm-card-util">—<span style="font-size:16px;font-weight:500;margin-left:3px;">%</span></div>
+      <div class="sub" id="scsm-card-util-sub">Target: &gt;70%</div>
+    </div>
+    <div class="summary-card" style="--accent-gradient: linear-gradient(90deg, #8b5cf6, #6366f1);">
+      <div class="label metric-tip">Total Customer Calls
+        <span class="tip-icon">?</span>
+        <span class="tip-box">Count of unique external meetings accepted by SCSM team members. Declined or not-yet-responded events are excluded.</span>
+      </div>
+      <div class="value" id="scsm-card-calls" style="color:#a78bfa;">—</div>
+      <div class="sub" id="scsm-card-calls-sub">Avg — min/call</div>
+    </div>
+    <div class="summary-card" style="--accent-gradient: linear-gradient(90deg, #ef4444, #f59e0b);">
+      <div class="label metric-tip">Total Idle Time
+        <span class="tip-icon">?</span>
+        <span class="tip-box">Effective Bandwidth minus Customer Call Time. Untapped capacity.</span>
+      </div>
+      <div class="value" id="scsm-card-idle">—<span style="font-size:16px;font-weight:500;margin-left:3px;">hrs</span></div>
+      <div class="sub" id="scsm-card-idle-sub">Untapped capacity</div>
     </div>
   </div>
-  <!-- Date Range Buttons for SCSM -->
-  <div style="display:flex;gap:8px;margin-bottom:20px;" id="scsm-range-btns">
-    <button class="range-btn active" id="scsm-btn-week" onclick="scsmSetRange('week',this)">Last 7 Days</button>
-    <button class="range-btn" id="scsm-btn-today" onclick="scsmSetRange('today',this)">Today</button>
+
+  <!-- SCSM Tabs -->
+  <div class="tabs" id="scsm-tabs">
+    <button class="tab-btn active" onclick="switchSCSMTab('team',this)">Team View</button>
+    <button class="tab-btn" onclick="switchSCSMTab('member',this)">By Member</button>
+    <button class="tab-btn" onclick="switchSCSMTab('region',this)">By Region</button>
   </div>
-  <!-- SCSM Team Waterfall -->
-  <div class="chart-card" style="margin-bottom:24px;">
-    <h3>Team Bandwidth Waterfall
-      <span class="badge" id="scsm-waterfall-badge">Last 7 Days</span>
-    </h3>
-    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;" id="scsm-wf-legend">
-      <div class="legend-item"><div class="legend-dot" style="background:#3b82f6;border-radius:2px;"></div>Total Bandwidth</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#f59e0b;border-radius:2px;"></div>Internal Blocks</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#ea580c;border-radius:2px;"></div>Internal Meetings</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#10b981;border-radius:2px;"></div>Customer Calls</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#ef4444;border-radius:2px;"></div>Idle Time</div>
+
+  <!-- Team View Panel -->
+  <div id="scsm-panel-team" class="scsm-panel active">
+    <!-- Date Range Buttons for SCSM -->
+    <div style="display:flex;gap:8px;margin-bottom:20px;" id="scsm-range-btns">
+      <button class="range-btn active" id="scsm-btn-week" onclick="scsmSetRange('week',this)">Last 7 Days</button>
+      <button class="range-btn" id="scsm-btn-today" onclick="scsmSetRange('today',this)">Today</button>
     </div>
-    <div style="height:220px;"><canvas id="waterfall-scsm-team"></canvas></div>
+    <!-- SCSM Team Waterfall -->
+    <div class="chart-card" style="margin-bottom:24px;">
+      <h3>Team Bandwidth Waterfall
+        <span class="badge" id="scsm-waterfall-badge">Last 7 Days</span>
+      </h3>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;">
+        <div class="legend-item"><div class="legend-dot" style="background:#3b82f6;border-radius:2px;"></div>Total Bandwidth</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#f59e0b;border-radius:2px;"></div>Internal Blocks</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#ea580c;border-radius:2px;"></div>Internal Meetings</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#10b981;border-radius:2px;"></div>Customer Calls</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#ef4444;border-radius:2px;"></div>Idle Time</div>
+      </div>
+      <div style="height:220px;"><canvas id="waterfall-scsm-team"></canvas></div>
+    </div>
+    <!-- Team Performance Table -->
+    <div class="table-card">
+      <div class="table-header">
+        <h3>Member Performance Summary</h3>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Member</th>
+            <th>Region</th>
+            <th>Total BW</th>
+            <th>Eff BW</th>
+            <th>Calls</th>
+            <th>Call Time</th>
+            <th>Avg Duration</th>
+            <th>Idle Time</th>
+            <th>Utilization</th>
+          </tr>
+        </thead>
+        <tbody id="scsm-team-table-body"></tbody>
+      </table>
+    </div>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;" id="scsm-cards-container"></div>
+
+  <!-- By Member Panel -->
+  <div id="scsm-panel-member" class="scsm-panel">
+    <div class="section-header">
+      <div>
+        <div class="section-title">Individual Member Analysis</div>
+        <div class="section-subtitle">4 Scaled CSM members</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;" id="scsm-cards-container"></div>
+  </div>
+
+  <!-- By Region Panel -->
+  <div id="scsm-panel-region" class="scsm-panel">
+    <div class="section-header">
+      <div>
+        <div class="section-title">Regional Performance Comparison</div>
+        <div class="section-subtitle">NAMER · EMEA · APAC + EMEA</div>
+      </div>
+    </div>
+    <div class="comparison-grid" id="scsm-region-cards-container"></div>
+  </div>
 </div>
 
 <!-- MODAL -->
@@ -7885,8 +7974,12 @@ function scsmSetRange(range, btn) {
   document.querySelectorAll('#scsm-range-btns .range-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   renderSCSMCards();
+  renderSCSMTeamTable();
   renderSCSMSummary();
   setTimeout(renderSCSMTeamWaterfall, 80);
+  if (document.getElementById('scsm-panel-region') && document.getElementById('scsm-panel-region').classList.contains('active')) {
+    renderSCSMRegionCards();
+  }
 }
 
 // ============================================================
@@ -8506,7 +8599,7 @@ function drawWaterfallChart(canvasId, bwMins, blockMins, meetingMins, callMins, 
         }
       },
       scales: {
-        x: { grid:{display:false}, ticks:{color:'#64748b',font:{size:9},maxRotation:0} },
+        x: { type:'category', grid:{display:false}, ticks:{color:'#64748b',font:{size:9},maxRotation:0} },
         y: { display:false, min:0, max: bwMins > 0 ? bwMins : 540 }
       }
     }
@@ -9045,6 +9138,7 @@ function switchTeamView(team) {
     document.getElementById('header-title').textContent = 'Scaled CSM — Bandwidth & Utilization';
     document.getElementById('header-subtitle').textContent = '4 members · NAMER · APAC + EMEA · EMEA';
     renderSCSMCards();
+    renderSCSMTeamTable();
     renderSCSMSummary();
     setTimeout(renderSCSMTeamWaterfall, 80);
   }
@@ -9052,35 +9146,59 @@ function switchTeamView(team) {
 
 function renderSCSMSummary() {
   const isToday = (currentRange === 'today');
+  let totalBw, totalEffBw, totalCallMins, totalCalls, totalIdleMins, avgCallMins;
   if (isToday) {
-    const tm = SCSM_TODAY_DATA.members;
-    const members = Object.values(tm);
-    const totalBw = members.reduce((s,m) => s + m.bandwidth_hrs, 0);
-    const totalCalls = members.reduce((s,m) => s + m.calls_count, 0);
-    const totalCallMins = members.reduce((s,m) => s + m.total_call_mins, 0);
-    const totalEffBw = members.reduce((s,m) => s + m.effective_bandwidth_hrs, 0);
-    const avgUtil = totalEffBw > 0 ? Math.round(totalCallMins / (totalEffBw * 60) * 1000) / 10 : 0;
-    document.getElementById('scsm-card-bw').textContent = totalBw + ' hrs';
-    document.getElementById('scsm-card-bw-sub').textContent = 'Today · 4 members';
-    document.getElementById('scsm-card-calls').textContent = totalCalls;
-    document.getElementById('scsm-card-calls-sub').textContent = "Today's customer calls";
-    const utilEl = document.getElementById('scsm-card-util');
-    utilEl.textContent = avgUtil + '%';
-    utilEl.style.color = utilColor(avgUtil);
+    const members = Object.values(SCSM_TODAY_DATA.members);
+    totalBw       = members.reduce((s,m) => s + m.bandwidth_hrs, 0);
+    totalEffBw    = members.reduce((s,m) => s + m.effective_bandwidth_hrs, 0);
+    totalCallMins = members.reduce((s,m) => s + m.total_call_mins, 0);
+    totalCalls    = members.reduce((s,m) => s + m.calls_count, 0);
+    totalIdleMins = members.reduce((s,m) => s + (m.idle_mins || 0), 0);
+    avgCallMins   = totalCalls > 0 ? Math.round(totalCallMins / totalCalls) : 0;
   } else {
-    const totalBw = Object.values(SCSM_RAW_DATA).reduce((s,m) => s + m.totals.bandwidth_hrs, 0);
-    const totalCalls = Object.values(SCSM_RAW_DATA).reduce((s,m) => s + m.totals.calls_count, 0);
-    const totalCallMins = Object.values(SCSM_RAW_DATA).reduce((s,m) => s + m.totals.customer_call_mins, 0);
-    const totalEffBw = Object.values(SCSM_RAW_DATA).reduce((s,m) => s + m.totals.effective_bandwidth_hrs, 0);
-    const avgUtil = totalEffBw > 0 ? Math.round(totalCallMins / (totalEffBw * 60) * 1000) / 10 : 0;
-    document.getElementById('scsm-card-bw').textContent = totalBw + ' hrs';
-    document.getElementById('scsm-card-bw-sub').textContent = 'Last 7 Days · 4 members';
-    document.getElementById('scsm-card-calls').textContent = totalCalls;
-    document.getElementById('scsm-card-calls-sub').textContent = 'Total customer calls';
-    const utilEl = document.getElementById('scsm-card-util');
-    utilEl.textContent = avgUtil + '%';
-    utilEl.style.color = utilColor(avgUtil);
+    const members = Object.values(SCSM_RAW_DATA);
+    totalBw       = members.reduce((s,m) => s + m.totals.bandwidth_hrs, 0);
+    totalEffBw    = members.reduce((s,m) => s + m.totals.effective_bandwidth_hrs, 0);
+    totalCallMins = members.reduce((s,m) => s + m.totals.customer_call_mins, 0);
+    totalCalls    = members.reduce((s,m) => s + m.totals.calls_count, 0);
+    totalIdleMins = members.reduce((s,m) => s + (m.totals.idle_mins || 0), 0);
+    avgCallMins   = totalCalls > 0 ? Math.round(totalCallMins / totalCalls) : 0;
   }
+  const avgUtil = totalEffBw > 0 ? Math.round(totalCallMins / (totalEffBw * 60) * 1000) / 10 : 0;
+  const rangeLabel = isToday ? 'Today' : 'Last 7 Days';
+
+  // Total BW
+  document.getElementById('scsm-card-bw').innerHTML =
+    `${totalBw}<span style="font-size:16px;font-weight:500;margin-left:3px;">hrs</span>`;
+  document.getElementById('scsm-card-bw-sub').textContent = `${rangeLabel} · 4 members`;
+
+  // Effective BW
+  document.getElementById('scsm-card-eff').innerHTML =
+    `${totalEffBw.toFixed(1)}<span style="font-size:16px;font-weight:500;margin-left:3px;">hrs</span>`;
+  document.getElementById('scsm-card-eff-sub').textContent = 'After internal blockers';
+
+  // Customer Call Time
+  const callHrs = (totalCallMins / 60).toFixed(1);
+  document.getElementById('scsm-card-calltime').innerHTML =
+    `${callHrs}<span style="font-size:16px;font-weight:500;margin-left:3px;">hrs</span>`;
+  document.getElementById('scsm-card-calltime-sub').textContent = 'Including 15-min buffers where present';
+
+  // Avg Utilization
+  const utilEl = document.getElementById('scsm-card-util');
+  utilEl.innerHTML = `${avgUtil}<span style="font-size:16px;font-weight:500;margin-left:3px;">%</span>`;
+  utilEl.className = 'value ' + utilClass(avgUtil);
+  document.getElementById('scsm-card-util-sub').textContent = 'Target: >70%';
+
+  // Total Customer Calls
+  document.getElementById('scsm-card-calls').innerHTML = `${totalCalls}`;
+  document.getElementById('scsm-card-calls-sub').textContent = `Avg ${avgCallMins} min/call`;
+
+  // Idle Time
+  const idleHrs = (totalIdleMins / 60).toFixed(1);
+  const idleEl = document.getElementById('scsm-card-idle');
+  idleEl.innerHTML = `${idleHrs}<span style="font-size:16px;font-weight:500;margin-left:3px;">hrs</span>`;
+  idleEl.className = 'value num-bad';
+  document.getElementById('scsm-card-idle-sub').textContent = 'Untapped capacity';
 }
 
 function renderSCSMTeamWaterfall() {
@@ -9111,6 +9229,132 @@ function renderSCSMTeamWaterfall() {
     });
   }
   drawWaterfallChart('waterfall-scsm-team', totalBwMins, totalBlockMins, totalMeetingMins, totalCallMins, totalIdleMins);
+}
+
+function switchSCSMTab(tab, btn) {
+  document.querySelectorAll('.scsm-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('#scsm-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('scsm-panel-'+tab).classList.add('active');
+  btn.classList.add('active');
+  if (tab === 'region') renderSCSMRegionCards();
+}
+
+function renderSCSMTeamTable() {
+  const tbody = document.getElementById('scsm-team-table-body');
+  if (!tbody) return;
+  const isToday = (currentRange === 'today');
+  let html = '';
+  SCSM_MEMBERS.forEach((m, idx) => {
+    const color = SCSM_COLORS[idx];
+    let bw, effBw, calls, callMins, idleMins, utilPct, avgCall;
+    if (isToday) {
+      const td = SCSM_TODAY_DATA.members[m.key] || {};
+      bw = td.bandwidth_hrs || 0;
+      effBw = td.effective_bandwidth_hrs || 0;
+      calls = td.calls_count || 0;
+      callMins = td.total_call_mins || 0;
+      idleMins = td.idle_mins || 0;
+      utilPct = td.utilization_pct || 0;
+      avgCall = td.avg_call_mins || 0;
+    } else {
+      const rd = SCSM_RAW_DATA[m.key] || { totals: {} };
+      bw = rd.totals.bandwidth_hrs || 0;
+      effBw = rd.totals.effective_bandwidth_hrs || 0;
+      calls = rd.totals.calls_count || 0;
+      callMins = rd.totals.customer_call_mins || 0;
+      idleMins = rd.totals.idle_mins || 0;
+      utilPct = rd.totals.utilization_pct || 0;
+      avgCall = rd.totals.avg_call_mins || 0;
+    }
+    const uc = utilClass(utilPct);
+    const regionStyle = m.region.includes('+')
+      ? 'background:rgba(6,182,212,0.12);color:#22d3ee;border:1px solid rgba(6,182,212,0.25);padding:2px 7px;border-radius:5px;font-size:10px;font-weight:600;'
+      : '';
+    const regionClass = m.region.includes('+') ? '' : m.region;
+    html += `<tr>
+      <td><div style="display:flex;align-items:center;gap:10px;">
+        <div class="avatar" style="width:32px;height:32px;background:${color}22;color:${color};font-size:12px;">${initials(m.name)}</div>
+        <div>
+          <div style="font-weight:600;color:var(--text-primary);">${m.name}</div>
+          <div style="font-size:10px;color:var(--text-muted);">${m.email}</div>
+        </div>
+      </div></td>
+      <td><span class="region-badge ${regionClass}" style="${regionStyle}">${m.region}</span></td>
+      <td>${bw}h</td>
+      <td>${effBw.toFixed(1)}h</td>
+      <td style="color:#a78bfa;">${calls}</td>
+      <td style="color:#34d399;">${fmtMins(callMins)}</td>
+      <td>${avgCall}m</td>
+      <td style="color:var(--red-light);">${fmtMins(idleMins)}</td>
+      <td><span class="${uc}">${utilPct}%</span></td>
+    </tr>`;
+  });
+  tbody.innerHTML = html;
+}
+
+let scsmRegionCardsMade = false;
+function renderSCSMRegionCards() {
+  const container = document.getElementById('scsm-region-cards-container');
+  if (!container) return;
+  container.innerHTML = '';
+  const isToday = (currentRange === 'today');
+  const SCSM_REGIONS = ['NAMER', 'EMEA', 'APAC + EMEA'];
+  const SCSM_REGION_COLORS = { 'NAMER': '#6366f1', 'EMEA': '#8b5cf6', 'APAC + EMEA': '#06b6d4' };
+
+  SCSM_REGIONS.forEach(region => {
+    const mKeys = SCSM_MEMBERS.filter(m => m.region === region).map(m => m.key);
+    if (!mKeys.length) return;
+    let totalBw = 0, effBw = 0, callMins = 0, calls = 0, idleMins = 0;
+    if (isToday) {
+      mKeys.forEach(k => {
+        const d = SCSM_TODAY_DATA.members[k] || {};
+        totalBw += d.bandwidth_hrs || 0;
+        effBw   += d.effective_bandwidth_hrs || 0;
+        callMins += d.total_call_mins || 0;
+        calls   += d.calls_count || 0;
+        idleMins += d.idle_mins || 0;
+      });
+    } else {
+      mKeys.forEach(k => {
+        const t = (SCSM_RAW_DATA[k] || { totals: {} }).totals;
+        totalBw += t.bandwidth_hrs || 0;
+        effBw   += t.effective_bandwidth_hrs || 0;
+        callMins += t.customer_call_mins || 0;
+        calls   += t.calls_count || 0;
+        idleMins += t.idle_mins || 0;
+      });
+    }
+    const util = effBw > 0 ? Math.round(callMins / (effBw * 60) * 1000) / 10 : 0;
+    const color = SCSM_REGION_COLORS[region] || '#6366f1';
+    const card = document.createElement('div');
+    card.className = 'comparison-card';
+    card.innerHTML = `
+      <div class="gauge-wrap">
+        <canvas id="scsm-gauge-${region.replace(/\s+/g,'-')}" width="120" height="120"></canvas>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+          <div style="font-size:22px;font-weight:800;color:${color};">${util}%</div>
+          <div style="font-size:10px;color:var(--text-muted);">Utilization</div>
+        </div>
+      </div>
+      <div class="region-name" style="color:${color};">${region}</div>
+      <div class="sub-info">${mKeys.length} member${mKeys.length>1?'s':''} · ${calls} calls</div>
+      <div class="stat-row"><span class="stat-label">Total Bandwidth</span><span class="stat-val">${fmtHrs(totalBw)}</span></div>
+      <div class="stat-row"><span class="stat-label">Effective Bandwidth</span><span class="stat-val">${fmtHrs(effBw)}</span></div>
+      <div class="stat-row"><span class="stat-label">Customer Call Time</span><span class="stat-val" style="color:var(--green-light);">${fmtMins(callMins)}</span></div>
+      <div class="stat-row"><span class="stat-label">Idle Time</span><span class="stat-val" style="color:var(--red-light);">${fmtMins(idleMins)}</span></div>
+    `;
+    container.appendChild(card);
+    const canvasId = 'scsm-gauge-' + region.replace(/\s+/g,'-');
+    setTimeout(() => {
+      const gEl = document.getElementById(canvasId);
+      if (!gEl) return;
+      new Chart(gEl.getContext('2d'), {
+        type: 'doughnut',
+        data: { datasets: [{ data: [util, 100-util], backgroundColor: [color+'cc','rgba(255,255,255,0.04)'], borderColor: [color,'transparent'], borderWidth: [2,0], hoverOffset: 0 }] },
+        options: { cutout:'72%', responsive:false, plugins:{ legend:{display:false}, tooltip:{enabled:false} }, animation:{duration:1000} }
+      });
+    }, 50);
+  });
 }
 
 function renderSCSMCards() {
@@ -9175,7 +9419,7 @@ function renderSCSMCards() {
       <div class="top">
         <div class="avatar" style="width:44px;height:44px;background:${color}22;color:${color};font-size:15px;flex-shrink:0;">${initials(m.name)}</div>
         <div style="flex:1;min-width:0;">
-          <div style="font-weight:700;font-size:15px;margin-bottom:6px;">${m.name}</div>
+          <div style="font-weight:700;font-size:15px;margin-bottom:6px;color:var(--text-primary);">${m.name}</div>
           <div style="display:flex;gap:6px;flex-wrap:wrap;">
             <span class="region-badge ${regionClass}" style="${regionStyle}">${m.region}</span>
             <span style="background:rgba(100,116,139,.15);color:var(--text-muted);padding:3px 8px;border-radius:5px;font-size:10px;font-weight:600;">${m.shift}</span>
