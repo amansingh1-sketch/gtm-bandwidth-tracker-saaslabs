@@ -698,6 +698,7 @@
   }
   .landing-card:hover { border-color: var(--border-light); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
   .landing-card:hover::before { opacity: 1; }
+  .landing-card::before { pointer-events: none; }
   .landing-card .lc-icon { font-size: 36px; margin-bottom: 16px; }
   .landing-card .lc-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
   .landing-card .lc-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
@@ -790,18 +791,18 @@
     <p>Select a team to view their dashboard</p>
   </div>
   <div class="landing-cards">
-    <div class="landing-card" style="--lc-gradient:linear-gradient(135deg,#3b82f630,#6366f118);"
+    <button class="landing-card" style="--lc-gradient:linear-gradient(135deg,#3b82f630,#6366f118);background:var(--bg-card);border:1px solid var(--border);font-family:inherit;text-align:center;"
          onclick="loadTeam('ps')">
       <div class="lc-icon">💼</div>
       <div class="lc-title">Product Specialist</div>
-      <div class="lc-desc">7 members · NAMER, APAC, EMEA · Pre-Sales demos & sign-ups</div>
-    </div>
-    <div class="landing-card" style="--lc-gradient:linear-gradient(135deg,#8b5cf630,#6366f118);"
+      <div class="lc-desc">7 members · NAMER, APAC, EMEA · Pre-Sales demos &amp; sign-ups</div>
+    </button>
+    <button class="landing-card" style="--lc-gradient:linear-gradient(135deg,#8b5cf630,#6366f118);background:var(--bg-card);border:1px solid var(--border);font-family:inherit;text-align:center;"
          onclick="loadTeam('scsm')">
       <div class="lc-icon">🤝</div>
       <div class="lc-title">Scaled CSM</div>
-      <div class="lc-desc">4 members · NAMER, APAC, EMEA · Customer success & retention</div>
-    </div>
+      <div class="lc-desc">4 members · NAMER, APAC, EMEA · Customer success &amp; retention</div>
+    </button>
   </div>
 </div>
 
