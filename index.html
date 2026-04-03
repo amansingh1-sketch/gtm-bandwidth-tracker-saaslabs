@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PS Bandwidth & Utilization Dashboard</title>
+<title>GTM Bandwidth & Utilization Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -702,32 +702,26 @@
   .landing-card .lc-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
   .landing-card .lc-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
 
-  /* individual email form inside landing */
-  #individual-form {
-    display: none; flex-direction: column; gap: 16px;
-    max-width: 480px; width: 100%;
+  /* SCSM pending banner */
+  .scsm-pending-banner {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.2);
+    border-radius: 12px; padding: 16px 20px; margin-bottom: 28px;
   }
-  #individual-form h2 { font-size: 20px; font-weight: 700; }
-  #individual-form p { font-size: 13px; color: var(--text-muted); margin-top: -8px; }
-  .ind-field label { display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
-  .ind-field input, .ind-field select {
-    width: 100%; background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 8px; padding: 10px 14px; color: var(--text-primary);
-    font-size: 13px; font-family: inherit; outline: none;
+  .scsm-pending-banner .bp-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+  .scsm-pending-banner .bp-title { font-weight: 600; color: #a5b4fc; margin-bottom: 4px; font-size: 14px; }
+  .scsm-pending-banner .bp-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+  /* SCSM member cards skeleton */
+  .scsm-member-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px;
   }
-  .ind-field input:focus, .ind-field select:focus { border-color: var(--accent-blue); }
-  .ind-row { display: flex; gap: 12px; }
-  .ind-row .ind-field { flex: 1; }
-  .ind-submit {
-    background: linear-gradient(135deg, #3b82f6, #6366f1);
-    color: #fff; border: none; border-radius: 10px;
-    padding: 12px; font-size: 14px; font-weight: 600;
-    cursor: pointer; font-family: inherit; transition: opacity .2s;
-  }
-  .ind-submit:hover { opacity: .85; }
-  .ind-back { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 12px; font-family: inherit; margin-top: -4px; }
-  .ind-back:hover { color: var(--text-primary); }
-  .ind-notice { font-size: 12px; color: #93c5fd; background: rgba(59,130,246,.1); border-radius: 8px; padding: 10px 14px; text-align: center; }
+  .scsm-member-card .top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .scsm-stat-row { display: flex; gap: 20px; padding-top: 12px; border-top: 1px solid var(--border); }
+  .scsm-stat { flex: 1; text-align: center; }
+  .scsm-stat .sv { font-size: 18px; font-weight: 700; color: var(--text-muted); }
+  .scsm-stat .sl { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.4px; margin-top: 2px; }
 
   /* ── METRIC TOOLTIP ──────────────────────────────────── */
   .metric-tip {
@@ -742,7 +736,7 @@
   }
   .metric-tip .tip-box {
     display: none; position: absolute;
-    bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+    top: calc(100% + 10px); left: 50%; transform: translateX(-50%);
     background: #1e2d4a; border: 1px solid var(--border-light);
     color: var(--text-primary); font-size: 11px; line-height: 1.5;
     padding: 8px 12px; border-radius: 8px;
@@ -750,9 +744,13 @@
     box-shadow: 0 8px 24px rgba(0,0,0,.5);
     pointer-events: none;
   }
+  .metric-tip .tip-box::before {
+    content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+    border: 6px solid transparent; border-bottom-color: var(--border-light);
+  }
   .metric-tip .tip-box::after {
-    content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-    border: 5px solid transparent; border-top-color: #1e2d4a;
+    content: ''; position: absolute; bottom: calc(100% - 1px); left: 50%; transform: translateX(-50%);
+    border: 6px solid transparent; border-bottom-color: #1e2d4a;
   }
   .metric-tip:hover .tip-box { display: block; }
 
@@ -787,80 +785,42 @@
      LANDING OVERLAY
 ═══════════════════════════════════════════════════════ -->
 <div id="landing-overlay">
-
-  <!-- Step 1: choose mode -->
-  <div id="landing-choose">
-    <div class="landing-logo">
-      <h1>Bandwidth & Utilization</h1>
-      <p>How would you like to analyse the team?</p>
+  <div class="landing-logo">
+    <h1>GTM Bandwidth & Utilization</h1>
+    <p>Select a team to view their dashboard</p>
+  </div>
+  <div class="landing-cards">
+    <div class="landing-card" style="--lc-gradient:linear-gradient(135deg,#3b82f630,#6366f118);"
+         onclick="loadTeam('ps')">
+      <div class="lc-icon">💼</div>
+      <div class="lc-title">Product Specialist</div>
+      <div class="lc-desc">7 members · NAMER, APAC, EMEA · Pre-Sales demos & sign-ups</div>
     </div>
-    <div class="landing-cards">
-      <div class="landing-card" style="--lc-gradient:linear-gradient(135deg,#6366f130,#3b82f618);"
-           onclick="showIndividualForm()">
-        <div class="lc-icon">👤</div>
-        <div class="lc-title">Individual</div>
-        <div class="lc-desc">Enter a single rep's email and shift hours to analyse their calendar</div>
-      </div>
-      <div class="landing-card" style="--lc-gradient:linear-gradient(135deg,#10b98130,#06b6d418);"
-           onclick="closeLanding()">
-        <div class="lc-icon">👥</div>
-        <div class="lc-title">Predefined Team</div>
-        <div class="lc-desc">View the full Product Specialist team dashboard (pre-loaded data)</div>
-      </div>
+    <div class="landing-card" style="--lc-gradient:linear-gradient(135deg,#8b5cf630,#6366f118);"
+         onclick="loadTeam('scsm')">
+      <div class="lc-icon">🤝</div>
+      <div class="lc-title">Scaled CSM</div>
+      <div class="lc-desc">4 members · NAMER, APAC, EMEA · Customer success & retention</div>
     </div>
   </div>
-
-  <!-- Step 2: individual form -->
-  <div id="individual-form">
-    <h2>Individual Analysis</h2>
-    <p>Enter details — then ask Claude to re-run with this person's calendar.</p>
-    <div class="ind-field">
-      <label>Work Email</label>
-      <input type="email" id="ind-email" placeholder="name@company.com">
-    </div>
-    <div class="ind-row">
-      <div class="ind-field">
-        <label>Shift Start (IST)</label>
-        <input type="time" id="ind-start" value="18:00">
-      </div>
-      <div class="ind-field">
-        <label>Shift End (IST)</label>
-        <input type="time" id="ind-end" value="03:00">
-      </div>
-    </div>
-    <div class="ind-field">
-      <label>Region</label>
-      <select id="ind-region">
-        <option>NAMER</option><option>APAC</option><option>EMEA</option>
-      </select>
-    </div>
-    <div class="ind-field">
-      <label>Funnel</label>
-      <select id="ind-funnel">
-        <option>Demo</option><option>Sign up</option>
-      </select>
-    </div>
-    <div class="ind-notice" id="ind-prompt-box" style="display:none;"></div>
-    <button class="ind-submit" onclick="generateIndividualPrompt()">Generate Analysis Prompt</button>
-    <button class="ind-back" onclick="showLandingChoose()">← Back</button>
-  </div>
-
 </div>
 
 <!-- HEADER -->
 <div class="header">
   <div class="header-left">
-    <h1>Product Specialist — Bandwidth & Utilization Dashboard</h1>
+    <h1 id="header-title">GTM — Bandwidth & Utilization Dashboard</h1>
     <div class="subtitle" id="header-subtitle">Pre-Sales team performance · March 27 – April 3, 2026</div>
   </div>
   <div class="header-right">
-    <div style="display:flex;gap:6px;">
+    <!-- Team switcher -->
+    <div style="display:flex;gap:4px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:3px;">
+      <button id="team-btn-ps" class="range-btn active" style="border:none;border-radius:5px;" onclick="switchTeamView('ps')">Product Specialist</button>
+      <button id="team-btn-scsm" class="range-btn" style="border:none;border-radius:5px;" onclick="switchTeamView('scsm')">Scaled CSM</button>
+    </div>
+    <!-- Date range -->
+    <div id="date-range-btns" style="display:flex;gap:6px;">
       <button class="range-btn" onclick="showRangeMsg(this,'Today')">Today</button>
       <button class="range-btn active" onclick="showRangeMsg(this,'Last 7 Days')">Last 7 Days</button>
-      <button class="range-btn" onclick="showRangeMsg(this,'Last 14 Days')">Last 14 Days</button>
-      <button class="range-btn" onclick="showRangeMsg(this,'Last 30 Days')">Last 30 Days</button>
-      <button class="range-btn" onclick="showRangeMsg(this,'Current Week')">Current Week</button>
-      <button class="range-btn" onclick="showRangeMsg(this,'Custom Range')">Custom Range</button>
     </div>
     <div class="date-pill">
       <div class="dot"></div>
@@ -933,7 +893,7 @@
     <button class="tab-btn active" onclick="switchTab('team')">Team View</button>
     <button class="tab-btn" onclick="switchTab('member')">By Member</button>
     <button class="tab-btn" onclick="switchTab('region')">By Region</button>
-    <button class="tab-btn" onclick="switchTab('funnel')">By Funnel</button>
+    <button class="tab-btn" id="funnel-tab-btn" onclick="switchTab('funnel')">By Funnel</button>
   </div>
 
   <!-- TEAM VIEW -->
@@ -1034,6 +994,18 @@
   </div>
 
 </div><!-- /container -->
+
+<!-- SCALED CSM VIEW -->
+<div id="scsm-view" style="display:none;max-width:1600px;margin:0 auto;padding:28px 32px;">
+  <div class="scsm-pending-banner">
+    <div class="bp-icon">📅</div>
+    <div>
+      <div class="bp-title">Calendar Data Pending</div>
+      <div class="bp-desc">Scaled CSM calendar data will be fetched at the next daily refresh (9:00 AM IST, Mon–Fri). The daily cron will classify customer calls by detecting meetings where a Scaled CSM member is organiser and at least one attendee is from an external (non-saaslabs.co) domain.</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;" id="scsm-cards-container"></div>
+</div>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay">
@@ -5628,6 +5600,17 @@ const MEMBER_ORDER = ["aman.kaur","apurva.paygude","joel.philip","megha.patil","
 
 const AVATAR_COLORS = ["#3b82f6","#8b5cf6","#10b981","#f59e0b","#06b6d4","#ef4444","#ec4899"];
 
+// ── SCALED CSM TEAM CONFIG ────────────────────────────────
+const SCSM_MEMBERS = [
+  { key: 'hunar.dugar',          name: 'Hunar Dugar',          email: 'hunar.dugar@saaslabs.co',          shift: '16:00–01:00 IST', region: 'EMEA',        bandwidth_hrs: 9 },
+  { key: 'narayan',              name: 'Narayan',              email: 'narayan@saaslabs.co',              shift: '18:00–03:00 IST', region: 'NAMER',       bandwidth_hrs: 9 },
+  { key: 'srihari.srinivasan',   name: 'Srihari Srinivasan',   email: 'srihari.srinivasan@saaslabs.co',   shift: '08:00–17:00 IST', region: 'APAC + EMEA', bandwidth_hrs: 9 },
+  { key: 'tanish.dumawat',       name: 'Tanish Dumawat',       email: 'tanish.dumawat@saaslabs.co',       shift: '17:00–02:00 IST', region: 'NAMER',       bandwidth_hrs: 9 },
+];
+const SCSM_COLORS = ['#3b82f6','#8b5cf6','#10b981','#f59e0b'];
+
+let currentTeam = 'ps';
+
 function fmtMins(m) {
   const h = Math.floor(m/60);
   const mm = Math.round(m%60);
@@ -6792,35 +6775,74 @@ document.getElementById('modal-overlay').addEventListener('click', function(e) {
 });
 
 // ============================================================
-// LANDING PAGE
+// LANDING PAGE & TEAM SWITCHING
 // ============================================================
-function closeLanding() {
+function loadTeam(team) {
   document.getElementById('landing-overlay').style.display = 'none';
+  switchTeamView(team);
 }
 
-function showIndividualForm() {
-  document.getElementById('landing-choose').style.display = 'none';
-  document.getElementById('individual-form').style.display = 'flex';
+function switchTeamView(team) {
+  currentTeam = team;
+  const psBtn   = document.getElementById('team-btn-ps');
+  const scsmBtn = document.getElementById('team-btn-scsm');
+  const container  = document.querySelector('.container');
+  const scsmView   = document.getElementById('scsm-view');
+  const dateRangeBtns = document.getElementById('date-range-btns');
+  const funnelTab  = document.getElementById('funnel-tab-btn');
+
+  if (team === 'ps') {
+    psBtn.classList.add('active');
+    scsmBtn.classList.remove('active');
+    container.style.display = '';
+    scsmView.style.display  = 'none';
+    dateRangeBtns.style.display = 'flex';
+    if (funnelTab) funnelTab.style.display = '';
+    document.getElementById('header-title').textContent = 'Product Specialist — Bandwidth & Utilization';
+    document.getElementById('header-subtitle').textContent = 'Pre-Sales team performance · March 27 – April 3, 2026';
+  } else {
+    scsmBtn.classList.add('active');
+    psBtn.classList.remove('active');
+    container.style.display  = 'none';
+    scsmView.style.display   = '';
+    dateRangeBtns.style.display = 'none';
+    document.getElementById('header-title').textContent = 'Scaled CSM — Bandwidth & Utilization';
+    document.getElementById('header-subtitle').textContent = '4 members · NAMER · APAC + EMEA · EMEA';
+    renderSCSMCards();
+  }
 }
 
-function showLandingChoose() {
-  document.getElementById('individual-form').style.display = 'none';
-  document.getElementById('individual-form').querySelector('#ind-prompt-box').style.display = 'none';
-  document.getElementById('landing-choose').style.display = 'flex';
-}
-
-function generateIndividualPrompt() {
-  const email = document.getElementById('ind-email').value.trim();
-  const start = document.getElementById('ind-start').value;
-  const end   = document.getElementById('ind-end').value;
-  const region = document.getElementById('ind-region').value;
-  const funnel = document.getElementById('ind-funnel').value;
-  if (!email) { alert('Please enter a work email.'); return; }
-  const box = document.getElementById('ind-prompt-box');
-  box.style.display = 'block';
-  box.innerHTML = `Copy this prompt into Claude:<br><br>
-    <strong style="color:#e2e8f0;">"Analyse bandwidth for ${email}, shift ${start}–${end} IST, region ${region}, funnel ${funnel}.
-    Fetch last 7 days from Google Calendar and regenerate the PS Bandwidth Dashboard for this individual."</strong>`;
+function renderSCSMCards() {
+  const container = document.getElementById('scsm-cards-container');
+  container.innerHTML = '';
+  SCSM_MEMBERS.forEach((m, idx) => {
+    const color = SCSM_COLORS[idx];
+    const regionClass = m.region.includes('+') ? '' : m.region;
+    const regionStyle = m.region.includes('+')
+      ? 'background:rgba(6,182,212,0.12);color:#22d3ee;border:1px solid rgba(6,182,212,0.25);'
+      : '';
+    const card = document.createElement('div');
+    card.className = 'scsm-member-card';
+    card.innerHTML = `
+      <div class="top">
+        <div class="avatar" style="width:44px;height:44px;background:${color}22;color:${color};font-size:15px;flex-shrink:0;">${initials(m.name)}</div>
+        <div>
+          <div style="font-weight:700;font-size:15px;margin-bottom:6px;">${m.name}</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="region-badge ${regionClass}" style="${regionStyle}">${m.region}</span>
+            <span style="background:rgba(100,116,139,.15);color:var(--text-muted);padding:3px 8px;border-radius:5px;font-size:10px;font-weight:600;">${m.shift}</span>
+          </div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:5px;">${m.email}</div>
+        </div>
+      </div>
+      <div class="scsm-stat-row">
+        <div class="scsm-stat"><div class="sv">—</div><div class="sl">Bandwidth</div></div>
+        <div class="scsm-stat"><div class="sv">—</div><div class="sl">Customer Calls</div></div>
+        <div class="scsm-stat"><div class="sv">—</div><div class="sl">Utilization</div></div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
 }
 
 // ============================================================
