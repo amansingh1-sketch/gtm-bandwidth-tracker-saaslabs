@@ -828,7 +828,7 @@
     </div>
     <div class="date-pill">
       <div class="dot"></div>
-      Updated Apr 3, 2026
+      Updated Apr 7, 2026
     </div>
   </div>
 </div>
@@ -8819,13 +8819,13 @@ function renderTeamChartsToday() {
 
 function openCallsModalToday(mk, tab) {
   const m = TODAY_DATA.members[mk];
-  document.getElementById('modal-title').textContent = `${m.name} — Apr 3, 2026 Detail`;
+  document.getElementById('modal-title').textContent = `${m.name} — Apr 7, 2026 Detail`;
 
   // Calls pane
   let callsHtml = '';
   const calls = m.customer_calls || [];
   if (calls.length > 0) {
-    callsHtml += `<div class="call-day-header">Apr 3, 2026 — ${calls.length} call${calls.length>1?'s':''}</div>`;
+    callsHtml += `<div class="call-day-header">Apr 7, 2026 — ${calls.length} call${calls.length>1?'s':''}</div>`;
     calls.forEach(c => {
       const start = c.start.substring(11,16);
       const end = c.end.substring(11,16);
@@ -8847,7 +8847,7 @@ function openCallsModalToday(mk, tab) {
   let blockersHtml = '';
   const blockers = m.internal_blockers || [];
   if (blockers.length > 0) {
-    blockersHtml += `<div class="call-day-header">Apr 3, 2026 — ${blockers.length} event${blockers.length>1?'s':''} excluded</div>`;
+    blockersHtml += `<div class="call-day-header">Apr 7, 2026 — ${blockers.length} event${blockers.length>1?'s':''} excluded</div>`;
     blockers.forEach(b => {
       const start = b.start.substring(11,16);
       const end = b.end.substring(11,16);
@@ -9932,7 +9932,7 @@ function openSCSMCallsModal(mk, tab) {
     const calls = td.customer_calls || [];
     if (calls.length) {
       totalCalls = calls.length;
-      callsHtml += '<div class="call-day-header">Apr 3, 2026 — ' + calls.length + ' call' + (calls.length>1?'s':'') + '</div>';
+      callsHtml += '<div class="call-day-header">Apr 7, 2026 — ' + calls.length + ' call' + (calls.length>1?'s':'') + '</div>';
       calls.forEach(c => {
         const start = (c.clipped_start||c.start||'').substring(11,16);
         const end = (c.clipped_end||c.end||'').substring(11,16);
@@ -9942,7 +9942,7 @@ function openSCSMCallsModal(mk, tab) {
     const blockers = td.internal_blockers || [];
     if (blockers.length) {
       totalBlockers = blockers.length;
-      blockersHtml += '<div class="call-day-header">Apr 3, 2026 — ' + blockers.length + ' event' + (blockers.length>1?'s':'') + ' excluded</div>';
+      blockersHtml += '<div class="call-day-header">Apr 7, 2026 — ' + blockers.length + ' event' + (blockers.length>1?'s':'') + ' excluded</div>';
       blockers.forEach(b => {
         const start = (b.clipped_start||b.start||'').substring(11,16);
         const end = (b.clipped_end||b.end||'').substring(11,16);
