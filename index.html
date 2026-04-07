@@ -6668,48 +6668,48 @@ const SCSM_RAW_DATA = {
         "others": []
       },
       "2026-04-02": {
-        "status": "WORKING",
-        "bandwidth_hrs": 9,
-        "internal_blocker_mins": 0.0,
-        "customer_call_mins": 15.0,
-        "effective_bandwidth_hrs": 9.0,
-        "calls_count": 1,
-        "idle_mins": 525.0,
-        "utilization_pct": 2.8,
-        "customer_calls": [
-          {
-            "title": "Joe Spencer and Hunar Dugar",
-            "start": "2026-04-02T16:45:00+05:30",
-            "end": "2026-04-02T17:15:00+05:30",
-            "clipped_start": "2026-04-02T16:45:00+05:30",
-            "clipped_end": "2026-04-02T17:00:00+05:30",
-            "duration_mins": 15.0,
-            "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 15.0
-          }
-        ],
+        "status": "OOF",
+        "bandwidth_hrs": 0,
+        "internal_blocker_mins": 0,
+        "customer_call_mins": 0,
+        "effective_bandwidth_hrs": 0,
+        "calls_count": 0,
+        "idle_mins": 0,
+        "utilization_pct": 0,
+        "customer_calls": [],
         "internal_blockers": [],
         "others": []
       },
       "2026-04-03": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 60.0,
-        "customer_call_mins": 0.0,
-        "effective_bandwidth_hrs": 8.0,
-        "calls_count": 0,
+        "internal_blocker_mins": 30.0,
+        "customer_call_mins": 30.0,
+        "effective_bandwidth_hrs": 8.5,
+        "calls_count": 1,
         "idle_mins": 480.0,
-        "utilization_pct": 0.0,
-        "customer_calls": [],
+        "utilization_pct": 5.9,
+        "customer_calls": [
+          {
+            "title": "tom and Srihari Srinivasan - JustCall",
+            "start": "2026-04-03T08:00:00+05:30",
+            "end": "2026-04-03T08:30:00+05:30",
+            "clipped_start": "2026-04-03T08:00:00+05:30",
+            "clipped_end": "2026-04-03T08:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
         "internal_blockers": [
           {
-            "title": "Emails/Intercom",
-            "start": "2026-04-03T16:00:00+05:30",
-            "end": "2026-04-03T17:00:00+05:30",
-            "clipped_start": "2026-04-03T16:00:00+05:30",
-            "clipped_end": "2026-04-03T17:00:00+05:30",
-            "duration_mins": 60.0
+            "title": "Lunch Break",
+            "start": "2026-04-03T14:00:00+05:30",
+            "end": "2026-04-03T14:30:00+05:30",
+            "clipped_start": "2026-04-03T14:00:00+05:30",
+            "clipped_end": "2026-04-03T14:30:00+05:30",
+            "duration_mins": 30.0
           }
         ],
         "others": []
@@ -6717,21 +6717,44 @@ const SCSM_RAW_DATA = {
       "2026-04-06": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 60.0,
-        "customer_call_mins": 0.0,
-        "effective_bandwidth_hrs": 8.0,
-        "calls_count": 0,
-        "idle_mins": 480.0,
-        "utilization_pct": 0.0,
-        "customer_calls": [],
+        "internal_blocker_mins": 30.0,
+        "customer_call_mins": 60.0,
+        "effective_bandwidth_hrs": 8.5,
+        "calls_count": 2,
+        "idle_mins": 450.0,
+        "utilization_pct": 11.8,
+        "customer_calls": [
+          {
+            "title": "Vrushabh and Srihari Srinivasan - JustCall",
+            "start": "2026-04-06T10:00:00+05:30",
+            "end": "2026-04-06T10:30:00+05:30",
+            "clipped_start": "2026-04-06T10:00:00+05:30",
+            "clipped_end": "2026-04-06T10:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          },
+          {
+            "title": "Rosal and Srihari Srinivasan - JustCall",
+            "start": "2026-04-06T12:00:00+05:30",
+            "end": "2026-04-06T12:30:00+05:30",
+            "clipped_start": "2026-04-06T12:00:00+05:30",
+            "clipped_end": "2026-04-06T12:30:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
         "internal_blockers": [
           {
-            "title": "Check IC Chats/ NBA Retention",
-            "start": "2026-04-06T16:00:00+05:30",
-            "end": "2026-04-06T17:00:00+05:30",
-            "clipped_start": "2026-04-06T16:00:00+05:30",
-            "clipped_end": "2026-04-06T17:00:00+05:30",
-            "duration_mins": 60.0
+            "title": "Lunch Break",
+            "start": "2026-04-06T14:00:00+05:30",
+            "end": "2026-04-06T14:30:00+05:30",
+            "clipped_start": "2026-04-06T14:00:00+05:30",
+            "clipped_end": "2026-04-06T14:30:00+05:30",
+            "duration_mins": 30.0
           }
         ],
         "others": []
@@ -6739,20 +6762,48 @@ const SCSM_RAW_DATA = {
       "2026-04-07": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 30.0,
-        "customer_call_mins": 0.0,
-        "effective_bandwidth_hrs": 8.5,
-        "calls_count": 0,
-        "idle_mins": 510.0,
-        "utilization_pct": 0.0,
-        "customer_calls": [],
+        "internal_blocker_mins": 90.0,
+        "customer_call_mins": 30.0,
+        "effective_bandwidth_hrs": 7.5,
+        "calls_count": 1,
+        "idle_mins": 420.0,
+        "utilization_pct": 6.7,
+        "customer_calls": [
+          {
+            "title": "Alexander and Srihari Srinivasan - JustCall",
+            "start": "2026-04-07T09:30:00+05:30",
+            "end": "2026-04-07T10:00:00+05:30",
+            "clipped_start": "2026-04-07T09:30:00+05:30",
+            "clipped_end": "2026-04-07T10:00:00+05:30",
+            "duration_mins": 30.0,
+            "classification": "CUSTOMER_CALL",
+            "has_buffer": false,
+            "effective_mins": 30.0
+          }
+        ],
         "internal_blockers": [
           {
-            "title": "Weekly Sync with Hunar",
-            "start": "2026-04-07T16:00:00+05:30",
-            "end": "2026-04-07T16:30:00+05:30",
-            "clipped_start": "2026-04-07T16:00:00+05:30",
-            "clipped_end": "2026-04-07T16:30:00+05:30",
+            "title": "Alish/Srihari Weekly (Lead tracker and updates) ",
+            "start": "2026-04-07T12:30:00+05:30",
+            "end": "2026-04-07T13:00:00+05:30",
+            "clipped_start": "2026-04-07T12:30:00+05:30",
+            "clipped_end": "2026-04-07T13:00:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Performance Review Feedback Call - Srihari",
+            "start": "2026-04-07T13:30:00+05:30",
+            "end": "2026-04-07T14:00:00+05:30",
+            "clipped_start": "2026-04-07T13:30:00+05:30",
+            "clipped_end": "2026-04-07T14:00:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Lunch Break",
+            "start": "2026-04-07T14:00:00+05:30",
+            "end": "2026-04-07T14:30:00+05:30",
+            "clipped_start": "2026-04-07T14:00:00+05:30",
+            "clipped_end": "2026-04-07T14:30:00+05:30",
             "duration_mins": 30.0
           }
         ],
@@ -6760,16 +6811,16 @@ const SCSM_RAW_DATA = {
       }
     },
     "totals": {
-      "bandwidth_hrs": 36,
-      "total_bandwidth_hrs": 36,
-      "effective_bandwidth_hrs": 33.5,
-      "customer_call_mins": 15.0,
-      "total_call_mins": 15.0,
-      "calls_count": 1,
+      "bandwidth_hrs": 27,
+      "total_bandwidth_hrs": 27,
+      "effective_bandwidth_hrs": 24.5,
+      "customer_call_mins": 120.0,
+      "total_call_mins": 120.0,
+      "calls_count": 4,
       "total_internal_mins": 150.0,
-      "idle_mins": 1995.0,
-      "utilization_pct": 0.7,
-      "avg_call_mins": 15
+      "idle_mins": 1350.0,
+      "utilization_pct": 8.2,
+      "avg_call_mins": 30
     }
   },
   "tanish.dumawat": {
@@ -7490,21 +7541,49 @@ const SCSM_TODAY_DATA = {
       "region": "APAC + EMEA",
       "shift": "08:00–17:00 IST",
       "bandwidth_hrs": 9,
-      "internal_blocker_mins": 30.0,
-      "effective_bandwidth_hrs": 8.5,
-      "total_call_mins": 0.0,
-      "calls_count": 0,
-      "avg_call_mins": 0,
-      "idle_mins": 510.0,
-      "utilization_pct": 0.0,
-      "customer_calls": [],
+      "internal_blocker_mins": 90.0,
+      "effective_bandwidth_hrs": 7.5,
+      "total_call_mins": 30.0,
+      "calls_count": 1,
+      "avg_call_mins": 30,
+      "idle_mins": 420.0,
+      "utilization_pct": 6.7,
+      "customer_calls": [
+        {
+          "title": "Alexander and Srihari Srinivasan - JustCall",
+          "start": "2026-04-07T09:30:00+05:30",
+          "end": "2026-04-07T10:00:00+05:30",
+          "clipped_start": "2026-04-07T09:30:00+05:30",
+          "clipped_end": "2026-04-07T10:00:00+05:30",
+          "duration_mins": 30.0,
+          "classification": "CUSTOMER_CALL",
+          "has_buffer": false,
+          "effective_mins": 30.0
+        }
+      ],
       "internal_blockers": [
         {
-          "title": "Weekly Sync with Hunar",
-          "start": "2026-04-07T16:00:00+05:30",
-          "end": "2026-04-07T16:30:00+05:30",
-          "clipped_start": "2026-04-07T16:00:00+05:30",
-          "clipped_end": "2026-04-07T16:30:00+05:30",
+          "title": "Alish/Srihari Weekly (Lead tracker and updates) ",
+          "start": "2026-04-07T12:30:00+05:30",
+          "end": "2026-04-07T13:00:00+05:30",
+          "clipped_start": "2026-04-07T12:30:00+05:30",
+          "clipped_end": "2026-04-07T13:00:00+05:30",
+          "duration_mins": 30.0
+        },
+        {
+          "title": "Performance Review Feedback Call - Srihari",
+          "start": "2026-04-07T13:30:00+05:30",
+          "end": "2026-04-07T14:00:00+05:30",
+          "clipped_start": "2026-04-07T13:30:00+05:30",
+          "clipped_end": "2026-04-07T14:00:00+05:30",
+          "duration_mins": 30.0
+        },
+        {
+          "title": "Lunch Break",
+          "start": "2026-04-07T14:00:00+05:30",
+          "end": "2026-04-07T14:30:00+05:30",
+          "clipped_start": "2026-04-07T14:00:00+05:30",
+          "clipped_end": "2026-04-07T14:30:00+05:30",
           "duration_mins": 30.0
         }
       ]
