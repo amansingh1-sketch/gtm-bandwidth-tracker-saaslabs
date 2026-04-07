@@ -1161,11 +1161,11 @@ const RAW_DATA = {
         "status": "WORKING",
         "bandwidth_hrs": 9,
         "internal_blocker_mins": 105.0,
-        "customer_call_mins": 210.0,
+        "customer_call_mins": 300.0,
         "effective_bandwidth_hrs": 7.25,
         "calls_count": 7,
-        "idle_mins": 225.0,
-        "utilization_pct": 48.3,
+        "idle_mins": 135.0,
+        "utilization_pct": 69.0,
         "customer_calls": [
           {
             "title": "JustCall & Motiononline | Demo Meeting",
@@ -1175,8 +1175,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-01T19:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Forestwood Real Estate | Demo Meeting",
@@ -1186,8 +1186,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-01T20:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Studio Martial Arts | Demo Meeting",
@@ -1197,8 +1197,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-01T21:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "James & Amanpreet | Product Demo Meeting",
@@ -1208,8 +1208,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-01T22:45:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & PorchLight Services | Demo Meeting",
@@ -1219,8 +1219,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T01:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Dispatch | Demo Meeting",
@@ -1230,8 +1230,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T02:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Glenn | JustCall Demo Meeting",
@@ -1263,17 +1263,66 @@ const RAW_DATA = {
             "duration_mins": 75.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-01T19:00:00+05:30",
+            "end": "2026-04-01T19:15:00+05:30",
+            "clipped_start": "2026-04-01T19:00:00+05:30",
+            "clipped_end": "2026-04-01T19:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-01T20:00:00+05:30",
+            "end": "2026-04-01T20:15:00+05:30",
+            "clipped_start": "2026-04-01T20:00:00+05:30",
+            "clipped_end": "2026-04-01T20:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-01T21:00:00+05:30",
+            "end": "2026-04-01T21:15:00+05:30",
+            "clipped_start": "2026-04-01T21:00:00+05:30",
+            "clipped_end": "2026-04-01T21:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-01T22:45:00+05:30",
+            "end": "2026-04-01T23:00:00+05:30",
+            "clipped_start": "2026-04-01T22:45:00+05:30",
+            "clipped_end": "2026-04-01T23:00:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T01:00:00+05:30",
+            "end": "2026-04-02T01:15:00+05:30",
+            "clipped_start": "2026-04-02T01:00:00+05:30",
+            "clipped_end": "2026-04-02T01:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T02:00:00+05:30",
+            "end": "2026-04-02T02:15:00+05:30",
+            "clipped_start": "2026-04-02T02:00:00+05:30",
+            "clipped_end": "2026-04-02T02:15:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-02": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 150.0,
-        "customer_call_mins": 180.0,
-        "effective_bandwidth_hrs": 6.5,
+        "internal_blocker_mins": 105.0,
+        "customer_call_mins": 225.0,
+        "effective_bandwidth_hrs": 7.25,
         "calls_count": 5,
         "idle_mins": 210.0,
-        "utilization_pct": 46.2,
+        "utilization_pct": 51.7,
         "customer_calls": [
           {
             "title": "JustCall & Azrealestate.uk | Demo Meeting",
@@ -1283,8 +1332,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T19:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Macael & Amanpreet | Product Demo Meeting",
@@ -1316,8 +1365,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-03T02:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Silent Activities | Demo Meeting",
@@ -1327,8 +1376,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-03T02:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -1339,6 +1388,24 @@ const RAW_DATA = {
             "clipped_start": "2026-04-02T18:00:00+05:30",
             "clipped_end": "2026-04-02T18:30:00+05:30",
             "duration_mins": 30.0
+          },
+          {
+            "title": "Commute + Dinner",
+            "start": "2026-04-02T23:00:00+05:30",
+            "end": "2026-04-03T00:15:00+05:30",
+            "clipped_start": "2026-04-02T23:00:00+05:30",
+            "clipped_end": "2026-04-03T00:15:00+05:30",
+            "duration_mins": 75.0
+          }
+        ],
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T19:00:00+05:30",
+            "end": "2026-04-02T19:15:00+05:30",
+            "clipped_start": "2026-04-02T19:00:00+05:30",
+            "clipped_end": "2026-04-02T19:15:00+05:30",
+            "duration_mins": 15.0
           },
           {
             "title": "BUFFER EVENT",
@@ -1357,33 +1424,40 @@ const RAW_DATA = {
             "duration_mins": 15.0
           },
           {
-            "title": "Commute + Dinner",
-            "start": "2026-04-02T23:00:00+05:30",
-            "end": "2026-04-03T00:15:00+05:30",
-            "clipped_start": "2026-04-02T23:00:00+05:30",
-            "clipped_end": "2026-04-03T00:15:00+05:30",
-            "duration_mins": 75.0
-          },
-          {
             "title": "BUFFER EVENT",
             "start": "2026-04-03T01:00:00+05:30",
             "end": "2026-04-03T01:15:00+05:30",
             "clipped_start": "2026-04-03T01:00:00+05:30",
             "clipped_end": "2026-04-03T01:15:00+05:30",
             "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-03T02:00:00+05:30",
+            "end": "2026-04-03T02:15:00+05:30",
+            "clipped_start": "2026-04-03T02:00:00+05:30",
+            "clipped_end": "2026-04-03T02:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-03T02:30:00+05:30",
+            "end": "2026-04-03T02:45:00+05:30",
+            "clipped_start": "2026-04-03T02:30:00+05:30",
+            "clipped_end": "2026-04-03T02:45:00+05:30",
+            "duration_mins": 15.0
           }
-        ],
-        "others": []
+        ]
       },
       "2026-04-03": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 180.0,
-        "customer_call_mins": 195.0,
-        "effective_bandwidth_hrs": 6.0,
+        "internal_blocker_mins": 165.0,
+        "customer_call_mins": 270.0,
+        "effective_bandwidth_hrs": 6.25,
         "calls_count": 6,
-        "idle_mins": 165.0,
-        "utilization_pct": 54.2,
+        "idle_mins": 105.0,
+        "utilization_pct": 72.0,
         "customer_calls": [
           {
             "title": "JustCall & Mabiat | Demo Meeting",
@@ -1393,8 +1467,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-03T20:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Valueserve Group | Demo Meeting",
@@ -1404,8 +1478,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-03T21:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Repair Lift Marketing | Demo Meeting",
@@ -1415,8 +1489,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-03T22:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "James & Amanpreet | Product Demo Meeting",
@@ -1437,8 +1511,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-04T01:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Attorney Search Network | Demo Meeting",
@@ -1448,8 +1522,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-04T02:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -1470,14 +1544,6 @@ const RAW_DATA = {
             "duration_mins": 60.0
           },
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-03T22:45:00+05:30",
-            "end": "2026-04-03T23:00:00+05:30",
-            "clipped_start": "2026-04-03T22:45:00+05:30",
-            "clipped_end": "2026-04-03T23:00:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "Commute + Dinner",
             "start": "2026-04-03T23:00:00+05:30",
             "end": "2026-04-04T00:15:00+05:30",
@@ -1486,17 +1552,66 @@ const RAW_DATA = {
             "duration_mins": 75.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-03T20:00:00+05:30",
+            "end": "2026-04-03T20:15:00+05:30",
+            "clipped_start": "2026-04-03T20:00:00+05:30",
+            "clipped_end": "2026-04-03T20:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-03T21:00:00+05:30",
+            "end": "2026-04-03T21:15:00+05:30",
+            "clipped_start": "2026-04-03T21:00:00+05:30",
+            "clipped_end": "2026-04-03T21:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-03T22:00:00+05:30",
+            "end": "2026-04-03T22:15:00+05:30",
+            "clipped_start": "2026-04-03T22:00:00+05:30",
+            "clipped_end": "2026-04-03T22:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-03T22:45:00+05:30",
+            "end": "2026-04-03T23:00:00+05:30",
+            "clipped_start": "2026-04-03T22:45:00+05:30",
+            "clipped_end": "2026-04-03T23:00:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-04T01:30:00+05:30",
+            "end": "2026-04-04T01:45:00+05:30",
+            "clipped_start": "2026-04-04T01:30:00+05:30",
+            "clipped_end": "2026-04-04T01:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-04T02:30:00+05:30",
+            "end": "2026-04-04T02:45:00+05:30",
+            "clipped_start": "2026-04-04T02:30:00+05:30",
+            "clipped_end": "2026-04-04T02:45:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-06": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
         "internal_blocker_mins": 105.0,
-        "customer_call_mins": 120.0,
+        "customer_call_mins": 180.0,
         "effective_bandwidth_hrs": 7.25,
         "calls_count": 4,
-        "idle_mins": 315.0,
-        "utilization_pct": 27.6,
+        "idle_mins": 255.0,
+        "utilization_pct": 41.4,
         "customer_calls": [
           {
             "title": "JustCall & Britannia Pathways | Demo Meeting",
@@ -1506,8 +1621,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-06T19:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Apexroofingdivision | Demo Meeting",
@@ -1517,8 +1632,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-06T20:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & YoungCow Media | Demo Meeting",
@@ -1528,8 +1643,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-06T22:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Hill Street Realty | Demo Meeting",
@@ -1539,8 +1654,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T02:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -1561,17 +1676,50 @@ const RAW_DATA = {
             "duration_mins": 75.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-06T19:00:00+05:30",
+            "end": "2026-04-06T19:15:00+05:30",
+            "clipped_start": "2026-04-06T19:00:00+05:30",
+            "clipped_end": "2026-04-06T19:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-06T20:30:00+05:30",
+            "end": "2026-04-06T20:45:00+05:30",
+            "clipped_start": "2026-04-06T20:30:00+05:30",
+            "clipped_end": "2026-04-06T20:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-06T22:30:00+05:30",
+            "end": "2026-04-06T22:45:00+05:30",
+            "clipped_start": "2026-04-06T22:30:00+05:30",
+            "clipped_end": "2026-04-06T22:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T02:00:00+05:30",
+            "end": "2026-04-07T02:15:00+05:30",
+            "clipped_start": "2026-04-07T02:00:00+05:30",
+            "clipped_end": "2026-04-07T02:15:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-07": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 150.0,
-        "customer_call_mins": 195.0,
-        "effective_bandwidth_hrs": 6.5,
+        "internal_blocker_mins": 135.0,
+        "customer_call_mins": 255.0,
+        "effective_bandwidth_hrs": 6.75,
         "calls_count": 6,
-        "idle_mins": 195.0,
-        "utilization_pct": 50.0,
+        "idle_mins": 150.0,
+        "utilization_pct": 63.0,
         "customer_calls": [
           {
             "title": "JustCall & RaiZan Solutions | Demo Meeting",
@@ -1581,8 +1729,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T20:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & westchiropractic.co.uk | Demo Meeting",
@@ -1592,8 +1740,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T21:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Roger & Amanpreet | Product Demo Meeting",
@@ -1625,8 +1773,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-08T01:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Arbitapp | Demo Meeting",
@@ -1636,8 +1784,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-08T02:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -1658,14 +1806,6 @@ const RAW_DATA = {
             "duration_mins": 30.0
           },
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-07T22:00:00+05:30",
-            "end": "2026-04-07T22:15:00+05:30",
-            "clipped_start": "2026-04-07T22:00:00+05:30",
-            "clipped_end": "2026-04-07T22:15:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "Commute + Dinner",
             "start": "2026-04-07T23:00:00+05:30",
             "end": "2026-04-08T00:15:00+05:30",
@@ -1674,20 +1814,61 @@ const RAW_DATA = {
             "duration_mins": 75.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T20:00:00+05:30",
+            "end": "2026-04-07T20:15:00+05:30",
+            "clipped_start": "2026-04-07T20:00:00+05:30",
+            "clipped_end": "2026-04-07T20:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T21:00:00+05:30",
+            "end": "2026-04-07T21:15:00+05:30",
+            "clipped_start": "2026-04-07T21:00:00+05:30",
+            "clipped_end": "2026-04-07T21:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-07T22:00:00+05:30",
+            "end": "2026-04-07T22:15:00+05:30",
+            "clipped_start": "2026-04-07T22:00:00+05:30",
+            "clipped_end": "2026-04-07T22:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-08T01:30:00+05:30",
+            "end": "2026-04-08T01:45:00+05:30",
+            "clipped_start": "2026-04-08T01:30:00+05:30",
+            "clipped_end": "2026-04-08T01:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-08T02:30:00+05:30",
+            "end": "2026-04-08T02:45:00+05:30",
+            "clipped_start": "2026-04-08T02:30:00+05:30",
+            "clipped_end": "2026-04-08T02:45:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       }
     },
     "totals": {
       "bandwidth_hrs": 45,
       "total_bandwidth_hrs": 45,
-      "effective_bandwidth_hrs": 33.5,
-      "customer_call_mins": 900.0,
-      "total_call_mins": 900.0,
+      "effective_bandwidth_hrs": 34.75,
+      "customer_call_mins": 1230.0,
+      "total_call_mins": 1230.0,
       "calls_count": 28,
-      "total_internal_mins": 690.0,
-      "idle_mins": 1110.0,
-      "utilization_pct": 44.8,
-      "avg_call_mins": 32
+      "total_internal_mins": 615.0,
+      "idle_mins": 855.0,
+      "utilization_pct": 59.0,
+      "avg_call_mins": 44
     },
     "funnel": "Demo"
   },
@@ -1701,11 +1882,11 @@ const RAW_DATA = {
         "status": "WORKING",
         "bandwidth_hrs": 9,
         "internal_blocker_mins": 90.0,
-        "customer_call_mins": 180.0,
+        "customer_call_mins": 255.0,
         "effective_bandwidth_hrs": 7.5,
         "calls_count": 6,
-        "idle_mins": 270.0,
-        "utilization_pct": 40.0,
+        "idle_mins": 195.0,
+        "utilization_pct": 56.7,
         "customer_calls": [
           {
             "title": "JustCall & Guardianlink | Demo Meeting",
@@ -1715,8 +1896,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-01T20:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Pro-Roofing",
@@ -1737,8 +1918,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-01T23:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Curb Appeal Exteriors | Demo Meeting",
@@ -1748,8 +1929,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T00:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Diana & Apurva | Product Demo Meeting",
@@ -1759,8 +1940,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T01:15:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Zain & Apurva | Product Demo Meeting",
@@ -1770,8 +1951,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T02:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -1800,17 +1981,58 @@ const RAW_DATA = {
             "duration_mins": 30.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-01T20:00:00+05:30",
+            "end": "2026-04-01T20:15:00+05:30",
+            "clipped_start": "2026-04-01T20:00:00+05:30",
+            "clipped_end": "2026-04-01T20:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-01T23:00:00+05:30",
+            "end": "2026-04-01T23:15:00+05:30",
+            "clipped_start": "2026-04-01T23:00:00+05:30",
+            "clipped_end": "2026-04-01T23:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T00:30:00+05:30",
+            "end": "2026-04-02T00:45:00+05:30",
+            "clipped_start": "2026-04-02T00:30:00+05:30",
+            "clipped_end": "2026-04-02T00:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T01:15:00+05:30",
+            "end": "2026-04-02T01:30:00+05:30",
+            "clipped_start": "2026-04-02T01:15:00+05:30",
+            "clipped_end": "2026-04-02T01:30:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T02:00:00+05:30",
+            "end": "2026-04-02T02:15:00+05:30",
+            "clipped_start": "2026-04-02T02:00:00+05:30",
+            "clipped_end": "2026-04-02T02:15:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-02": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
         "internal_blocker_mins": 60.0,
-        "customer_call_mins": 180.0,
+        "customer_call_mins": 285.0,
         "effective_bandwidth_hrs": 8.0,
         "calls_count": 7,
-        "idle_mins": 300.0,
-        "utilization_pct": 37.5,
+        "idle_mins": 195.0,
+        "utilization_pct": 59.4,
         "customer_calls": [
           {
             "title": "JustCall & Remarkable Group | Demo Meeting",
@@ -1820,8 +2042,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T19:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Earthwise Energy Advisors | Demo Meeting",
@@ -1831,8 +2053,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T20:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Curb Appeal Exteriors | Demo Meeting",
@@ -1842,8 +2064,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T21:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Zentric AI | Demo Meeting",
@@ -1853,8 +2075,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T21:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Arvanza | Demo Meeting",
@@ -1864,8 +2086,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T23:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & GWR | Demo Meeting",
@@ -1875,8 +2097,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-03T00:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Arketek | Demo Meeting",
@@ -1886,8 +2108,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-03T01:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -1908,17 +2130,66 @@ const RAW_DATA = {
             "duration_mins": 30.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T19:00:00+05:30",
+            "end": "2026-04-02T19:15:00+05:30",
+            "clipped_start": "2026-04-02T19:00:00+05:30",
+            "clipped_end": "2026-04-02T19:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T20:00:00+05:30",
+            "end": "2026-04-02T20:15:00+05:30",
+            "clipped_start": "2026-04-02T20:00:00+05:30",
+            "clipped_end": "2026-04-02T20:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T21:00:00+05:30",
+            "end": "2026-04-02T21:15:00+05:30",
+            "clipped_start": "2026-04-02T21:00:00+05:30",
+            "clipped_end": "2026-04-02T21:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T23:00:00+05:30",
+            "end": "2026-04-02T23:15:00+05:30",
+            "clipped_start": "2026-04-02T23:00:00+05:30",
+            "clipped_end": "2026-04-02T23:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-03T00:30:00+05:30",
+            "end": "2026-04-03T00:45:00+05:30",
+            "clipped_start": "2026-04-03T00:30:00+05:30",
+            "clipped_end": "2026-04-03T00:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-03T01:30:00+05:30",
+            "end": "2026-04-03T01:45:00+05:30",
+            "clipped_start": "2026-04-03T01:30:00+05:30",
+            "clipped_end": "2026-04-03T01:45:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-03": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
         "internal_blocker_mins": 120.0,
-        "customer_call_mins": 90.0,
+        "customer_call_mins": 135.0,
         "effective_bandwidth_hrs": 7.0,
         "calls_count": 3,
-        "idle_mins": 330.0,
-        "utilization_pct": 21.4,
+        "idle_mins": 285.0,
+        "utilization_pct": 32.1,
         "customer_calls": [
           {
             "title": "JustCall & Grove Brands | Demo Meeting",
@@ -1928,8 +2199,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-03T20:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Go Catapult | Demo Meeting",
@@ -1939,8 +2210,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-03T23:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Nelly & Apurva | Product Demo Meeting",
@@ -1950,8 +2221,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-04T01:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -1980,17 +2251,42 @@ const RAW_DATA = {
             "duration_mins": 30.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-03T20:00:00+05:30",
+            "end": "2026-04-03T20:15:00+05:30",
+            "clipped_start": "2026-04-03T20:00:00+05:30",
+            "clipped_end": "2026-04-03T20:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-03T23:00:00+05:30",
+            "end": "2026-04-03T23:15:00+05:30",
+            "clipped_start": "2026-04-03T23:00:00+05:30",
+            "clipped_end": "2026-04-03T23:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-04T01:00:00+05:30",
+            "end": "2026-04-04T01:15:00+05:30",
+            "clipped_start": "2026-04-04T01:00:00+05:30",
+            "clipped_end": "2026-04-04T01:15:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-06": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
         "internal_blocker_mins": 60.0,
-        "customer_call_mins": 180.0,
+        "customer_call_mins": 255.0,
         "effective_bandwidth_hrs": 8.0,
         "calls_count": 6,
-        "idle_mins": 300.0,
-        "utilization_pct": 37.5,
+        "idle_mins": 225.0,
+        "utilization_pct": 53.1,
         "customer_calls": [
           {
             "title": "JustCall & Importex | Demo Meeting",
@@ -2000,8 +2296,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-06T19:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Creative Lending | Demo Meeting",
@@ -2011,8 +2307,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-06T20:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Interchangeind | Demo Meeting",
@@ -2022,8 +2318,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-06T21:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Oxygen |  Meeting",
@@ -2033,8 +2329,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-06T22:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall<>Sweetroofing.com",
@@ -2055,8 +2351,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T00:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -2077,17 +2373,58 @@ const RAW_DATA = {
             "duration_mins": 30.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-06T19:00:00+05:30",
+            "end": "2026-04-06T19:15:00+05:30",
+            "clipped_start": "2026-04-06T19:00:00+05:30",
+            "clipped_end": "2026-04-06T19:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-06T20:00:00+05:30",
+            "end": "2026-04-06T20:15:00+05:30",
+            "clipped_start": "2026-04-06T20:00:00+05:30",
+            "clipped_end": "2026-04-06T20:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-06T21:00:00+05:30",
+            "end": "2026-04-06T21:15:00+05:30",
+            "clipped_start": "2026-04-06T21:00:00+05:30",
+            "clipped_end": "2026-04-06T21:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-06T22:30:00+05:30",
+            "end": "2026-04-06T22:45:00+05:30",
+            "clipped_start": "2026-04-06T22:30:00+05:30",
+            "clipped_end": "2026-04-06T22:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T00:30:00+05:30",
+            "end": "2026-04-07T00:45:00+05:30",
+            "clipped_start": "2026-04-07T00:30:00+05:30",
+            "clipped_end": "2026-04-07T00:45:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-07": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
         "internal_blocker_mins": 90.0,
-        "customer_call_mins": 150.0,
+        "customer_call_mins": 225.0,
         "effective_bandwidth_hrs": 7.5,
         "calls_count": 5,
-        "idle_mins": 300.0,
-        "utilization_pct": 33.3,
+        "idle_mins": 225.0,
+        "utilization_pct": 50.0,
         "customer_calls": [
           {
             "title": "JustCall & AC Forrest | Demo Meeting",
@@ -2097,8 +2434,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T20:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Junk Jaws | Demo Meeting",
@@ -2108,8 +2445,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T21:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Site Plan Real Estate | Demo Meeting",
@@ -2119,8 +2456,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T23:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Excellobpo | Demo Meeting",
@@ -2130,8 +2467,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-08T00:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & RMC Solutions |  Meeting",
@@ -2141,8 +2478,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-08T01:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -2171,20 +2508,61 @@ const RAW_DATA = {
             "duration_mins": 30.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T20:00:00+05:30",
+            "end": "2026-04-07T20:15:00+05:30",
+            "clipped_start": "2026-04-07T20:00:00+05:30",
+            "clipped_end": "2026-04-07T20:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T21:00:00+05:30",
+            "end": "2026-04-07T21:15:00+05:30",
+            "clipped_start": "2026-04-07T21:00:00+05:30",
+            "clipped_end": "2026-04-07T21:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T23:00:00+05:30",
+            "end": "2026-04-07T23:15:00+05:30",
+            "clipped_start": "2026-04-07T23:00:00+05:30",
+            "clipped_end": "2026-04-07T23:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-08T00:30:00+05:30",
+            "end": "2026-04-08T00:45:00+05:30",
+            "clipped_start": "2026-04-08T00:30:00+05:30",
+            "clipped_end": "2026-04-08T00:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-08T01:30:00+05:30",
+            "end": "2026-04-08T01:45:00+05:30",
+            "clipped_start": "2026-04-08T01:30:00+05:30",
+            "clipped_end": "2026-04-08T01:45:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       }
     },
     "totals": {
       "bandwidth_hrs": 45,
       "total_bandwidth_hrs": 45,
       "effective_bandwidth_hrs": 38.0,
-      "customer_call_mins": 780.0,
-      "total_call_mins": 780.0,
+      "customer_call_mins": 1155.0,
+      "total_call_mins": 1155.0,
       "calls_count": 27,
       "total_internal_mins": 420.0,
-      "idle_mins": 1500.0,
-      "utilization_pct": 34.2,
-      "avg_call_mins": 29
+      "idle_mins": 1125.0,
+      "utilization_pct": 50.7,
+      "avg_call_mins": 43
     },
     "funnel": "Demo"
   },
@@ -2198,11 +2576,11 @@ const RAW_DATA = {
         "status": "WORKING",
         "bandwidth_hrs": 9,
         "internal_blocker_mins": 150.0,
-        "customer_call_mins": 210.0,
+        "customer_call_mins": 225.0,
         "effective_bandwidth_hrs": 6.5,
         "calls_count": 6,
-        "idle_mins": 180.0,
-        "utilization_pct": 53.8,
+        "idle_mins": 165.0,
+        "utilization_pct": 57.7,
         "customer_calls": [
           {
             "title": "JustCall Meeting",
@@ -2223,8 +2601,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-01T20:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall meeting",
@@ -2295,6 +2673,16 @@ const RAW_DATA = {
             "clipped_start": "2026-04-02T02:00:00+05:30",
             "clipped_end": "2026-04-02T03:00:00+05:30",
             "duration_mins": 60.0
+          }
+        ],
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-01T20:30:00+05:30",
+            "end": "2026-04-01T20:45:00+05:30",
+            "clipped_start": "2026-04-01T20:30:00+05:30",
+            "clipped_end": "2026-04-01T20:45:00+05:30",
+            "duration_mins": 15.0
           },
           {
             "title": "BUFFER EVENT",
@@ -2304,8 +2692,7 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T02:30:00+05:30",
             "duration_mins": 15.0
           }
-        ],
-        "others": []
+        ]
       },
       "2026-04-02": {
         "status": "OOF",
@@ -2324,11 +2711,11 @@ const RAW_DATA = {
         "status": "WORKING",
         "bandwidth_hrs": 9,
         "internal_blocker_mins": 240.0,
-        "customer_call_mins": 30.0,
+        "customer_call_mins": 45.0,
         "effective_bandwidth_hrs": 5.0,
         "calls_count": 1,
-        "idle_mins": 270.0,
-        "utilization_pct": 10.0,
+        "idle_mins": 255.0,
+        "utilization_pct": 15.0,
         "customer_calls": [
           {
             "title": "JustCall & Puurwater |  Meeting",
@@ -2338,8 +2725,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-04T01:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -2384,17 +2771,26 @@ const RAW_DATA = {
             "duration_mins": 60.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-04T01:30:00+05:30",
+            "end": "2026-04-04T01:45:00+05:30",
+            "clipped_start": "2026-04-04T01:30:00+05:30",
+            "clipped_end": "2026-04-04T01:45:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-06": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 180.0,
-        "customer_call_mins": 180.0,
-        "effective_bandwidth_hrs": 6.0,
+        "internal_blocker_mins": 150.0,
+        "customer_call_mins": 210.0,
+        "effective_bandwidth_hrs": 6.5,
         "calls_count": 5,
         "idle_mins": 180.0,
-        "utilization_pct": 50.0,
+        "utilization_pct": 53.8,
         "customer_calls": [
           {
             "title": "Lado & Joel | Product Demo Meeting",
@@ -2404,8 +2800,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-06T18:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Shawn & Joel | JustCall Product Demo Meeting",
@@ -2448,27 +2844,11 @@ const RAW_DATA = {
             "clipped_end": "2026-04-06T22:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
-          {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-06T19:15:00+05:30",
-            "end": "2026-04-06T19:30:00+05:30",
-            "clipped_start": "2026-04-06T19:15:00+05:30",
-            "clipped_end": "2026-04-06T19:30:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-06T20:00:00+05:30",
-            "end": "2026-04-06T20:15:00+05:30",
-            "clipped_start": "2026-04-06T20:00:00+05:30",
-            "clipped_end": "2026-04-06T20:15:00+05:30",
-            "duration_mins": 15.0
-          },
           {
             "title": "Call Leads",
             "start": "2026-04-06T22:30:00+05:30",
@@ -2494,17 +2874,50 @@ const RAW_DATA = {
             "duration_mins": 60.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-06T18:30:00+05:30",
+            "end": "2026-04-06T18:45:00+05:30",
+            "clipped_start": "2026-04-06T18:30:00+05:30",
+            "clipped_end": "2026-04-06T18:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-06T19:15:00+05:30",
+            "end": "2026-04-06T19:30:00+05:30",
+            "clipped_start": "2026-04-06T19:15:00+05:30",
+            "clipped_end": "2026-04-06T19:30:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-06T20:00:00+05:30",
+            "end": "2026-04-06T20:15:00+05:30",
+            "clipped_start": "2026-04-06T20:00:00+05:30",
+            "clipped_end": "2026-04-06T20:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-06T22:00:00+05:30",
+            "end": "2026-04-06T22:15:00+05:30",
+            "clipped_start": "2026-04-06T22:00:00+05:30",
+            "clipped_end": "2026-04-06T22:15:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-07": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
         "internal_blocker_mins": 180.0,
-        "customer_call_mins": 150.0,
+        "customer_call_mins": 210.0,
         "effective_bandwidth_hrs": 6.0,
         "calls_count": 5,
-        "idle_mins": 210.0,
-        "utilization_pct": 41.7,
+        "idle_mins": 150.0,
+        "utilization_pct": 58.3,
         "customer_calls": [
           {
             "title": "JustCall Meeting",
@@ -2525,8 +2938,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T21:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Cloudflowtechnology |  Meeting",
@@ -2536,8 +2949,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T22:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Grant & Joel | Product Demo Meeting",
@@ -2547,8 +2960,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T23:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Rachel & Joel | Product Demo Meeting",
@@ -2558,8 +2971,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-08T01:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -2596,20 +3009,53 @@ const RAW_DATA = {
             "duration_mins": 60.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T21:00:00+05:30",
+            "end": "2026-04-07T21:15:00+05:30",
+            "clipped_start": "2026-04-07T21:00:00+05:30",
+            "clipped_end": "2026-04-07T21:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T22:00:00+05:30",
+            "end": "2026-04-07T22:15:00+05:30",
+            "clipped_start": "2026-04-07T22:00:00+05:30",
+            "clipped_end": "2026-04-07T22:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T23:30:00+05:30",
+            "end": "2026-04-07T23:45:00+05:30",
+            "clipped_start": "2026-04-07T23:30:00+05:30",
+            "clipped_end": "2026-04-07T23:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-08T01:30:00+05:30",
+            "end": "2026-04-08T01:45:00+05:30",
+            "clipped_start": "2026-04-08T01:30:00+05:30",
+            "clipped_end": "2026-04-08T01:45:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       }
     },
     "totals": {
       "bandwidth_hrs": 36,
       "total_bandwidth_hrs": 36,
-      "effective_bandwidth_hrs": 23.5,
-      "customer_call_mins": 570.0,
-      "total_call_mins": 570.0,
+      "effective_bandwidth_hrs": 24.0,
+      "customer_call_mins": 690.0,
+      "total_call_mins": 690.0,
       "calls_count": 17,
-      "total_internal_mins": 750.0,
-      "idle_mins": 840.0,
-      "utilization_pct": 40.4,
-      "avg_call_mins": 34
+      "total_internal_mins": 720.0,
+      "idle_mins": 750.0,
+      "utilization_pct": 47.9,
+      "avg_call_mins": 41
     },
     "funnel": "Sign up"
   },
@@ -2622,12 +3068,12 @@ const RAW_DATA = {
       "2026-04-01": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 225.0,
+        "internal_blocker_mins": 210.0,
         "customer_call_mins": 75.0,
-        "effective_bandwidth_hrs": 5.25,
+        "effective_bandwidth_hrs": 5.5,
         "calls_count": 2,
-        "idle_mins": 240.0,
-        "utilization_pct": 23.8,
+        "idle_mins": 255.0,
+        "utilization_pct": 22.7,
         "customer_calls": [
           {
             "title": "JustCall & Motiononline | Demo Meeting",
@@ -2686,14 +3132,6 @@ const RAW_DATA = {
             "duration_mins": 30.0
           },
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-01T22:45:00+05:30",
-            "end": "2026-04-01T23:00:00+05:30",
-            "clipped_start": "2026-04-01T22:45:00+05:30",
-            "clipped_end": "2026-04-01T23:00:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "Commuting",
             "start": "2026-04-01T23:00:00+05:30",
             "end": "2026-04-02T00:00:00+05:30",
@@ -2710,17 +3148,26 @@ const RAW_DATA = {
             "duration_mins": 60.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-01T22:45:00+05:30",
+            "end": "2026-04-01T23:00:00+05:30",
+            "clipped_start": "2026-04-01T22:45:00+05:30",
+            "clipped_end": "2026-04-01T23:00:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-02": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 210.0,
-        "customer_call_mins": 150.0,
-        "effective_bandwidth_hrs": 5.5,
+        "internal_blocker_mins": 180.0,
+        "customer_call_mins": 180.0,
+        "effective_bandwidth_hrs": 6.0,
         "calls_count": 4,
         "idle_mins": 180.0,
-        "utilization_pct": 45.5,
+        "utilization_pct": 50.0,
         "customer_calls": [
           {
             "title": "Elizabeth  & Megha | JustCall Product Demo Meeting",
@@ -2752,8 +3199,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-03T01:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Rayen & Megha | Product Demo Meeting",
@@ -2763,8 +3210,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-03T02:15:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -2785,14 +3232,6 @@ const RAW_DATA = {
             "duration_mins": 15.0
           },
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-02T19:15:00+05:30",
-            "end": "2026-04-02T19:30:00+05:30",
-            "clipped_start": "2026-04-02T19:15:00+05:30",
-            "clipped_end": "2026-04-02T19:30:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "Focus work- Outreaching!🚀",
             "start": "2026-04-02T19:30:00+05:30",
             "end": "2026-04-02T20:00:00+05:30",
@@ -2809,14 +3248,6 @@ const RAW_DATA = {
             "duration_mins": 60.0
           },
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-03T00:45:00+05:30",
-            "end": "2026-04-03T01:00:00+05:30",
-            "clipped_start": "2026-04-03T00:45:00+05:30",
-            "clipped_end": "2026-04-03T01:00:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "Focus Time",
             "start": "2026-04-03T02:00:00+05:30",
             "end": "2026-04-03T03:00:00+05:30",
@@ -2825,17 +3256,50 @@ const RAW_DATA = {
             "duration_mins": 60.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-02T19:15:00+05:30",
+            "end": "2026-04-02T19:30:00+05:30",
+            "clipped_start": "2026-04-02T19:15:00+05:30",
+            "clipped_end": "2026-04-02T19:30:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-03T00:45:00+05:30",
+            "end": "2026-04-03T01:00:00+05:30",
+            "clipped_start": "2026-04-03T00:45:00+05:30",
+            "clipped_end": "2026-04-03T01:00:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-03T01:30:00+05:30",
+            "end": "2026-04-03T01:45:00+05:30",
+            "clipped_start": "2026-04-03T01:30:00+05:30",
+            "clipped_end": "2026-04-03T01:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-03T02:15:00+05:30",
+            "end": "2026-04-03T02:30:00+05:30",
+            "clipped_start": "2026-04-03T02:15:00+05:30",
+            "clipped_end": "2026-04-03T02:30:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-03": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 345.0,
-        "customer_call_mins": 165.0,
-        "effective_bandwidth_hrs": 3.25,
+        "internal_blocker_mins": 300.0,
+        "customer_call_mins": 180.0,
+        "effective_bandwidth_hrs": 4.0,
         "calls_count": 4,
-        "idle_mins": 30.0,
-        "utilization_pct": 84.6,
+        "idle_mins": 60.0,
+        "utilization_pct": 75.0,
         "customer_calls": [
           {
             "title": "Phyllis  & Megha | JustCall Product Demo Meeting",
@@ -2878,8 +3342,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-04T01:45:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -2940,20 +3404,30 @@ const RAW_DATA = {
             "duration_mins": 30.0
           },
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-03T21:45:00+05:30",
-            "end": "2026-04-03T22:00:00+05:30",
-            "clipped_start": "2026-04-03T21:45:00+05:30",
-            "clipped_end": "2026-04-03T22:00:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "Commuting",
             "start": "2026-04-03T22:00:00+05:30",
             "end": "2026-04-03T23:00:00+05:30",
             "clipped_start": "2026-04-03T22:00:00+05:30",
             "clipped_end": "2026-04-03T23:00:00+05:30",
             "duration_mins": 60.0
+          },
+          {
+            "title": "Focus Time",
+            "start": "2026-04-04T02:00:00+05:30",
+            "end": "2026-04-04T03:00:00+05:30",
+            "clipped_start": "2026-04-04T02:00:00+05:30",
+            "clipped_end": "2026-04-04T03:00:00+05:30",
+            "duration_mins": 60.0
+          }
+        ],
+        "others": [
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-03T21:45:00+05:30",
+            "end": "2026-04-03T22:00:00+05:30",
+            "clipped_start": "2026-04-03T21:45:00+05:30",
+            "clipped_end": "2026-04-03T22:00:00+05:30",
+            "duration_mins": 15.0
           },
           {
             "title": "BUFFER EVENT",
@@ -2972,25 +3446,24 @@ const RAW_DATA = {
             "duration_mins": 15.0
           },
           {
-            "title": "Focus Time",
-            "start": "2026-04-04T02:00:00+05:30",
-            "end": "2026-04-04T03:00:00+05:30",
-            "clipped_start": "2026-04-04T02:00:00+05:30",
-            "clipped_end": "2026-04-04T03:00:00+05:30",
-            "duration_mins": 60.0
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-04T01:45:00+05:30",
+            "end": "2026-04-04T02:00:00+05:30",
+            "clipped_start": "2026-04-04T01:45:00+05:30",
+            "clipped_end": "2026-04-04T02:00:00+05:30",
+            "duration_mins": 15.0
           }
-        ],
-        "others": []
+        ]
       },
       "2026-04-06": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 255.0,
+        "internal_blocker_mins": 210.0,
         "customer_call_mins": 120.0,
-        "effective_bandwidth_hrs": 4.75,
+        "effective_bandwidth_hrs": 5.5,
         "calls_count": 3,
-        "idle_mins": 165.0,
-        "utilization_pct": 42.1,
+        "idle_mins": 210.0,
+        "utilization_pct": 36.4,
         "customer_calls": [
           {
             "title": "Sharon  & Megha | JustCall Product Demo Meeting",
@@ -3044,14 +3517,6 @@ const RAW_DATA = {
             "duration_mins": 15.0
           },
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-06T19:15:00+05:30",
-            "end": "2026-04-06T19:30:00+05:30",
-            "clipped_start": "2026-04-06T19:15:00+05:30",
-            "clipped_end": "2026-04-06T19:30:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "Focus work- Outreaching!🚀",
             "start": "2026-04-06T19:30:00+05:30",
             "end": "2026-04-06T20:00:00+05:30",
@@ -3068,28 +3533,12 @@ const RAW_DATA = {
             "duration_mins": 30.0
           },
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-06T20:45:00+05:30",
-            "end": "2026-04-06T21:00:00+05:30",
-            "clipped_start": "2026-04-06T20:45:00+05:30",
-            "clipped_end": "2026-04-06T21:00:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "Commuting",
             "start": "2026-04-06T23:00:00+05:30",
             "end": "2026-04-07T00:00:00+05:30",
             "clipped_start": "2026-04-06T23:00:00+05:30",
             "clipped_end": "2026-04-07T00:00:00+05:30",
             "duration_mins": 60.0
-          },
-          {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-07T01:45:00+05:30",
-            "end": "2026-04-07T02:00:00+05:30",
-            "clipped_start": "2026-04-07T01:45:00+05:30",
-            "clipped_end": "2026-04-07T02:00:00+05:30",
-            "duration_mins": 15.0
           },
           {
             "title": "Focus Time",
@@ -3100,17 +3549,42 @@ const RAW_DATA = {
             "duration_mins": 60.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-06T19:15:00+05:30",
+            "end": "2026-04-06T19:30:00+05:30",
+            "clipped_start": "2026-04-06T19:15:00+05:30",
+            "clipped_end": "2026-04-06T19:30:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-06T20:45:00+05:30",
+            "end": "2026-04-06T21:00:00+05:30",
+            "clipped_start": "2026-04-06T20:45:00+05:30",
+            "clipped_end": "2026-04-06T21:00:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-07T01:45:00+05:30",
+            "end": "2026-04-07T02:00:00+05:30",
+            "clipped_start": "2026-04-07T01:45:00+05:30",
+            "clipped_end": "2026-04-07T02:00:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-07": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
         "internal_blocker_mins": 210.0,
-        "customer_call_mins": 60.0,
+        "customer_call_mins": 90.0,
         "effective_bandwidth_hrs": 5.5,
         "calls_count": 2,
-        "idle_mins": 270.0,
-        "utilization_pct": 18.2,
+        "idle_mins": 240.0,
+        "utilization_pct": 27.3,
         "customer_calls": [
           {
             "title": "Angelo & Megha | Product Demo Meeting",
@@ -3120,8 +3594,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T20:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Dylan & Megha | Product Demo Meeting",
@@ -3131,8 +3605,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-08T00:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -3185,20 +3659,37 @@ const RAW_DATA = {
             "duration_mins": 60.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T20:30:00+05:30",
+            "end": "2026-04-07T20:45:00+05:30",
+            "clipped_start": "2026-04-07T20:30:00+05:30",
+            "clipped_end": "2026-04-07T20:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-08T00:30:00+05:30",
+            "end": "2026-04-08T00:45:00+05:30",
+            "clipped_start": "2026-04-08T00:30:00+05:30",
+            "clipped_end": "2026-04-08T00:45:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       }
     },
     "totals": {
       "bandwidth_hrs": 45,
       "total_bandwidth_hrs": 45,
-      "effective_bandwidth_hrs": 24.25,
-      "customer_call_mins": 570.0,
-      "total_call_mins": 570.0,
+      "effective_bandwidth_hrs": 26.5,
+      "customer_call_mins": 645.0,
+      "total_call_mins": 645.0,
       "calls_count": 15,
-      "total_internal_mins": 1245.0,
-      "idle_mins": 885.0,
-      "utilization_pct": 39.2,
-      "avg_call_mins": 38
+      "total_internal_mins": 1110.0,
+      "idle_mins": 945.0,
+      "utilization_pct": 40.6,
+      "avg_call_mins": 43
     },
     "funnel": "Sign up"
   },
@@ -3211,12 +3702,12 @@ const RAW_DATA = {
       "2026-04-01": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 270.0,
-        "customer_call_mins": 185.0,
-        "effective_bandwidth_hrs": 4.5,
+        "internal_blocker_mins": 225.0,
+        "customer_call_mins": 200.0,
+        "effective_bandwidth_hrs": 5.25,
         "calls_count": 5,
-        "idle_mins": 85.0,
-        "utilization_pct": 68.5,
+        "idle_mins": 115.0,
+        "utilization_pct": 63.5,
         "customer_calls": [
           {
             "title": "Soumya/ Sreerej Meeting",
@@ -3248,8 +3739,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-01T10:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Sai Bhargava Reddy & JustCall | Product Demo Meeting",
@@ -3308,11 +3799,37 @@ const RAW_DATA = {
             "duration_mins": 15.0
           },
           {
+            "title": "Outreach Two!",
+            "start": "2026-04-01T11:00:00+05:30",
+            "end": "2026-04-01T11:30:00+05:30",
+            "clipped_start": "2026-04-01T11:00:00+05:30",
+            "clipped_end": "2026-04-01T11:30:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Focus!",
+            "start": "2026-04-01T13:15:00+05:30",
+            "end": "2026-04-01T14:00:00+05:30",
+            "clipped_start": "2026-04-01T13:15:00+05:30",
+            "clipped_end": "2026-04-01T14:00:00+05:30",
+            "duration_mins": 45.0
+          }
+        ],
+        "others": [
+          {
             "title": "BUFFER EVENT",
             "start": "2026-04-01T09:00:00+05:30",
             "end": "2026-04-01T09:15:00+05:30",
             "clipped_start": "2026-04-01T09:00:00+05:30",
             "clipped_end": "2026-04-01T09:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-01T10:00:00+05:30",
+            "end": "2026-04-01T10:15:00+05:30",
+            "clipped_start": "2026-04-01T10:00:00+05:30",
+            "clipped_end": "2026-04-01T10:15:00+05:30",
             "duration_mins": 15.0
           },
           {
@@ -3324,41 +3841,24 @@ const RAW_DATA = {
             "duration_mins": 15.0
           },
           {
-            "title": "Outreach Two!",
-            "start": "2026-04-01T11:00:00+05:30",
-            "end": "2026-04-01T11:30:00+05:30",
-            "clipped_start": "2026-04-01T11:00:00+05:30",
-            "clipped_end": "2026-04-01T11:30:00+05:30",
-            "duration_mins": 30.0
-          },
-          {
             "title": "BUFFER EVENT",
             "start": "2026-04-01T13:00:00+05:30",
             "end": "2026-04-01T13:15:00+05:30",
             "clipped_start": "2026-04-01T13:00:00+05:30",
             "clipped_end": "2026-04-01T13:15:00+05:30",
             "duration_mins": 15.0
-          },
-          {
-            "title": "Focus!",
-            "start": "2026-04-01T13:15:00+05:30",
-            "end": "2026-04-01T14:00:00+05:30",
-            "clipped_start": "2026-04-01T13:15:00+05:30",
-            "clipped_end": "2026-04-01T14:00:00+05:30",
-            "duration_mins": 45.0
           }
-        ],
-        "others": []
+        ]
       },
       "2026-04-02": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 270.0,
-        "customer_call_mins": 165.0,
-        "effective_bandwidth_hrs": 4.5,
+        "internal_blocker_mins": 255.0,
+        "customer_call_mins": 210.0,
+        "effective_bandwidth_hrs": 4.75,
         "calls_count": 5,
-        "idle_mins": 105.0,
-        "utilization_pct": 61.1,
+        "idle_mins": 75.0,
+        "utilization_pct": 73.7,
         "customer_calls": [
           {
             "title": "Melanie & JustCall | Product Demo Meeting",
@@ -3379,8 +3879,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T09:45:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "raghav & Soumya | Product Demo Meeting",
@@ -3390,8 +3890,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T10:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Soumya/ Raghav  Zoom Meeting",
@@ -3412,8 +3912,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T13:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -3450,14 +3950,6 @@ const RAW_DATA = {
             "duration_mins": 15.0
           },
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-02T09:00:00+05:30",
-            "end": "2026-04-02T09:15:00+05:30",
-            "clipped_start": "2026-04-02T09:00:00+05:30",
-            "clipped_end": "2026-04-02T09:15:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "Outreach Two!",
             "start": "2026-04-02T11:00:00+05:30",
             "end": "2026-04-02T11:30:00+05:30",
@@ -3490,17 +3982,50 @@ const RAW_DATA = {
             "duration_mins": 45.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-02T09:00:00+05:30",
+            "end": "2026-04-02T09:15:00+05:30",
+            "clipped_start": "2026-04-02T09:00:00+05:30",
+            "clipped_end": "2026-04-02T09:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T09:45:00+05:30",
+            "end": "2026-04-02T10:00:00+05:30",
+            "clipped_start": "2026-04-02T09:45:00+05:30",
+            "clipped_end": "2026-04-02T10:00:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T10:30:00+05:30",
+            "end": "2026-04-02T10:45:00+05:30",
+            "clipped_start": "2026-04-02T10:30:00+05:30",
+            "clipped_end": "2026-04-02T10:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T13:00:00+05:30",
+            "end": "2026-04-02T13:15:00+05:30",
+            "clipped_start": "2026-04-02T13:00:00+05:30",
+            "clipped_end": "2026-04-02T13:15:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-03": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 270.0,
+        "internal_blocker_mins": 225.0,
         "customer_call_mins": 165.0,
-        "effective_bandwidth_hrs": 4.5,
+        "effective_bandwidth_hrs": 5.25,
         "calls_count": 4,
-        "idle_mins": 105.0,
-        "utilization_pct": 61.1,
+        "idle_mins": 150.0,
+        "utilization_pct": 52.4,
         "customer_calls": [
           {
             "title": "kaleb & JustCall | Product Demo Meeting",
@@ -3581,6 +4106,24 @@ const RAW_DATA = {
             "duration_mins": 15.0
           },
           {
+            "title": "Outreach Two!",
+            "start": "2026-04-03T11:00:00+05:30",
+            "end": "2026-04-03T11:30:00+05:30",
+            "clipped_start": "2026-04-03T11:00:00+05:30",
+            "clipped_end": "2026-04-03T11:30:00+05:30",
+            "duration_mins": 30.0
+          },
+          {
+            "title": "Focus!",
+            "start": "2026-04-03T13:15:00+05:30",
+            "end": "2026-04-03T14:00:00+05:30",
+            "clipped_start": "2026-04-03T13:15:00+05:30",
+            "clipped_end": "2026-04-03T14:00:00+05:30",
+            "duration_mins": 45.0
+          }
+        ],
+        "others": [
+          {
             "title": "BUFFER EVENT",
             "start": "2026-04-03T09:00:00+05:30",
             "end": "2026-04-03T09:15:00+05:30",
@@ -3597,41 +4140,24 @@ const RAW_DATA = {
             "duration_mins": 15.0
           },
           {
-            "title": "Outreach Two!",
-            "start": "2026-04-03T11:00:00+05:30",
-            "end": "2026-04-03T11:30:00+05:30",
-            "clipped_start": "2026-04-03T11:00:00+05:30",
-            "clipped_end": "2026-04-03T11:30:00+05:30",
-            "duration_mins": 30.0
-          },
-          {
             "title": "BUFFER EVENT",
             "start": "2026-04-03T12:30:00+05:30",
             "end": "2026-04-03T12:45:00+05:30",
             "clipped_start": "2026-04-03T12:30:00+05:30",
             "clipped_end": "2026-04-03T12:45:00+05:30",
             "duration_mins": 15.0
-          },
-          {
-            "title": "Focus!",
-            "start": "2026-04-03T13:15:00+05:30",
-            "end": "2026-04-03T14:00:00+05:30",
-            "clipped_start": "2026-04-03T13:15:00+05:30",
-            "clipped_end": "2026-04-03T14:00:00+05:30",
-            "duration_mins": 45.0
           }
-        ],
-        "others": []
+        ]
       },
       "2026-04-06": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 240.0,
-        "customer_call_mins": 135.0,
-        "effective_bandwidth_hrs": 5.0,
+        "internal_blocker_mins": 225.0,
+        "customer_call_mins": 180.0,
+        "effective_bandwidth_hrs": 5.25,
         "calls_count": 4,
-        "idle_mins": 165.0,
-        "utilization_pct": 45.0,
+        "idle_mins": 135.0,
+        "utilization_pct": 57.1,
         "customer_calls": [
           {
             "title": "Mainul & Soumya | Product Demo Meeting",
@@ -3641,8 +4167,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-06T08:45:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Michael & Soumya | Product Demo Meeting",
@@ -3652,8 +4178,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-06T09:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Sujeet & Soumya | Product Demo Meeting",
@@ -3663,8 +4189,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-06T10:45:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Malay & JustCall | Product Demo Meeting",
@@ -3720,14 +4246,6 @@ const RAW_DATA = {
             "duration_mins": 30.0
           },
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-06T12:15:00+05:30",
-            "end": "2026-04-06T12:30:00+05:30",
-            "clipped_start": "2026-04-06T12:15:00+05:30",
-            "clipped_end": "2026-04-06T12:30:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "Focus!",
             "start": "2026-04-06T13:15:00+05:30",
             "end": "2026-04-06T14:00:00+05:30",
@@ -3736,17 +4254,50 @@ const RAW_DATA = {
             "duration_mins": 45.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-06T08:45:00+05:30",
+            "end": "2026-04-06T09:00:00+05:30",
+            "clipped_start": "2026-04-06T08:45:00+05:30",
+            "clipped_end": "2026-04-06T09:00:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-06T09:30:00+05:30",
+            "end": "2026-04-06T09:45:00+05:30",
+            "clipped_start": "2026-04-06T09:30:00+05:30",
+            "clipped_end": "2026-04-06T09:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-06T10:45:00+05:30",
+            "end": "2026-04-06T11:00:00+05:30",
+            "clipped_start": "2026-04-06T10:45:00+05:30",
+            "clipped_end": "2026-04-06T11:00:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-06T12:15:00+05:30",
+            "end": "2026-04-06T12:30:00+05:30",
+            "clipped_start": "2026-04-06T12:15:00+05:30",
+            "clipped_end": "2026-04-06T12:30:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-07": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 285.0,
-        "customer_call_mins": 75.0,
-        "effective_bandwidth_hrs": 4.25,
+        "internal_blocker_mins": 270.0,
+        "customer_call_mins": 90.0,
+        "effective_bandwidth_hrs": 4.5,
         "calls_count": 2,
         "idle_mins": 180.0,
-        "utilization_pct": 29.4,
+        "utilization_pct": 33.3,
         "customer_calls": [
           {
             "title": "Adam & Soumya | Product Demo Meeting",
@@ -3756,8 +4307,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T08:45:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Tom & JustCall | Product Demo Meeting",
@@ -3821,14 +4372,6 @@ const RAW_DATA = {
             "duration_mins": 30.0
           },
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-07T12:30:00+05:30",
-            "end": "2026-04-07T12:45:00+05:30",
-            "clipped_start": "2026-04-07T12:30:00+05:30",
-            "clipped_end": "2026-04-07T12:45:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "PS <> Abhijeet Connect",
             "start": "2026-04-07T13:00:00+05:30",
             "end": "2026-04-07T13:30:00+05:30",
@@ -3845,20 +4388,37 @@ const RAW_DATA = {
             "duration_mins": 45.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T08:45:00+05:30",
+            "end": "2026-04-07T09:00:00+05:30",
+            "clipped_start": "2026-04-07T08:45:00+05:30",
+            "clipped_end": "2026-04-07T09:00:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-07T12:30:00+05:30",
+            "end": "2026-04-07T12:45:00+05:30",
+            "clipped_start": "2026-04-07T12:30:00+05:30",
+            "clipped_end": "2026-04-07T12:45:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       }
     },
     "totals": {
       "bandwidth_hrs": 45,
       "total_bandwidth_hrs": 45,
-      "effective_bandwidth_hrs": 22.75,
-      "customer_call_mins": 725.0,
-      "total_call_mins": 725.0,
+      "effective_bandwidth_hrs": 25.0,
+      "customer_call_mins": 845.0,
+      "total_call_mins": 845.0,
       "calls_count": 20,
-      "total_internal_mins": 1335.0,
-      "idle_mins": 640.0,
-      "utilization_pct": 53.1,
-      "avg_call_mins": 36
+      "total_internal_mins": 1200.0,
+      "idle_mins": 655.0,
+      "utilization_pct": 56.3,
+      "avg_call_mins": 42
     },
     "funnel": "Sign up"
   },
@@ -4090,12 +4650,12 @@ const RAW_DATA = {
       "2026-04-06": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 120.0,
+        "internal_blocker_mins": 105.0,
         "customer_call_mins": 195.0,
-        "effective_bandwidth_hrs": 7.0,
+        "effective_bandwidth_hrs": 7.25,
         "calls_count": 6,
-        "idle_mins": 225.0,
-        "utilization_pct": 46.4,
+        "idle_mins": 240.0,
+        "utilization_pct": 44.8,
         "customer_calls": [
           {
             "title": "Lado & Joel | Product Demo Meeting",
@@ -4174,14 +4734,6 @@ const RAW_DATA = {
             "duration_mins": 60.0
           },
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-07T01:45:00+05:30",
-            "end": "2026-04-07T02:00:00+05:30",
-            "clipped_start": "2026-04-07T01:45:00+05:30",
-            "clipped_end": "2026-04-07T02:00:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "Calls & SFDC",
             "start": "2026-04-07T02:15:00+05:30",
             "end": "2026-04-07T03:15:00+05:30",
@@ -4190,7 +4742,16 @@ const RAW_DATA = {
             "duration_mins": 45.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-07T01:45:00+05:30",
+            "end": "2026-04-07T02:00:00+05:30",
+            "clipped_start": "2026-04-07T01:45:00+05:30",
+            "clipped_end": "2026-04-07T02:00:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-07": {
         "status": "WORKING",
@@ -4279,13 +4840,13 @@ const RAW_DATA = {
     "totals": {
       "bandwidth_hrs": 45,
       "total_bandwidth_hrs": 45,
-      "effective_bandwidth_hrs": 34.5,
+      "effective_bandwidth_hrs": 34.75,
       "customer_call_mins": 615.0,
       "total_call_mins": 615.0,
       "calls_count": 20,
-      "total_internal_mins": 630.0,
-      "idle_mins": 1455.0,
-      "utilization_pct": 29.7,
+      "total_internal_mins": 615.0,
+      "idle_mins": 1470.0,
+      "utilization_pct": 29.5,
       "avg_call_mins": 31
     },
     "funnel": "Sign up"
@@ -4299,12 +4860,12 @@ const RAW_DATA = {
       "2026-04-01": {
         "status": "WORKING",
         "bandwidth_hrs": 10,
-        "internal_blocker_mins": 165.0,
-        "customer_call_mins": 240.0,
-        "effective_bandwidth_hrs": 7.25,
+        "internal_blocker_mins": 135.0,
+        "customer_call_mins": 285.0,
+        "effective_bandwidth_hrs": 7.75,
         "calls_count": 7,
-        "idle_mins": 195.0,
-        "utilization_pct": 55.2,
+        "idle_mins": 180.0,
+        "utilization_pct": 61.3,
         "customer_calls": [
           {
             "title": "JustCall & Bookingstream LTD | Demo Meeting",
@@ -4314,8 +4875,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-01T17:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & ARMA Jiu Jitsu Club | Demo Meeting",
@@ -4369,8 +4930,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-01T22:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "InmoYael & Vyoma | Product Demo Meeting",
@@ -4380,8 +4941,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-01T23:45:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -4402,28 +4963,12 @@ const RAW_DATA = {
             "duration_mins": 30.0
           },
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-01T19:45:00+05:30",
-            "end": "2026-04-01T20:00:00+05:30",
-            "clipped_start": "2026-04-01T19:45:00+05:30",
-            "clipped_end": "2026-04-01T20:00:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "break ",
             "start": "2026-04-01T20:00:00+05:30",
             "end": "2026-04-01T20:30:00+05:30",
             "clipped_start": "2026-04-01T20:00:00+05:30",
             "clipped_end": "2026-04-01T20:30:00+05:30",
             "duration_mins": 30.0
-          },
-          {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-01T21:15:00+05:30",
-            "end": "2026-04-01T21:30:00+05:30",
-            "clipped_start": "2026-04-01T21:15:00+05:30",
-            "clipped_end": "2026-04-01T21:30:00+05:30",
-            "duration_mins": 15.0
           },
           {
             "title": "Update CRM, send emails, check emails, move leads",
@@ -4434,17 +4979,58 @@ const RAW_DATA = {
             "duration_mins": 45.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-01T17:00:00+05:30",
+            "end": "2026-04-01T17:15:00+05:30",
+            "clipped_start": "2026-04-01T17:00:00+05:30",
+            "clipped_end": "2026-04-01T17:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-01T19:45:00+05:30",
+            "end": "2026-04-01T20:00:00+05:30",
+            "clipped_start": "2026-04-01T19:45:00+05:30",
+            "clipped_end": "2026-04-01T20:00:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-01T21:15:00+05:30",
+            "end": "2026-04-01T21:30:00+05:30",
+            "clipped_start": "2026-04-01T21:15:00+05:30",
+            "clipped_end": "2026-04-01T21:30:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-01T22:30:00+05:30",
+            "end": "2026-04-01T22:45:00+05:30",
+            "clipped_start": "2026-04-01T22:30:00+05:30",
+            "clipped_end": "2026-04-01T22:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-01T23:45:00+05:30",
+            "end": "2026-04-02T00:00:00+05:30",
+            "clipped_start": "2026-04-01T23:45:00+05:30",
+            "clipped_end": "2026-04-02T00:00:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-02": {
         "status": "WORKING",
         "bandwidth_hrs": 10,
-        "internal_blocker_mins": 150.0,
-        "customer_call_mins": 255.0,
-        "effective_bandwidth_hrs": 7.5,
+        "internal_blocker_mins": 135.0,
+        "customer_call_mins": 345.0,
+        "effective_bandwidth_hrs": 7.75,
         "calls_count": 8,
-        "idle_mins": 195.0,
-        "utilization_pct": 56.7,
+        "idle_mins": 120.0,
+        "utilization_pct": 74.2,
         "customer_calls": [
           {
             "title": "Mihail & Vyomaa | JustCall Product Demo Meeting",
@@ -4476,8 +5062,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T18:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & Jasper | Demo Meeting",
@@ -4487,8 +5073,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T19:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Shane & Vyoma | Product Demo Meeting",
@@ -4498,8 +5084,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T19:45:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Charly & Vyoma | Product Demo Meeting",
@@ -4509,8 +5095,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T21:15:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Meeting with Vyoma",
@@ -4520,8 +5106,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T22:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Dylan & Vyoma | Product Demo Meeting",
@@ -4531,8 +5117,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-02T22:45:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -4543,14 +5129,6 @@ const RAW_DATA = {
             "clipped_start": "2026-04-02T15:00:00+05:30",
             "clipped_end": "2026-04-02T15:30:00+05:30",
             "duration_mins": 30.0
-          },
-          {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-02T16:30:00+05:30",
-            "end": "2026-04-02T16:45:00+05:30",
-            "clipped_start": "2026-04-02T16:30:00+05:30",
-            "clipped_end": "2026-04-02T16:45:00+05:30",
-            "duration_mins": 15.0
           },
           {
             "title": "break ",
@@ -4577,17 +5155,74 @@ const RAW_DATA = {
             "duration_mins": 45.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-02T16:30:00+05:30",
+            "end": "2026-04-02T16:45:00+05:30",
+            "clipped_start": "2026-04-02T16:30:00+05:30",
+            "clipped_end": "2026-04-02T16:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T18:00:00+05:30",
+            "end": "2026-04-02T18:15:00+05:30",
+            "clipped_start": "2026-04-02T18:00:00+05:30",
+            "clipped_end": "2026-04-02T18:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T19:00:00+05:30",
+            "end": "2026-04-02T19:15:00+05:30",
+            "clipped_start": "2026-04-02T19:00:00+05:30",
+            "clipped_end": "2026-04-02T19:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T19:45:00+05:30",
+            "end": "2026-04-02T20:00:00+05:30",
+            "clipped_start": "2026-04-02T19:45:00+05:30",
+            "clipped_end": "2026-04-02T20:00:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T21:15:00+05:30",
+            "end": "2026-04-02T21:30:00+05:30",
+            "clipped_start": "2026-04-02T21:15:00+05:30",
+            "clipped_end": "2026-04-02T21:30:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T22:00:00+05:30",
+            "end": "2026-04-02T22:15:00+05:30",
+            "clipped_start": "2026-04-02T22:00:00+05:30",
+            "clipped_end": "2026-04-02T22:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-02T22:45:00+05:30",
+            "end": "2026-04-02T23:00:00+05:30",
+            "clipped_start": "2026-04-02T22:45:00+05:30",
+            "clipped_end": "2026-04-02T23:00:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-03": {
         "status": "WORKING",
         "bandwidth_hrs": 10,
-        "internal_blocker_mins": 210.0,
-        "customer_call_mins": 180.0,
-        "effective_bandwidth_hrs": 6.5,
+        "internal_blocker_mins": 180.0,
+        "customer_call_mins": 225.0,
+        "effective_bandwidth_hrs": 7.0,
         "calls_count": 5,
-        "idle_mins": 210.0,
-        "utilization_pct": 46.2,
+        "idle_mins": 195.0,
+        "utilization_pct": 53.6,
         "customer_calls": [
           {
             "title": "JustCall & TestingXperts | Demo Meeting",
@@ -4597,8 +5232,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-03T17:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & pluginpro.co.uk |  Meeting",
@@ -4608,8 +5243,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-03T18:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Tommaso & Vyomaa | JustCall Product Demo Meeting",
@@ -4630,8 +5265,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-03T22:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Olawale & Vyomaa | JustCall Product Demo Meeting",
@@ -4687,6 +5322,40 @@ const RAW_DATA = {
             "duration_mins": 30.0
           },
           {
+            "title": "Travel",
+            "start": "2026-04-03T23:00:00+05:30",
+            "end": "2026-04-03T23:30:00+05:30",
+            "clipped_start": "2026-04-03T23:00:00+05:30",
+            "clipped_end": "2026-04-03T23:30:00+05:30",
+            "duration_mins": 30.0
+          }
+        ],
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-03T17:00:00+05:30",
+            "end": "2026-04-03T17:15:00+05:30",
+            "clipped_start": "2026-04-03T17:00:00+05:30",
+            "clipped_end": "2026-04-03T17:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-03T18:00:00+05:30",
+            "end": "2026-04-03T18:15:00+05:30",
+            "clipped_start": "2026-04-03T18:00:00+05:30",
+            "clipped_end": "2026-04-03T18:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-03T21:00:00+05:30",
+            "end": "2026-04-03T21:15:00+05:30",
+            "clipped_start": "2026-04-03T21:00:00+05:30",
+            "clipped_end": "2026-04-03T21:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
             "title": "BUFFER EVENT",
             "start": "2026-04-03T21:45:00+05:30",
             "end": "2026-04-03T22:00:00+05:30",
@@ -4695,12 +5364,12 @@ const RAW_DATA = {
             "duration_mins": 15.0
           },
           {
-            "title": "Travel",
-            "start": "2026-04-03T23:00:00+05:30",
-            "end": "2026-04-03T23:30:00+05:30",
-            "clipped_start": "2026-04-03T23:00:00+05:30",
-            "clipped_end": "2026-04-03T23:30:00+05:30",
-            "duration_mins": 30.0
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-03T22:30:00+05:30",
+            "end": "2026-04-03T22:45:00+05:30",
+            "clipped_start": "2026-04-03T22:30:00+05:30",
+            "clipped_end": "2026-04-03T22:45:00+05:30",
+            "duration_mins": 15.0
           },
           {
             "title": "BUFFER EVENT",
@@ -4710,18 +5379,17 @@ const RAW_DATA = {
             "clipped_end": "2026-04-04T01:00:00+05:30",
             "duration_mins": 15.0
           }
-        ],
-        "others": []
+        ]
       },
       "2026-04-06": {
         "status": "WORKING",
         "bandwidth_hrs": 10,
-        "internal_blocker_mins": 195.0,
-        "customer_call_mins": 180.0,
-        "effective_bandwidth_hrs": 6.75,
+        "internal_blocker_mins": 165.0,
+        "customer_call_mins": 225.0,
+        "effective_bandwidth_hrs": 7.25,
         "calls_count": 5,
-        "idle_mins": 225.0,
-        "utilization_pct": 44.4,
+        "idle_mins": 210.0,
+        "utilization_pct": 51.7,
         "customer_calls": [
           {
             "title": "Julien & Vyomaa | JustCall Product Demo Meeting",
@@ -4742,8 +5410,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-06T17:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Albert & Vyoma | Product Demo Meeting",
@@ -4753,8 +5421,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-06T18:15:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Jerwin & Vyomaa | JustCall Product Demo Meeting",
@@ -4775,8 +5443,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-06T22:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -4789,28 +5457,12 @@ const RAW_DATA = {
             "duration_mins": 30.0
           },
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-06T16:30:00+05:30",
-            "end": "2026-04-06T16:45:00+05:30",
-            "clipped_start": "2026-04-06T16:30:00+05:30",
-            "clipped_end": "2026-04-06T16:45:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "Call EMEA Leads, Check Emails ",
             "start": "2026-04-06T18:30:00+05:30",
             "end": "2026-04-06T19:00:00+05:30",
             "clipped_start": "2026-04-06T18:30:00+05:30",
             "clipped_end": "2026-04-06T19:00:00+05:30",
             "duration_mins": 30.0
-          },
-          {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-06T19:45:00+05:30",
-            "end": "2026-04-06T20:00:00+05:30",
-            "clipped_start": "2026-04-06T19:45:00+05:30",
-            "clipped_end": "2026-04-06T20:00:00+05:30",
-            "duration_mins": 15.0
           },
           {
             "title": "break ",
@@ -4837,17 +5489,58 @@ const RAW_DATA = {
             "duration_mins": 45.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-06T16:30:00+05:30",
+            "end": "2026-04-06T16:45:00+05:30",
+            "clipped_start": "2026-04-06T16:30:00+05:30",
+            "clipped_end": "2026-04-06T16:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-06T17:30:00+05:30",
+            "end": "2026-04-06T17:45:00+05:30",
+            "clipped_start": "2026-04-06T17:30:00+05:30",
+            "clipped_end": "2026-04-06T17:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-06T18:15:00+05:30",
+            "end": "2026-04-06T18:30:00+05:30",
+            "clipped_start": "2026-04-06T18:15:00+05:30",
+            "clipped_end": "2026-04-06T18:30:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-06T19:45:00+05:30",
+            "end": "2026-04-06T20:00:00+05:30",
+            "clipped_start": "2026-04-06T19:45:00+05:30",
+            "clipped_end": "2026-04-06T20:00:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-06T22:30:00+05:30",
+            "end": "2026-04-06T22:45:00+05:30",
+            "clipped_start": "2026-04-06T22:30:00+05:30",
+            "clipped_end": "2026-04-06T22:45:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       },
       "2026-04-07": {
         "status": "WORKING",
         "bandwidth_hrs": 10,
-        "internal_blocker_mins": 180.0,
-        "customer_call_mins": 225.0,
-        "effective_bandwidth_hrs": 7.0,
+        "internal_blocker_mins": 165.0,
+        "customer_call_mins": 300.0,
+        "effective_bandwidth_hrs": 7.25,
         "calls_count": 7,
-        "idle_mins": 195.0,
-        "utilization_pct": 53.6,
+        "idle_mins": 135.0,
+        "utilization_pct": 69.0,
         "customer_calls": [
           {
             "title": "JustCall & Telecommunicate | Demo Meeting",
@@ -4857,8 +5550,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T16:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Mohannad & Vyoma | Product Demo Meeting",
@@ -4868,8 +5561,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T17:15:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "JustCall & B File System | Demo Meeting",
@@ -4901,8 +5594,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T21:00:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Ramy & Vyoma | Product Demo Meeting",
@@ -4912,8 +5605,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T21:45:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           },
           {
             "title": "Mohamed & Vyoma | Product Demo Meeting",
@@ -4923,8 +5616,8 @@ const RAW_DATA = {
             "clipped_end": "2026-04-07T22:30:00+05:30",
             "duration_mins": 30.0,
             "classification": "CUSTOMER_CALL",
-            "has_buffer": false,
-            "effective_mins": 30.0
+            "has_buffer": true,
+            "effective_mins": 45.0
           }
         ],
         "internal_blockers": [
@@ -4953,14 +5646,6 @@ const RAW_DATA = {
             "duration_mins": 30.0
           },
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-07T19:45:00+05:30",
-            "end": "2026-04-07T20:00:00+05:30",
-            "clipped_start": "2026-04-07T19:45:00+05:30",
-            "clipped_end": "2026-04-07T20:00:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "break ",
             "start": "2026-04-07T20:00:00+05:30",
             "end": "2026-04-07T20:30:00+05:30",
@@ -4985,20 +5670,69 @@ const RAW_DATA = {
             "duration_mins": 45.0
           }
         ],
-        "others": []
+        "others": [
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T16:30:00+05:30",
+            "end": "2026-04-07T16:45:00+05:30",
+            "clipped_start": "2026-04-07T16:30:00+05:30",
+            "clipped_end": "2026-04-07T16:45:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T17:15:00+05:30",
+            "end": "2026-04-07T17:30:00+05:30",
+            "clipped_start": "2026-04-07T17:15:00+05:30",
+            "clipped_end": "2026-04-07T17:30:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-07T19:45:00+05:30",
+            "end": "2026-04-07T20:00:00+05:30",
+            "clipped_start": "2026-04-07T19:45:00+05:30",
+            "clipped_end": "2026-04-07T20:00:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T21:00:00+05:30",
+            "end": "2026-04-07T21:15:00+05:30",
+            "clipped_start": "2026-04-07T21:00:00+05:30",
+            "clipped_end": "2026-04-07T21:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T21:45:00+05:30",
+            "end": "2026-04-07T22:00:00+05:30",
+            "clipped_start": "2026-04-07T21:45:00+05:30",
+            "clipped_end": "2026-04-07T22:00:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "[Meeting Buffer]",
+            "start": "2026-04-07T22:30:00+05:30",
+            "end": "2026-04-07T22:45:00+05:30",
+            "clipped_start": "2026-04-07T22:30:00+05:30",
+            "clipped_end": "2026-04-07T22:45:00+05:30",
+            "duration_mins": 15.0
+          }
+        ]
       }
     },
     "totals": {
       "bandwidth_hrs": 50,
       "total_bandwidth_hrs": 50,
-      "effective_bandwidth_hrs": 35.0,
-      "customer_call_mins": 1080.0,
-      "total_call_mins": 1080.0,
+      "effective_bandwidth_hrs": 37.0,
+      "customer_call_mins": 1380.0,
+      "total_call_mins": 1380.0,
       "calls_count": 32,
-      "total_internal_mins": 900.0,
-      "idle_mins": 1020.0,
-      "utilization_pct": 51.4,
-      "avg_call_mins": 34
+      "total_internal_mins": 780.0,
+      "idle_mins": 840.0,
+      "utilization_pct": 62.2,
+      "avg_call_mins": 43
     },
     "funnel": "Sign up"
   }
@@ -5016,13 +5750,13 @@ const TODAY_DATA = {
       "region": "NAMER",
       "shift": "18:00–03:00 IST",
       "bandwidth_hrs": 9,
-      "internal_blocker_mins": 150.0,
-      "effective_bandwidth_hrs": 6.5,
-      "total_call_mins": 195.0,
+      "internal_blocker_mins": 135.0,
+      "effective_bandwidth_hrs": 6.75,
+      "total_call_mins": 255.0,
       "calls_count": 6,
-      "avg_call_mins": 32,
-      "idle_mins": 195.0,
-      "utilization_pct": 50.0,
+      "avg_call_mins": 42,
+      "idle_mins": 150.0,
+      "utilization_pct": 63.0,
       "customer_calls": [
         {
           "title": "JustCall & RaiZan Solutions | Demo Meeting",
@@ -5032,8 +5766,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-07T20:00:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         },
         {
           "title": "JustCall & westchiropractic.co.uk | Demo Meeting",
@@ -5043,8 +5777,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-07T21:00:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         },
         {
           "title": "Roger & Amanpreet | Product Demo Meeting",
@@ -5076,8 +5810,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-08T01:30:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         },
         {
           "title": "JustCall & Arbitapp | Demo Meeting",
@@ -5087,8 +5821,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-08T02:30:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         }
       ],
       "internal_blockers": [
@@ -5109,14 +5843,6 @@ const TODAY_DATA = {
           "duration_mins": 30.0
         },
         {
-          "title": "BUFFER EVENT",
-          "start": "2026-04-07T22:00:00+05:30",
-          "end": "2026-04-07T22:15:00+05:30",
-          "clipped_start": "2026-04-07T22:00:00+05:30",
-          "clipped_end": "2026-04-07T22:15:00+05:30",
-          "duration_mins": 15.0
-        },
-        {
           "title": "Commute + Dinner",
           "start": "2026-04-07T23:00:00+05:30",
           "end": "2026-04-08T00:15:00+05:30",
@@ -5135,11 +5861,11 @@ const TODAY_DATA = {
       "bandwidth_hrs": 9,
       "internal_blocker_mins": 90.0,
       "effective_bandwidth_hrs": 7.5,
-      "total_call_mins": 150.0,
+      "total_call_mins": 225.0,
       "calls_count": 5,
-      "avg_call_mins": 30,
-      "idle_mins": 300.0,
-      "utilization_pct": 33.3,
+      "avg_call_mins": 45,
+      "idle_mins": 225.0,
+      "utilization_pct": 50.0,
       "customer_calls": [
         {
           "title": "JustCall & AC Forrest | Demo Meeting",
@@ -5149,8 +5875,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-07T20:00:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         },
         {
           "title": "JustCall & Junk Jaws | Demo Meeting",
@@ -5160,8 +5886,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-07T21:00:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         },
         {
           "title": "JustCall & Site Plan Real Estate | Demo Meeting",
@@ -5171,8 +5897,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-07T23:00:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         },
         {
           "title": "JustCall & Excellobpo | Demo Meeting",
@@ -5182,8 +5908,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-08T00:30:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         },
         {
           "title": "JustCall & RMC Solutions |  Meeting",
@@ -5193,8 +5919,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-08T01:30:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         }
       ],
       "internal_blockers": [
@@ -5233,11 +5959,11 @@ const TODAY_DATA = {
       "bandwidth_hrs": 9,
       "internal_blocker_mins": 180.0,
       "effective_bandwidth_hrs": 6.0,
-      "total_call_mins": 150.0,
+      "total_call_mins": 210.0,
       "calls_count": 5,
-      "avg_call_mins": 30,
-      "idle_mins": 210.0,
-      "utilization_pct": 41.7,
+      "avg_call_mins": 42,
+      "idle_mins": 150.0,
+      "utilization_pct": 58.3,
       "customer_calls": [
         {
           "title": "JustCall Meeting",
@@ -5258,8 +5984,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-07T21:00:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         },
         {
           "title": "JustCall & Cloudflowtechnology |  Meeting",
@@ -5269,8 +5995,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-07T22:00:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         },
         {
           "title": "Grant & Joel | Product Demo Meeting",
@@ -5280,8 +6006,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-07T23:30:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         },
         {
           "title": "Rachel & Joel | Product Demo Meeting",
@@ -5291,8 +6017,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-08T01:30:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         }
       ],
       "internal_blockers": [
@@ -5339,11 +6065,11 @@ const TODAY_DATA = {
       "bandwidth_hrs": 9,
       "internal_blocker_mins": 210.0,
       "effective_bandwidth_hrs": 5.5,
-      "total_call_mins": 60.0,
+      "total_call_mins": 90.0,
       "calls_count": 2,
-      "avg_call_mins": 30,
-      "idle_mins": 270.0,
-      "utilization_pct": 18.2,
+      "avg_call_mins": 45,
+      "idle_mins": 240.0,
+      "utilization_pct": 27.3,
       "customer_calls": [
         {
           "title": "Angelo & Megha | Product Demo Meeting",
@@ -5353,8 +6079,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-07T20:30:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         },
         {
           "title": "Dylan & Megha | Product Demo Meeting",
@@ -5364,8 +6090,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-08T00:30:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         }
       ],
       "internal_blockers": [
@@ -5426,13 +6152,13 @@ const TODAY_DATA = {
       "region": "APAC",
       "shift": "05:00–14:00 IST",
       "bandwidth_hrs": 9,
-      "internal_blocker_mins": 285.0,
-      "effective_bandwidth_hrs": 4.25,
-      "total_call_mins": 75.0,
+      "internal_blocker_mins": 270.0,
+      "effective_bandwidth_hrs": 4.5,
+      "total_call_mins": 90.0,
       "calls_count": 2,
-      "avg_call_mins": 38,
+      "avg_call_mins": 45,
       "idle_mins": 180.0,
-      "utilization_pct": 29.4,
+      "utilization_pct": 33.3,
       "customer_calls": [
         {
           "title": "Adam & Soumya | Product Demo Meeting",
@@ -5442,8 +6168,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-07T08:45:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         },
         {
           "title": "Tom & JustCall | Product Demo Meeting",
@@ -5505,14 +6231,6 @@ const TODAY_DATA = {
           "clipped_start": "2026-04-07T11:15:00+05:30",
           "clipped_end": "2026-04-07T11:45:00+05:30",
           "duration_mins": 30.0
-        },
-        {
-          "title": "BUFFER EVENT",
-          "start": "2026-04-07T12:30:00+05:30",
-          "end": "2026-04-07T12:45:00+05:30",
-          "clipped_start": "2026-04-07T12:30:00+05:30",
-          "clipped_end": "2026-04-07T12:45:00+05:30",
-          "duration_mins": 15.0
         },
         {
           "title": "PS <> Abhijeet Connect",
@@ -5626,13 +6344,13 @@ const TODAY_DATA = {
       "region": "EMEA",
       "shift": "15:00–01:00 IST",
       "bandwidth_hrs": 10,
-      "internal_blocker_mins": 180.0,
-      "effective_bandwidth_hrs": 7.0,
-      "total_call_mins": 225.0,
+      "internal_blocker_mins": 165.0,
+      "effective_bandwidth_hrs": 7.25,
+      "total_call_mins": 300.0,
       "calls_count": 7,
-      "avg_call_mins": 32,
-      "idle_mins": 195.0,
-      "utilization_pct": 53.6,
+      "avg_call_mins": 43,
+      "idle_mins": 135.0,
+      "utilization_pct": 69.0,
       "customer_calls": [
         {
           "title": "JustCall & Telecommunicate | Demo Meeting",
@@ -5642,8 +6360,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-07T16:30:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         },
         {
           "title": "Mohannad & Vyoma | Product Demo Meeting",
@@ -5653,8 +6371,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-07T17:15:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         },
         {
           "title": "JustCall & B File System | Demo Meeting",
@@ -5686,8 +6404,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-07T21:00:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         },
         {
           "title": "Ramy & Vyoma | Product Demo Meeting",
@@ -5697,8 +6415,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-07T21:45:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         },
         {
           "title": "Mohamed & Vyoma | Product Demo Meeting",
@@ -5708,8 +6426,8 @@ const TODAY_DATA = {
           "clipped_end": "2026-04-07T22:30:00+05:30",
           "duration_mins": 30.0,
           "classification": "CUSTOMER_CALL",
-          "has_buffer": false,
-          "effective_mins": 30.0
+          "has_buffer": true,
+          "effective_mins": 45.0
         }
       ],
       "internal_blockers": [
@@ -5736,14 +6454,6 @@ const TODAY_DATA = {
           "clipped_start": "2026-04-07T18:30:00+05:30",
           "clipped_end": "2026-04-07T19:00:00+05:30",
           "duration_mins": 30.0
-        },
-        {
-          "title": "BUFFER EVENT",
-          "start": "2026-04-07T19:45:00+05:30",
-          "end": "2026-04-07T20:00:00+05:30",
-          "clipped_start": "2026-04-07T19:45:00+05:30",
-          "clipped_end": "2026-04-07T20:00:00+05:30",
-          "duration_mins": 15.0
         },
         {
           "title": "break ",
@@ -6110,12 +6820,12 @@ const SCSM_RAW_DATA = {
       "2026-04-01": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 190.0,
+        "internal_blocker_mins": 115.0,
         "customer_call_mins": 225.0,
-        "effective_bandwidth_hrs": 5.83,
+        "effective_bandwidth_hrs": 7.08,
         "calls_count": 5,
-        "idle_mins": 124.8,
-        "utilization_pct": 64.3,
+        "idle_mins": 199.8,
+        "utilization_pct": 53.0,
         "customer_calls": [
           {
             "title": "Sam & Narayan | JustCall  Meeting",
@@ -6183,27 +6893,11 @@ const SCSM_RAW_DATA = {
             "duration_mins": 40.0
           },
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-01T20:00:00+05:30",
-            "end": "2026-04-01T20:15:00+05:30",
-            "clipped_start": "2026-04-01T20:00:00+05:30",
-            "clipped_end": "2026-04-01T20:15:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "Narayan / Tanish Dinesh",
             "start": "2026-04-01T20:30:00+05:30",
             "end": "2026-04-01T20:45:00+05:30",
             "clipped_start": "2026-04-01T20:30:00+05:30",
             "clipped_end": "2026-04-01T20:45:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-01T21:00:00+05:30",
-            "end": "2026-04-01T21:15:00+05:30",
-            "clipped_start": "2026-04-01T21:00:00+05:30",
-            "clipped_end": "2026-04-01T21:15:00+05:30",
             "duration_mins": 15.0
           },
           {
@@ -6213,6 +6907,24 @@ const SCSM_RAW_DATA = {
             "clipped_start": "2026-04-01T21:30:00+05:30",
             "clipped_end": "2026-04-01T22:30:00+05:30",
             "duration_mins": 60.0
+          }
+        ],
+        "others": [
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-01T20:00:00+05:30",
+            "end": "2026-04-01T20:15:00+05:30",
+            "clipped_start": "2026-04-01T20:00:00+05:30",
+            "clipped_end": "2026-04-01T20:15:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-01T21:00:00+05:30",
+            "end": "2026-04-01T21:15:00+05:30",
+            "clipped_start": "2026-04-01T21:00:00+05:30",
+            "clipped_end": "2026-04-01T21:15:00+05:30",
+            "duration_mins": 15.0
           },
           {
             "title": "BUFFER EVENT",
@@ -6238,18 +6950,17 @@ const SCSM_RAW_DATA = {
             "clipped_end": "2026-04-02T02:15:00+05:30",
             "duration_mins": 15.0
           }
-        ],
-        "others": []
+        ]
       },
       "2026-04-02": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 135.0,
+        "internal_blocker_mins": 60.0,
         "customer_call_mins": 255.0,
-        "effective_bandwidth_hrs": 6.75,
+        "effective_bandwidth_hrs": 8.0,
         "calls_count": 6,
-        "idle_mins": 150.0,
-        "utilization_pct": 63.0,
+        "idle_mins": 225.0,
+        "utilization_pct": 53.1,
         "customer_calls": [
           {
             "title": "Michael & Narayan | JustCall  Meeting",
@@ -6320,6 +7031,16 @@ const SCSM_RAW_DATA = {
         ],
         "internal_blockers": [
           {
+            "title": "Lunch",
+            "start": "2026-04-02T21:30:00+05:30",
+            "end": "2026-04-02T22:30:00+05:30",
+            "clipped_start": "2026-04-02T21:30:00+05:30",
+            "clipped_end": "2026-04-02T22:30:00+05:30",
+            "duration_mins": 60.0
+          }
+        ],
+        "others": [
+          {
             "title": "BUFFER EVENT",
             "start": "2026-04-02T19:15:00+05:30",
             "end": "2026-04-02T19:30:00+05:30",
@@ -6344,14 +7065,6 @@ const SCSM_RAW_DATA = {
             "duration_mins": 15.0
           },
           {
-            "title": "Lunch",
-            "start": "2026-04-02T21:30:00+05:30",
-            "end": "2026-04-02T22:30:00+05:30",
-            "clipped_start": "2026-04-02T21:30:00+05:30",
-            "clipped_end": "2026-04-02T22:30:00+05:30",
-            "duration_mins": 60.0
-          },
-          {
             "title": "BUFFER EVENT",
             "start": "2026-04-03T00:00:00+05:30",
             "end": "2026-04-03T00:15:00+05:30",
@@ -6367,18 +7080,17 @@ const SCSM_RAW_DATA = {
             "clipped_end": "2026-04-03T02:45:00+05:30",
             "duration_mins": 15.0
           }
-        ],
-        "others": []
+        ]
       },
       "2026-04-03": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 150.0,
+        "internal_blocker_mins": 120.0,
         "customer_call_mins": 120.0,
-        "effective_bandwidth_hrs": 6.5,
+        "effective_bandwidth_hrs": 7.0,
         "calls_count": 3,
-        "idle_mins": 270.0,
-        "utilization_pct": 30.8,
+        "idle_mins": 300.0,
+        "utilization_pct": 28.6,
         "customer_calls": [
           {
             "title": "Mike & Narayan | JustCall  Meeting",
@@ -6430,7 +7142,9 @@ const SCSM_RAW_DATA = {
             "clipped_start": "2026-04-03T21:30:00+05:30",
             "clipped_end": "2026-04-03T22:30:00+05:30",
             "duration_mins": 60.0
-          },
+          }
+        ],
+        "others": [
           {
             "title": "BUFFER EVENT",
             "start": "2026-04-03T23:15:00+05:30",
@@ -6447,18 +7161,17 @@ const SCSM_RAW_DATA = {
             "clipped_end": "2026-04-04T00:15:00+05:30",
             "duration_mins": 15.0
           }
-        ],
-        "others": []
+        ]
       },
       "2026-04-06": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 135.0,
+        "internal_blocker_mins": 105.0,
         "customer_call_mins": 120.0,
-        "effective_bandwidth_hrs": 6.75,
+        "effective_bandwidth_hrs": 7.25,
         "calls_count": 3,
-        "idle_mins": 285.0,
-        "utilization_pct": 29.6,
+        "idle_mins": 315.0,
+        "utilization_pct": 27.6,
         "customer_calls": [
           {
             "title": "Nelly & Narayan | JustCall  Meeting",
@@ -6496,27 +7209,11 @@ const SCSM_RAW_DATA = {
         ],
         "internal_blockers": [
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-06T18:45:00+05:30",
-            "end": "2026-04-06T19:00:00+05:30",
-            "clipped_start": "2026-04-06T18:45:00+05:30",
-            "clipped_end": "2026-04-06T19:00:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "Feedback Call",
             "start": "2026-04-06T19:00:00+05:30",
             "end": "2026-04-06T19:15:00+05:30",
             "clipped_start": "2026-04-06T19:00:00+05:30",
             "clipped_end": "2026-04-06T19:15:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-06T21:00:00+05:30",
-            "end": "2026-04-06T21:15:00+05:30",
-            "clipped_start": "2026-04-06T21:00:00+05:30",
-            "clipped_end": "2026-04-06T21:15:00+05:30",
             "duration_mins": 15.0
           },
           {
@@ -6534,6 +7231,24 @@ const SCSM_RAW_DATA = {
             "clipped_start": "2026-04-06T23:15:00+05:30",
             "clipped_end": "2026-04-06T23:45:00+05:30",
             "duration_mins": 30.0
+          }
+        ],
+        "others": [
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-06T18:45:00+05:30",
+            "end": "2026-04-06T19:00:00+05:30",
+            "clipped_start": "2026-04-06T18:45:00+05:30",
+            "clipped_end": "2026-04-06T19:00:00+05:30",
+            "duration_mins": 15.0
+          },
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-06T21:00:00+05:30",
+            "end": "2026-04-06T21:15:00+05:30",
+            "clipped_start": "2026-04-06T21:00:00+05:30",
+            "clipped_end": "2026-04-06T21:15:00+05:30",
+            "duration_mins": 15.0
           },
           {
             "title": "BUFFER EVENT",
@@ -6543,18 +7258,17 @@ const SCSM_RAW_DATA = {
             "clipped_end": "2026-04-06T23:30:00+05:30",
             "duration_mins": 15.0
           }
-        ],
-        "others": []
+        ]
       },
       "2026-04-07": {
         "status": "WORKING",
         "bandwidth_hrs": 9,
-        "internal_blocker_mins": 135.0,
+        "internal_blocker_mins": 90.0,
         "customer_call_mins": 120.0,
-        "effective_bandwidth_hrs": 6.75,
+        "effective_bandwidth_hrs": 7.5,
         "calls_count": 3,
-        "idle_mins": 285.0,
-        "utilization_pct": 29.6,
+        "idle_mins": 330.0,
+        "utilization_pct": 26.7,
         "customer_calls": [
           {
             "title": "Jason & Narayan | JustCall  Meeting",
@@ -6592,14 +7306,6 @@ const SCSM_RAW_DATA = {
         ],
         "internal_blockers": [
           {
-            "title": "BUFFER EVENT",
-            "start": "2026-04-07T18:00:00+05:30",
-            "end": "2026-04-07T18:15:00+05:30",
-            "clipped_start": "2026-04-07T18:00:00+05:30",
-            "clipped_end": "2026-04-07T18:15:00+05:30",
-            "duration_mins": 15.0
-          },
-          {
             "title": "Weekly team sync - GSA!",
             "start": "2026-04-07T18:30:00+05:30",
             "end": "2026-04-07T19:00:00+05:30",
@@ -6614,6 +7320,16 @@ const SCSM_RAW_DATA = {
             "clipped_start": "2026-04-07T21:30:00+05:30",
             "clipped_end": "2026-04-07T22:30:00+05:30",
             "duration_mins": 60.0
+          }
+        ],
+        "others": [
+          {
+            "title": "BUFFER EVENT",
+            "start": "2026-04-07T18:00:00+05:30",
+            "end": "2026-04-07T18:15:00+05:30",
+            "clipped_start": "2026-04-07T18:00:00+05:30",
+            "clipped_end": "2026-04-07T18:15:00+05:30",
+            "duration_mins": 15.0
           },
           {
             "title": "BUFFER EVENT",
@@ -6631,20 +7347,19 @@ const SCSM_RAW_DATA = {
             "clipped_end": "2026-04-08T02:30:00+05:30",
             "duration_mins": 15.0
           }
-        ],
-        "others": []
+        ]
       }
     },
     "totals": {
       "bandwidth_hrs": 45,
       "total_bandwidth_hrs": 45,
-      "effective_bandwidth_hrs": 32.58,
+      "effective_bandwidth_hrs": 36.83,
       "customer_call_mins": 840.0,
       "total_call_mins": 840.0,
       "calls_count": 20,
-      "total_internal_mins": 745.0,
-      "idle_mins": 1114.8,
-      "utilization_pct": 43.0,
+      "total_internal_mins": 490.0,
+      "idle_mins": 1369.8,
+      "utilization_pct": 38.0,
       "avg_call_mins": 42
     }
   },
@@ -7450,13 +8165,13 @@ const SCSM_TODAY_DATA = {
       "region": "NAMER",
       "shift": "18:00–03:00 IST",
       "bandwidth_hrs": 9,
-      "internal_blocker_mins": 135.0,
-      "effective_bandwidth_hrs": 6.75,
+      "internal_blocker_mins": 90.0,
+      "effective_bandwidth_hrs": 7.5,
       "total_call_mins": 120.0,
       "calls_count": 3,
       "avg_call_mins": 40,
-      "idle_mins": 285.0,
-      "utilization_pct": 29.6,
+      "idle_mins": 330.0,
+      "utilization_pct": 26.7,
       "customer_calls": [
         {
           "title": "Jason & Narayan | JustCall  Meeting",
@@ -7494,14 +8209,6 @@ const SCSM_TODAY_DATA = {
       ],
       "internal_blockers": [
         {
-          "title": "BUFFER EVENT",
-          "start": "2026-04-07T18:00:00+05:30",
-          "end": "2026-04-07T18:15:00+05:30",
-          "clipped_start": "2026-04-07T18:00:00+05:30",
-          "clipped_end": "2026-04-07T18:15:00+05:30",
-          "duration_mins": 15.0
-        },
-        {
           "title": "Weekly team sync - GSA!",
           "start": "2026-04-07T18:30:00+05:30",
           "end": "2026-04-07T19:00:00+05:30",
@@ -7516,22 +8223,6 @@ const SCSM_TODAY_DATA = {
           "clipped_start": "2026-04-07T21:30:00+05:30",
           "clipped_end": "2026-04-07T22:30:00+05:30",
           "duration_mins": 60.0
-        },
-        {
-          "title": "BUFFER EVENT",
-          "start": "2026-04-07T23:15:00+05:30",
-          "end": "2026-04-07T23:30:00+05:30",
-          "clipped_start": "2026-04-07T23:15:00+05:30",
-          "clipped_end": "2026-04-07T23:30:00+05:30",
-          "duration_mins": 15.0
-        },
-        {
-          "title": "BUFFER EVENT",
-          "start": "2026-04-08T02:15:00+05:30",
-          "end": "2026-04-08T02:30:00+05:30",
-          "clipped_start": "2026-04-08T02:15:00+05:30",
-          "clipped_end": "2026-04-08T02:30:00+05:30",
-          "duration_mins": 15.0
         }
       ]
     },
